@@ -7,7 +7,7 @@ import http from 'http';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 
 // 2) Importa tu plugin (herramientas) generado por rslib
-import plugin from './index.js';
+import * as plugin from './index.js';
 
 // 3) Importa el transport HTTP/SSE
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
@@ -21,7 +21,7 @@ import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/
   const mcp = new McpServer({ name: 'tung-shing-mcp', version: '1.7.1' });
   mcp.use(plugin);
 
-  // 5) Montea el transport en /rpc
+  // 5) Monta el transport HTTP/SSE en /rpc
   const transport = new StreamableHTTPServerTransport({ path: '/rpc', app });
   await mcp.connect(transport);
 
