@@ -1,7 +1,7 @@
-import express from 'express';
-import { createServer as createHttpServer } from 'http';
-import { WebSocketServerTransport } from '@modelcontextprotocol/sdk';
-import { createServer } from './server';
+const express = require('express');
+const { createServer: createHttpServer } = require('http');
+const { WebSocketServerTransport } = require('@modelcontextprotocol/sdk/server/websocket.js');
+const { createServer } = require('./server');
 
 // Crear una aplicación Express
 const app = express();
@@ -29,31 +29,13 @@ const mcpServer = createServer();
 
 // Crear transporte WebSocket
 const wsTransport = new WebSocketServerTransport();
-
-// Agregar manejo de errores
 wsTransport.onerror = (error) => {
-  console.error("Error en el transporte:", error);
+  console.error('WebSocket error:', error);
 };
 
-// Conectar el servidor al transporte
-mcpServer.connect(wsTransport).catch((error) => {
-  console.error("Error al conectar el servidor:", error);
-  process.exit(1);
-});
-
-// Configurar el transporte WebSocket para escuchar en el servidor HTTP
+// Conectar el MCP al transporte WebSocket
+mcpServer.connect(wsTransport);
 wsTransport.listen(httpServer);
-
-// Manejar el cierre limpio
-process.on('SIGINT', async () => {
-  await mcpServer.close();
-  process.exit(0);
-});
-
-process.on('SIGTERM', async () => {
-  await mcpServer.close();
-  process.exit(0);
-});
 
 // Iniciar el servidor
 httpServer.listen(PORT, () => {
