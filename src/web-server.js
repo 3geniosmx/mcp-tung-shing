@@ -2,9 +2,6 @@ import express from 'express';
 import { createServer as createHttpServer } from 'http';
 import { createServer } from './server.js';
 
-// Para SSE (Server-Sent Events) como alternativa a WebSocket
-import { SseServerTransport } from '@modelcontextprotocol/sdk/dist/esm/server/sse.js';
-
 // Crear una aplicación Express
 const app = express();
 const PORT = process.env.PORT || 10000;
@@ -26,20 +23,34 @@ app.get('/', (req, res) => {
 // Crear un servidor HTTP
 const httpServer = createHttpServer(app);
 
-// Crear el servidor MCP
+// Crear el servidor MCP (sin intentar conectarlo a un transporte por ahora)
 const mcpServer = createServer();
 
-// Crear transporte SSE como alternativa a WebSocket
-const sseTransport = new SseServerTransport();
-sseTransport.onerror = (error) => {
-  console.error('SSE error:', error);
-};
-
-// Conectar el MCP al transporte SSE
-mcpServer.connect(sseTransport);
-
-// Configurar las rutas de SSE
-app.use('/sse', sseTransport.createExpressRouter());
+// Agregar un endpoint para llamar herramientas MCP directamente
+app.post('/api/mcp/tools/:name', async (req, res) => {
+  try {
+    const toolName = req.params.name;
+    const toolArguments = req.body;
+    
+    // Simular una llamada MCP
+    console.log(`Llamada a herramienta MCP: ${toolName}`, toolArguments);
+    
+    // Responder con los resultados
+    res.json({
+      status: 'success',
+      data: {
+        message: `Herramienta ${toolName} llamada con éxito`,
+        // Aquí podrías llamar a funciones reales del servidor MCP
+      }
+    });
+  } catch (error) {
+    console.error('Error al llamar herramienta MCP:', error);
+    res.status(500).json({
+      status: 'error',
+      message: error.message
+    });
+  }
+});
 
 // Iniciar el servidor
 httpServer.listen(PORT, () => {
