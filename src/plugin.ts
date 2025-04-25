@@ -1,4 +1,4 @@
-import { definePlugin } from '@modelcontextprotocol/sdk';
+import { definePlugin } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { getDailyAlmanac } from './almanac';
 import { ContentType, TabooType, getTungShingParamsSchema } from './types';
 import { getDayTabooNames } from './utils';

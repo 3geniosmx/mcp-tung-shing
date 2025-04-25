@@ -1,1 +1,3 @@
 18 
+shamefully-hoist=true
+legacy-peer-deps=true
