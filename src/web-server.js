@@ -1,41 +1,13 @@
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
-import fs from 'fs';
 import express from 'express';
 import { createServer as createHttpServer } from 'http';
+import { createServer } from './server.js';
 
-// Código de exploración de directorios
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const nodeModulesPath = join(__dirname, '..', 'node_modules', '@modelcontextprotocol', 'sdk');
+// Para SSE (Server-Sent Events) como alternativa a WebSocket
+import { SseServerTransport } from '@modelcontextprotocol/sdk/dist/esm/server/sse.js';
 
-// Imprimir la estructura de carpetas para depuración
-function exploreDir(dir, level = 0) {
-  try {
-    const files = fs.readdirSync(dir);
-    files.forEach(file => {
-      const path = join(dir, file);
-      try {
-        const stats = fs.statSync(path);
-        console.log(' '.repeat(level * 2) + file);
-        if (stats.isDirectory()) {
-          exploreDir(path, level + 1);
-        }
-      } catch (e) {
-        console.log(' '.repeat(level * 2) + file + ' (error: ' + e.message + ')');
-      }
-    });
-  } catch (e) {
-    console.error(`Error explorando directorio ${dir}: ${e.message}`);
-  }
-}
-
-console.log('Explorando estructura de carpetas del SDK:');
-exploreDir(nodeModulesPath);
-
-// Resto del código simplificado para pruebas
+// Crear una aplicación Express
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 10000;
 
 // Endpoint de salud
 app.get('/health', (req, res) => {
@@ -54,7 +26,22 @@ app.get('/', (req, res) => {
 // Crear un servidor HTTP
 const httpServer = createHttpServer(app);
 
-// Iniciar el servidor HTTP
+// Crear el servidor MCP
+const mcpServer = createServer();
+
+// Crear transporte SSE como alternativa a WebSocket
+const sseTransport = new SseServerTransport();
+sseTransport.onerror = (error) => {
+  console.error('SSE error:', error);
+};
+
+// Conectar el MCP al transporte SSE
+mcpServer.connect(sseTransport);
+
+// Configurar las rutas de SSE
+app.use('/sse', sseTransport.createExpressRouter());
+
+// Iniciar el servidor
 httpServer.listen(PORT, () => {
-  console.log(`Servidor de prueba iniciado en puerto ${PORT}`);
+  console.log(`Tung Shing MCP server started on port ${PORT}`);
 });
