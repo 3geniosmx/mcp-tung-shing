@@ -1,16 +1,9 @@
-FROM node:18-alpine
+FROM node:18
 WORKDIR /app
-
-# 1) Copia e instala deps
 COPY package.json pnpm-lock.yaml ./
-RUN npm install --omit=dev
-
-# 2) Copia todo y build
+RUN npm install -g pnpm
+RUN pnpm install
 COPY . .
-RUN npm run build
-
-# 3) Exponer puerto
+RUN pnpm run build
 EXPOSE 10000
-
-# 4) Arrancar
-CMD ["npm", "run", "start"]
+CMD ["node", "dist/web-server.js"]

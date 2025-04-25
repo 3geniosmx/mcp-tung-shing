@@ -1,68 +1,44 @@
 import express from 'express';
-import { createServer as createHttpServer } from 'http';
-import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { WebSocketServerTransport } from '@modelcontextprotocol/sdk/dist/esm/server/websocket.js';
-import { plugin } from './plugin.js';
+import http from 'http';
+import { spawn } from 'child_process';
 
-// Crear una aplicación Express
 const app = express();
-const PORT = process.env.PORT || 3000;
+app.use(express.json());
+const PORT = +process.env.PORT! || 10000;
 
-// Endpoint de salud
-app.get('/health', (req, res) => {
-  res.status(200).send('OK');
-});
+// Healthcheck
+app.get('/health', (_req, res) => res.send('OK'));
 
-// Endpoint de información
-app.get('/', (req, res) => {
-  res.status(200).json({
-    name: 'Tung Shing MCP Server',
-    version: process.env.PACKAGE_VERSION || 'unknown',
-    status: 'running'
+// JSON‐RPC endpoint, proxy al CLI de tu MCP
+app.post('/rpc', (req, res) => {
+  // 1) Spawnea tu CLI directamente desde dist/index.js
+  //    que rslib buildó como binario STDIO
+  const child = spawn('node', ['dist/index.cjs'], {
+    stdio: ['pipe', 'pipe', 'inherit'],
+  });
+
+  // 2) Envía el JSON‐RPC por stdin
+  child.stdin.write(JSON.stringify(req.body));
+  child.stdin.end();
+
+  // 3) Recoge stdout y devuélvelo como JSON
+  let stdout = '';
+  child.stdout.on('data', (chunk) => {
+    stdout += chunk;
+  });
+
+  child.on('close', (code) => {
+    if (code !== 0) {
+      return res.status(500).send(`MCP exited with code ${code}`);
+    }
+    try {
+      return res.json(JSON.parse(stdout));
+    } catch {
+      return res.status(502).send(stdout);
+    }
   });
 });
 
-// Crear un servidor HTTP
-const httpServer = createHttpServer(app);
-
-// Crear el servidor MCP
-const mcpServer = new McpServer({
-  name: "Tung Shing MCP Server",
-  version: process.env.PACKAGE_VERSION || "1.0.0",
-});
-
-// Usar el plugin
-mcpServer.use(plugin);
-
-// Crear transporte WebSocket
-const wsTransport = new WebSocketServerTransport();
-
-// Agregar manejo de errores
-wsTransport.onerror = (error) => {
-  console.error("Error en el transporte:", error);
-};
-
-// Conectar el servidor al transporte
-mcpServer.connect(wsTransport).catch((error) => {
-  console.error("Error al conectar el servidor:", error);
-  process.exit(1);
-});
-
-// Configurar el transporte WebSocket para escuchar en el servidor HTTP
-wsTransport.listen(httpServer);
-
-// Manejar el cierre limpio
-process.on('SIGINT', async () => {
-  await mcpServer.close();
-  process.exit(0);
-});
-
-process.on('SIGTERM', async () => {
-  await mcpServer.close();
-  process.exit(0);
-});
-
-// Iniciar el servidor
-httpServer.listen(PORT, () => {
-  console.log(`Tung Shing MCP server started on port ${PORT}`);
+http.createServer(app).listen(PORT, () => {
+  console.log(`🚀 MCP HTTP wrapper listening on http://0.0.0.0:${PORT}/rpc`);
 });

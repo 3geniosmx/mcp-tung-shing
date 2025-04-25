@@ -13,10 +13,15 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "prebuild": "rm -rf dist",
-    "build": "tsc",
-    "postbuild": "tsc -p tsconfig.cjs.json",
-    "start": "node dist/web-server.js"
+
+
+   "build": "rslib build",
+   "start": "node dist/web-server.js",
+   "postbuild": "cp web-server.js dist/web-server.js"
+    
+    
+    
+  
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.10.2",
@@ -29,10 +34,12 @@
     "ws": "^8.18.0"
   },
   "devDependencies": {
+    "@rslib/core": "^0.5.5",
+    "typescript": "^5.8.3",
     "@types/express": "^4.17.21",
     "@types/node": "^22.8.1",
-    "@types/ws": "^8.5.10",
-    "typescript": "^5.7.3"
+    "@types/ws": "^8.5.10"
+    
   },
   "packageManager":"pnpm@9.13.0"
 }

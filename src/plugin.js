@@ -1,9 +1,12 @@
-// src/plugin.js
-import { definePlugin } from '@modelcontextprotocol/sdk/server';
-import { getTungShing } from './logic.js';  // tu función real
+
+  // src/plugin.js
+  import { definePlugin } from '@modelcontextprotocol/sdk/server';
+  import { getTungShing } from './logic/getTungShing';
+// O
+// import { getTungShing } from './logic/getTungShing.js';
 
 export default definePlugin({
-  name: 'tung-shing',
+name: 'tung-shing',
   version: '1.7.1',
   tools: [
     {
@@ -15,3 +18,7 @@ export default definePlugin({
     // …más herramientas
   ],
 });
+
+
+
+
