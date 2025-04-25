@@ -1,40 +1,32 @@
 {
   "name": "mcp-tung-shing",
   "version": "1.7.1",
-  "description": "A Model Context Protocol plugin for Chinese Tung Shing (黄历) almanac calculations",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
-  "bin": {
-    "mcp-tung-shing": "./dist/index.cjs"
-  },
-  "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    }
-  },
+  "bin": { "mcp-tung-shing": "./dist/index.cjs" },
+  "exports": { ".": { "import":"./dist/index.js", "require":"./dist/index.cjs" } },
   "scripts": {
     "build": "rslib build",
     "postbuild": "cp src/web-server.js dist/web-server.js",
     "start": "node dist/web-server.js"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.10.2",
-    "express": "^4.18.2",
-    "dayjs": "^1.11.13",
-    "dayjs-plugin-lunar": "^1.4.0",
-    "tyme4ts": "1.3.0",
-    "ws": "^8.18.0",
-    "zod": "^3.24.1",
-    "zod-to-json-schema": "^3.24.1"
+    "@modelcontextprotocol/sdk":"^1.10.2",
+    "express":"^4.18.2",
+    "dayjs":"^1.11.13",
+    "dayjs-plugin-lunar":"^1.4.1",
+    "tyme4ts":"1.3.0",
+    "ws":"^8.18.1",
+    "zod":"^3.24.3",
+    "zod-to-json-schema":"^3.24.5"
   },
   "devDependencies": {
-    "@rslib/core": "^0.5.4",
-    "typescript": "^5.7.3",
-    "vitest": "^3.0.1",
-    "@types/node": "^18.15.11",
-    "@types/express": "^4.17.17"
+    "@rslib/core":"^0.5.5",
+    "typescript":"^5.8.3",
+    "vitest":"^3.1.2",
+    "@types/node":"^18.19.86",
+    "@types/express":"^4.17.21"
   },
-  "packageManager": "pnpm@9.13.0"
+  "packageManager":"pnpm@9.13.0"
 }
