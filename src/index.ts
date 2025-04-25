@@ -2,7 +2,7 @@
 
 import dayjs from 'dayjs';
 import { PluginLunar } from 'dayjs-plugin-lunar';
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/dist/esm/server/stdio.js';
 import { createServer as createHttpServer } from 'http';
 
 // 初始化日期插件
@@ -23,4 +23,3 @@ dayjs.extend(PluginLunar);
 
 export { createHttpServer as createServer };
 export { default as plugin } from './plugin.js';
-

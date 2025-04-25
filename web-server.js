@@ -2,6 +2,11 @@
 import express from 'express';
 import http from 'http';
 import { spawn } from 'child_process';
+import { fileURLToPath } from 'url';
+import { dirname, resolve } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express();
 app.use(express.json());
@@ -13,7 +18,8 @@ app.get('/health', (_req, res) => res.send('OK'));
 // JSON-RPC proxy al CLI
 app.post('/rpc', (req, res) => {
   // Lanza tu CLI empaquetado en dist/index.cjs
-  const child = spawn('node', ['dist/index.cjs'], {
+  const indexPath = resolve(__dirname, 'index.cjs');
+  const child = spawn('node', [indexPath], {
     stdio: ['pipe','pipe','inherit'],
   });
 
@@ -32,7 +38,8 @@ app.post('/rpc', (req, res) => {
     try {
       const json = JSON.parse(raw);
       res.json(json);
-    } catch {
+    } catch (e) {
+      console.error("Failed to parse JSON:", e);
       res.status(502).send(raw);
     }
   });
