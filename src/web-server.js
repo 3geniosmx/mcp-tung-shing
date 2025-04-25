@@ -1,69 +1,93 @@
-// src/web-server.js
-import express from 'express';
-import { createServer as createHttpServer } from 'http';
-import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { WebSocketServerTransport } from '@modelcontextprotocol/sdk';
-import { plugin } from './dist/index.js';
+import { definePlugin } from '@modelcontextprotocol/sdk';
+import { getDailyAlmanac } from './almanac';
+import { ContentType, TabooType, getTungShingParamsSchema } from './types';
+import { getDayTabooNames } from './utils';
+import dayjs from 'dayjs';
 
-// Crear una aplicación Express
-const app = express();
-const PORT = process.env.PORT || 3000;
+interface TungShingParams {
+  startDate: string;
+  days: number;
+  includeHours?: boolean;
+  tabooFilters?: Array<{
+    type: TabooType;
+    value: string;
+  }>;
+}
 
-// Endpoint de salud
-app.get('/health', (req, res) => {
-  res.status(200).send('OK');
-});
+export default definePlugin({
+  name: 'tung-shing',
+  version: '1.7.1',
+  tools: [
+    {
+      name: 'get-tung-shing',
+      description: '获取通胜黄历，包括公历、农历、宜忌、吉凶、冲煞等信息',
+      paramsSchema: getTungShingParamsSchema,
+      handler: async ({ startDate, days, includeHours, tabooFilters = [] }: TungShingParams) => {
+        const start = dayjs(startDate);
+        if (!start.isValid()) {
+          return {
+            content: [
+              {
+                type: 'text',
+                text: 'Invalid date',
+              },
+            ],
+            isError: true,
+          };
+        }
 
-// Endpoint de información
-app.get('/', (req, res) => {
-  res.status(200).json({
-    name: 'Tung Shing MCP Server',
-    version: process.env.PACKAGE_VERSION || 'unknown',
-    status: 'running'
-  });
-});
+        return {
+          content: Array.from({ length: days }, (_, i) => {
+            const almanac = getDailyAlmanac(start.add(i, 'day'), includeHours);
+            if (!tabooFilters.length) {
+              return {
+                type: 'text',
+                text: JSON.stringify(almanac),
+              };
+            }
 
-// Crear un servidor HTTP
-const httpServer = createHttpServer(app);
+            const recommends = (almanac.当日[ContentType.宜] as string[]) || [];
+            const avoids = (almanac.当日[ContentType.忌] as string[]) || [];
 
-// Crear el servidor MCP
-const mcpServer = new McpServer({
-  name: "Tung Shing MCP Server",
-  version: process.env.PACKAGE_VERSION || "1.0.0",
-});
+            const hasMatch = tabooFilters.some((filter) => {
+              if (filter.type === TabooType.宜) {
+                return recommends.includes(filter.value);
+              }
+              if (filter.type === TabooType.忌) {
+                return avoids.includes(filter.value);
+              }
+              return false;
+            });
 
-// Usar el plugin
-mcpServer.use(plugin);
-
-// Crear transporte WebSocket
-const wsTransport = new WebSocketServerTransport();
-
-// Agregar manejo de errores
-wsTransport.onerror = (error) => {
-  console.error("Error en el transporte:", error);
-};
-
-// Conectar el servidor al transporte
-mcpServer.connect(wsTransport).catch((error) => {
-  console.error("Error al conectar el servidor:", error);
-  process.exit(1);
-});
-
-// Configurar el transporte WebSocket para escuchar en el servidor HTTP
-wsTransport.listen(httpServer);
-
-// Manejar el cierre limpio
-process.on('SIGINT', async () => {
-  await mcpServer.close();
-  process.exit(0);
-});
-
-process.on('SIGTERM', async () => {
-  await mcpServer.close();
-  process.exit(0);
-});
-
-// Iniciar el servidor
-httpServer.listen(PORT, () => {
-  console.log(`Tung Shing MCP server started on port ${PORT}`);
+            if (hasMatch) {
+              return {
+                type: 'text',
+                text: JSON.stringify(almanac),
+              };
+            }
+            return null;
+          }).filter(Boolean),
+        };
+      },
+    }
+  ],
+  prompts: [
+    {
+      name: 'get-taboo',
+      description: '获取宜忌事项类型',
+      handler: () => ({
+        messages: [
+          {
+            role: 'assistant',
+            content: {
+              type: 'text',
+              text: `宜忌事项类型清单\n${getDayTabooNames()
+                .map((name: string) => `- ${name}`)
+                .join('\n')}`,
+            },
+          },
+        ],
+      }),
+    }
+  ]
 });

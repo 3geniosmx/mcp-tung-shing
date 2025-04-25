@@ -1,7 +1,18 @@
-import { definePlugin } from '@modelcontextprotocol/sdk/server';
+import { definePlugin } from '@modelcontextprotocol/sdk';
 import { getDailyAlmanac } from './almanac';
 import { ContentType, TabooType, getTungShingParamsSchema } from './types';
+import { getDayTabooNames } from './utils';
 import dayjs from 'dayjs';
+
+interface TungShingParams {
+  startDate: string;
+  days: number;
+  includeHours?: boolean;
+  tabooFilters?: Array<{
+    type: TabooType;
+    value: string;
+  }>;
+}
 
 export default definePlugin({
   name: 'tung-shing',
@@ -11,7 +22,7 @@ export default definePlugin({
       name: 'get-tung-shing',
       description: '获取通胜黄历，包括公历、农历、宜忌、吉凶、冲煞等信息',
       paramsSchema: getTungShingParamsSchema,
-      handler: async ({ startDate, days, includeHours, tabooFilters = [] }) => {
+      handler: async ({ startDate, days, includeHours, tabooFilters = [] }: TungShingParams) => {
         const start = dayjs(startDate);
         if (!start.isValid()) {
           return {
@@ -71,7 +82,7 @@ export default definePlugin({
             content: {
               type: 'text',
               text: `宜忌事项类型清单\n${getDayTabooNames()
-                .map((name) => `- ${name}`)
+                .map((name: string) => `- ${name}`)
                 .join('\n')}`,
             },
           },
