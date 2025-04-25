@@ -29,14 +29,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/baranwang/mcp-tung-shing"
+    "url": "https://github.com/3geniosmx/mcp-tung-shing"
   },
   "bugs": {
-    "url": "https://github.com/baranwang/mcp-tung-shing/issues"
+    "url": "https://github.com/3geniosmx/mcp-tung-shing/issues"
   },
   "license": "MIT",
   "scripts": {
-    "build": "rslib build",
+    "build": "rslib build && tsc src/web-server.ts --outDir dist --esModuleInterop true",
     "check": "biome check --write",
     "dev": "rslib build --watch",
     "format": "biome format --write",
@@ -47,12 +47,14 @@
     "release": "changeset publish"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.7.0",
+    "@modelcontextprotocol/sdk": "1.10.2",
     "dayjs": "^1.11.13",
     "dayjs-plugin-lunar": "^1.4.0",
+    "express": "^4.18.2",
     "tyme4ts": "1.3.0",
     "zod": "^3.24.1",
-    "zod-to-json-schema": "^3.24.1"
+    "zod-to-json-schema": "^3.24.1",
+    "ws": "^8.18.0"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.2",

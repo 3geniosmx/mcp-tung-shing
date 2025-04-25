@@ -5,15 +5,12 @@ import {
   ListPromptsRequestSchema,
   ListToolsRequestSchema,
 } from '@modelcontextprotocol/sdk/types.js';
-import dayjs from 'dayjs';
 import { zodToJsonSchema } from 'zod-to-json-schema';
 import { getDailyAlmanac } from './almanac';
 import { ContentType, TabooType, getTungShingParamsSchema } from './types';
 import { getDayTabooNames } from './utils';
+import dayjs from 'dayjs';
 
-/**
- * 创建并配置MCP服务器
- */
 export function createServer() {
   const mcpServer = new McpServer(
     {
@@ -25,10 +22,10 @@ export function createServer() {
         tools: {},
         prompts: {},
       },
-    },
+    }
   );
 
-  // 注册工具列表处理器
+  // Registrar los manejadores
   mcpServer.server.setRequestHandler(ListToolsRequestSchema, () => ({
     tools: [
       {
@@ -39,7 +36,6 @@ export function createServer() {
     ],
   }));
 
-  // 注册工具调用处理器
   mcpServer.server.setRequestHandler(CallToolRequestSchema, async (request) => {
     switch (request.params.name) {
       case 'get-tung-shing': {
@@ -65,8 +61,6 @@ export function createServer() {
         return {
           content: Array.from({ length: days }, (_, i) => {
             const almanac = getDailyAlmanac(start.add(i, 'day'), includeHours);
-
-            // 如果没有指定taboo过滤，直接返回结果
             if (!tabooFilters.length) {
               return {
                 type: 'text',
@@ -74,17 +68,13 @@ export function createServer() {
               };
             }
 
-            // 提取宜忌内容
             const recommends = (almanac.当日[ContentType.宜] as string[]) || [];
             const avoids = (almanac.当日[ContentType.忌] as string[]) || [];
 
-            // 根据tabooFilters进行过滤，条件之间为或的关系
             const hasMatch = tabooFilters.some((filter) => {
-              // 宜事项过滤
               if (filter.type === TabooType.宜) {
                 return recommends.includes(filter.value);
               }
-              // 忌事项过滤
               if (filter.type === TabooType.忌) {
                 return avoids.includes(filter.value);
               }
