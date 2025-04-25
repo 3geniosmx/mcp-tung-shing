@@ -14,9 +14,11 @@
 
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "rslib build && cp -r node_modules/@modelcontextprotocol node_modules/dayjs node_modules/tyme4ts dist/node_modules/",
-    "start": "node web-server.js",
-    "postbuild": "cp web-server.js dist/"
+
+   "build": "rslib build && mkdir -p dist/node_modules && cp -r node_modules/@modelcontextprotocol node_modules/dayjs node_modules/tyme4ts dist/node_modules/",
+   "start": "node web-server.js",
+   "postbuild": "cp web-server.js dist/"
+
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.10.2",
