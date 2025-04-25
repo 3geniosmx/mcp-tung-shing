@@ -5,9 +5,9 @@ import { spawn } from 'child_process';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 
-const indexPath = resolve(__dirname, 'mcp-server.js');
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+const indexPath = resolve(__dirname, 'mcp-server.js');
 
 const app = express();
 app.use(express.json());
@@ -19,7 +19,6 @@ app.get('/health', (_req, res) => res.send('OK'));
 // JSON-RPC proxy al CLI
 app.post('/rpc', (req, res) => {
   // Lanza tu CLI empaquetado en dist/index.cjs
-  const indexPath = resolve(__dirname, 'index.cjs');
   const child = spawn('node', [indexPath], {
     stdio: ['pipe','pipe','inherit'],
   });
