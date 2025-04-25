@@ -1,70 +1,40 @@
 {
   "name": "mcp-tung-shing",
   "version": "1.7.1",
-  "description": "A Model Context Protocol plugin for Chinese Tung Shing (黄历/通勝/通胜) almanac calculations",
+  "description": "A Model Context Protocol plugin for Chinese Tung Shing (黄历) almanac calculations",
   "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "bin": {
+    "mcp-tung-shing": "./dist/index.cjs"
+  },
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     }
   },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "bin": {
-    "mcp-tung-shing": "./dist/index.cjs"
-  },
-  "files": [
-    "dist"
-  ],
-  "keywords": [
-    "mcp",
-    "tung shing",
-    "almanac",
-    "calendar",
-    "lunar",
-    "chinese"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/3geniosmx/mcp-tung-shing"
-  },
-  "bugs": {
-    "url": "https://github.com/3geniosmx/mcp-tung-shing/issues"
-  },
-  "license": "MIT",
   "scripts": {
-    "build": "rslib build && tsc src/web-server.ts --outDir dist --esModuleInterop true",
-    "check": "biome check --write",
-    "dev": "rslib build --watch",
-    "format": "biome format --write",
-    "inspect": "mcp-inspector",
-    "pretest": "rslib build",
-    "test": "vitest run",
-    "prerelease": "npm run build",
-    "release": "changeset publish",
-    "start": "node src/web-server.js"
+    "build": "rslib build",
+    "postbuild": "cp src/web-server.js dist/web-server.js",
+    "start": "node dist/web-server.js"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "1.10.2",
+    "@modelcontextprotocol/sdk": "^1.10.2",
+    "express": "^4.18.2",
     "dayjs": "^1.11.13",
     "dayjs-plugin-lunar": "^1.4.0",
-    "express": "^4.18.2",
     "tyme4ts": "1.3.0",
+    "ws": "^8.18.0",
     "zod": "^3.24.1",
-    "zod-to-json-schema": "^3.24.1",
-    "ws": "^8.18.0"
+    "zod-to-json-schema": "^3.24.1"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.2",
-    "@changesets/cli": "^2.28.1",
-    "@modelcontextprotocol/inspector": "^0.8.0",
     "@rslib/core": "^0.5.4",
-    "@types/node": "^22.8.1",
     "typescript": "^5.7.3",
-    "vitest": "^3.0.1"
+    "vitest": "^3.0.1",
+    "@types/node": "^18.15.11",
+    "@types/express": "^4.17.17"
   },
   "packageManager": "pnpm@9.13.0"
 }

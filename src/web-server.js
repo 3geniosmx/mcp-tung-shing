@@ -1,35 +1,31 @@
 import express from 'express';
 import { createServer as createHttpServer } from 'http';
-import { createServer } from './server.js';  // tu MCP core
-import { HTTPServerTransport } from '@modelcontextprotocol/sdk/server/http.js';
+import { createMcpServer } from './server.js';
+import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 
 (async () => {
-  // 1. Crear app Express
   const app = express();
-  app.use(express.json());         // para body JSON
+  app.use(express.json());
   const PORT = process.env.PORT || 10000;
 
-  // 2. Instanciar tu servidor MCP y montar el transport HTTP
-  const mcp = createServer();
-  const transport = new HTTPServerTransport({
-    path: '/rpc',                  // aquí estará disponible tu JSON-RPC
-    app,
-  });
-  await mcp.connect(transport);    // monta el RPC sobre /rpc
+  // 1) Core MCP
+  const mcp = createMcpServer();
 
-  // 3. Endpoints adicionales (health, info)
+  // 2) Transport HTTP JSON-RPC en /rpc
+  const transport = new StreamableHTTPServerTransport({ path: '/rpc' });
+  await mcp.connect(transport);
+
+  // 3) Endpoint JSON-RPC
+  app.post('/rpc', transport.handleRequest.bind(transport));
+
+  // 4) Healthcheck e info
   app.get('/health', (_req, res) => res.send('OK'));
   app.get('/', (_req, res) => {
-    res.json({
-      name: 'Tung Shing MCP Server',
-      version: process.env.PACKAGE_VERSION || 'unknown',
-      status: 'running',
-    });
+    res.json({ name: 'Tung Shing MCP', status: 'running' });
   });
 
-  // 4. Arrancar HTTP
-  const httpServer = createHttpServer(app);
-  httpServer.listen(PORT, () => {
-    console.log(`🚀 MCP HTTP listening on http://localhost:${PORT}/rpc`);
+  // 5) Arranca HTTP
+  createHttpServer(app).listen(PORT, () => {
+    console.log(`🚀 MCP HTTP listening on http://0.0.0.0:${PORT}/rpc`);
   });
 })();

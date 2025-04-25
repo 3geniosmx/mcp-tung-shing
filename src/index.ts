@@ -3,7 +3,7 @@
 import dayjs from 'dayjs';
 import { PluginLunar } from 'dayjs-plugin-lunar';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import { createServer } from './server';
+import { createServer as createHttpServer } from 'http';
 
 // 初始化日期插件
 dayjs.extend(PluginLunar);
@@ -11,9 +11,9 @@ dayjs.extend(PluginLunar);
 // 启动服务器
 (async () => {
   try {
-    const server = createServer();
+    const server = createHttpServer();
     const transport = new StdioServerTransport();
-    await server.connect(transport);
+    await transport.start();
     console.error('Tung Shing MCP server started');
   } catch (error) {
     console.error('Failed to start Tung Shing MCP server:', error);
@@ -21,4 +21,4 @@ dayjs.extend(PluginLunar);
   }
 })();
 
-export { createServer };
+export { createHttpServer as createServer };
