@@ -1,7 +1,11 @@
+// src/web-server.js
 import express from 'express';
 import http from 'http';
+// 1) Importa el factory del servidor MCP base
 import { createServer as createMcpServer } from '@modelcontextprotocol/sdk/server';
+// 2) Importa tu plugin (herramientas) generado por rslib
 import plugin from './dist/index.js';
+// 3) Importa el transport HTTP/SSE
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 
 (async () => {
@@ -9,22 +13,22 @@ import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/
   app.use(express.json());
   const PORT = process.env.PORT || 10000;
 
-  // 1) Crea el servidor MCP base
-  const mcp = createMcpServer({ name: 'TungShing', version: '1.7.1' });
-
-  // 2) Registra tu plugin (herramientas y recursos)
+  // 4) Crea la instancia MCP y registra tu plugin
+  const mcp = createMcpServer({
+    name: 'tung-shing-mcp',
+    version: '1.7.1',
+  });
   mcp.use(plugin);
 
-  // 3) Monta el transport HTTP JSON-RPC en /rpc
-  const transport = new StreamableHTTPServerTransport({ path: '/rpc' });
+  // 5) Monta el transport HTTP/SSE en /rpc
+  const transport = new StreamableHTTPServerTransport({ path: '/rpc', app });
   await mcp.connect(transport);
 
-  // 4) Expón el endpoint
-  app.post('/rpc', transport.handleRequest.bind(transport));
+  // 6) Healthcheck
   app.get('/health', (_req, res) => res.send('OK'));
 
-  // 5) Arranca el HTTP server
+  // 7) Arranca el servidor
   http.createServer(app).listen(PORT, () => {
-    console.log(`🚀 MCP HTTP listening on http://0.0.0.0:${PORT}/rpc`);
+    console.log(`🚀 MCP HTTP/SSE listening on http://0.0.0.0:${PORT}/rpc`);
   });
 })();

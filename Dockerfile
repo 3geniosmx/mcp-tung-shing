@@ -1,23 +1,16 @@
-FROM node:18-alpine as builder
-
+FROM node:18-alpine
 WORKDIR /app
 
-RUN npm install -g pnpm
-
+# 1) Copia e instala deps
 COPY package.json pnpm-lock.yaml ./
+RUN npm install --omit=dev
 
-RUN pnpm install --frozen-lockfile
-
+# 2) Copia todo y build
 COPY . .
+RUN npm run build
 
-RUN pnpm run build
+# 3) Exponer puerto
+EXPOSE 10000
 
-
-FROM node:18-alpine as runner
-
-WORKDIR /app
-
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/package.json ./package.json
-
-CMD ["node", "dist/index.cjs"]
+# 4) Arrancar
+CMD ["npm", "run", "start"]
