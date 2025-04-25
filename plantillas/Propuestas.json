@@ -1,0 +1,1786 @@
+{
+    "name": "Propuestas",
+    "flow": [
+        {
+            "id": 57,
+            "module": "typeform:WatchEventsWithResponses",
+            "version": 2,
+            "parameters": {
+                "__IMTHOOK__": 1826116
+            },
+            "mapper": {},
+            "metadata": {
+                "designer": {
+                    "x": 108,
+                    "y": -763,
+                    "name": "Discovery Call Form Entry"
+                },
+                "restore": {
+                    "parameters": {
+                        "__IMTHOOK__": {
+                            "data": {
+                                "editable": "true"
+                            },
+                            "label": "generador de propuestas"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTHOOK__",
+                        "type": "hook:typeform",
+                        "label": "Webhook",
+                        "required": true
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "form_id",
+                        "type": "text",
+                        "label": "Form ID"
+                    },
+                    {
+                        "name": "event",
+                        "spec": [
+                            {
+                                "name": "id",
+                                "type": "text",
+                                "label": "ID"
+                            },
+                            {
+                                "name": "type",
+                                "type": "text",
+                                "label": "Type"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Event"
+                    },
+                    {
+                        "name": "token",
+                        "type": "text",
+                        "label": "Token"
+                    },
+                    {
+                        "name": "submitted_at",
+                        "type": "date",
+                        "label": "Submitted at"
+                    },
+                    {
+                        "name": "landed_at",
+                        "type": "date",
+                        "label": "Landed at"
+                    },
+                    {
+                        "name": "calculated",
+                        "spec": [
+                            {
+                                "name": "score",
+                                "type": "number",
+                                "label": "Score"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Calculated"
+                    },
+                    {
+                        "name": "definition",
+                        "spec": [
+                            {
+                                "name": "id",
+                                "type": "text",
+                                "label": "ID"
+                            },
+                            {
+                                "name": "title",
+                                "type": "text",
+                                "label": "Title"
+                            },
+                            {
+                                "name": "fields",
+                                "spec": {
+                                    "spec": [
+                                        {
+                                            "name": "id",
+                                            "type": "text",
+                                            "label": "ID"
+                                        },
+                                        {
+                                            "name": "title",
+                                            "type": "text",
+                                            "label": "Title"
+                                        },
+                                        {
+                                            "name": "type",
+                                            "type": "text",
+                                            "label": "Type"
+                                        },
+                                        {
+                                            "name": "ref",
+                                            "type": "text",
+                                            "label": "Internal Name"
+                                        },
+                                        {
+                                            "name": "allow_multiple_selections",
+                                            "type": "boolean",
+                                            "label": "Allow Multiple Selections"
+                                        },
+                                        {
+                                            "name": "allow_other_choice",
+                                            "type": "boolean",
+                                            "label": "Allow Other Choice"
+                                        }
+                                    ],
+                                    "type": "collection"
+                                },
+                                "type": "array",
+                                "label": "Fields"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Definition"
+                    },
+                    {
+                        "name": "answers",
+                        "spec": [
+                            {
+                                "name": "field",
+                                "spec": [
+                                    {
+                                        "name": "id",
+                                        "type": "text",
+                                        "label": "ID"
+                                    },
+                                    {
+                                        "name": "type",
+                                        "type": "text",
+                                        "label": "Type"
+                                    },
+                                    {
+                                        "name": "ref",
+                                        "type": "text",
+                                        "label": "Internal Name"
+                                    }
+                                ],
+                                "type": "collection",
+                                "label": "Field"
+                            },
+                            {
+                                "name": "type",
+                                "type": "text",
+                                "label": "Type"
+                            },
+                            {
+                                "name": "text",
+                                "type": "text",
+                                "label": "Text"
+                            },
+                            {
+                                "name": "email",
+                                "type": "email",
+                                "label": "Email"
+                            },
+                            {
+                                "name": "boolean",
+                                "type": "boolean",
+                                "label": "Boolean"
+                            },
+                            {
+                                "name": "number",
+                                "type": "number",
+                                "label": "Number"
+                            },
+                            {
+                                "name": "date",
+                                "type": "date",
+                                "label": "Date"
+                            },
+                            {
+                                "name": "long_text",
+                                "type": "text",
+                                "label": "Long Text"
+                            },
+                            {
+                                "name": "short_text",
+                                "type": "text",
+                                "label": "Short Text"
+                            },
+                            {
+                                "name": "file_url",
+                                "type": "url",
+                                "label": "File URL"
+                            },
+                            {
+                                "name": "url",
+                                "type": "url",
+                                "label": "URL"
+                            },
+                            {
+                                "name": "phone_number",
+                                "type": "text",
+                                "label": "Phone Number"
+                            },
+                            {
+                                "name": "choice",
+                                "spec": [
+                                    {
+                                        "name": "label",
+                                        "type": "text",
+                                        "label": "Label"
+                                    },
+                                    {
+                                        "name": "other",
+                                        "type": "text",
+                                        "label": "Other"
+                                    }
+                                ],
+                                "type": "collection",
+                                "label": "Choice"
+                            },
+                            {
+                                "name": "choices",
+                                "spec": [
+                                    {
+                                        "name": "labels",
+                                        "spec": {
+                                            "type": "text"
+                                        },
+                                        "type": "array",
+                                        "label": "Labels"
+                                    }
+                                ],
+                                "type": "collection",
+                                "label": "Choices"
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Answers"
+                    },
+                    {
+                        "name": "mappable_answers",
+                        "spec": [
+                            {
+                                "name": "ef9d2ca4-001e-4a88-b9ed-c7d03ad358cf",
+                                "type": "text",
+                                "label": "Tu informacion de contacto"
+                            },
+                            {
+                                "name": "6c4dcc48-01b0-494a-869a-b1301830f96c",
+                                "type": "text",
+                                "label": "¿Puedes darme una pequeña descripción sobre tu negocio?"
+                            },
+                            {
+                                "name": "b4a42dc2-046c-4717-889a-1867b362a421",
+                                "type": "text",
+                                "label": "¿Cuál es el problema que esta afrontando tu negocio?"
+                            },
+                            {
+                                "name": "e3c9e75d-dc40-407f-9708-c36bf37454ce",
+                                "type": "text",
+                                "label": "¿Cuáles son las herramientas o softwares que usan frecuentemente en su negocio?"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Mappable Answers"
+                    },
+                    {
+                        "name": "hidden",
+                        "spec": [],
+                        "type": "collection",
+                        "label": "Hidden"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 58,
+            "module": "util:FunctionSleep",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "duration": "2"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 401,
+                    "y": -763
+                },
+                "restore": {},
+                "expect": [
+                    {
+                        "name": "duration",
+                        "type": "uinteger",
+                        "label": "Delay",
+                        "required": true,
+                        "validate": {
+                            "max": 300,
+                            "min": 1
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": 59,
+            "module": "typeform:ListResponses",
+            "version": 2,
+            "parameters": {
+                "__IMTCONN__": 3567487
+            },
+            "mapper": {
+                "limit": "1",
+                "fields": [
+                    "5bCyF80rO1I1",
+                    "FXI6X4tsR2GF",
+                    "kxK5jnJwIMDq",
+                    "kXlMtdd9o7v6"
+                ],
+                "formId": "AVDKnRcG",
+                "completed": true
+            },
+            "metadata": {
+                "designer": {
+                    "x": 699,
+                    "y": -761
+                },
+                "restore": {
+                    "expect": {
+                        "fields": {
+                            "mode": "chose",
+                            "items": [
+                                {
+                                    "value": {
+                                        "mode": "chose",
+                                        "label": "Tu informacion de contacto"
+                                    }
+                                },
+                                {
+                                    "value": {
+                                        "mode": "chose",
+                                        "label": "¿Cuál es el problema que esta afrontando tu negocio?"
+                                    }
+                                },
+                                {
+                                    "value": {
+                                        "mode": "chose",
+                                        "label": "¿Puedes darme una pequeña descripción sobre tu negocio?"
+                                    }
+                                },
+                                {
+                                    "value": {
+                                        "mode": "chose",
+                                        "label": "¿Cuáles son las herramientas o softwares que usan frecuentemente en su negocio?"
+                                    }
+                                }
+                            ]
+                        },
+                        "formId": {
+                            "mode": "chose",
+                            "label": "TRAID"
+                        },
+                        "completed": {
+                            "mode": "chose"
+                        },
+                        "excluded_response_ids": {
+                            "mode": "chose"
+                        },
+                        "included_response_ids": {
+                            "mode": "edit"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "typeform2"
+                            },
+                            "label": "My Typeform connection"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:typeform2",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "formId",
+                        "type": "select",
+                        "label": "Form ID",
+                        "required": true
+                    },
+                    {
+                        "name": "completed",
+                        "type": "boolean",
+                        "label": "Completed"
+                    },
+                    {
+                        "name": "query",
+                        "type": "text",
+                        "label": "Query"
+                    },
+                    {
+                        "name": "since",
+                        "type": "date",
+                        "label": "Since"
+                    },
+                    {
+                        "name": "until",
+                        "type": "date",
+                        "label": "Until"
+                    },
+                    {
+                        "name": "limit",
+                        "type": "uinteger",
+                        "label": "Limit"
+                    },
+                    {
+                        "name": "fields",
+                        "spec": {
+                            "name": "value",
+                            "type": "select",
+                            "dynamic": true,
+                            "options": [],
+                            "required": true
+                        },
+                        "type": "array",
+                        "label": "Fields"
+                    },
+                    {
+                        "name": "included_response_ids",
+                        "type": "select",
+                        "label": "Included Response IDs",
+                        "multiple": true
+                    },
+                    {
+                        "name": "excluded_response_ids",
+                        "type": "select",
+                        "label": "Excluded Response IDs",
+                        "multiple": true
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "__IMTLENGTH__",
+                        "type": "uinteger",
+                        "label": "Total number of bundles"
+                    },
+                    {
+                        "name": "__IMTINDEX__",
+                        "type": "uinteger",
+                        "label": "Bundle order position"
+                    },
+                    {
+                        "name": "landing_id",
+                        "type": "text",
+                        "label": "Landing ID"
+                    },
+                    {
+                        "name": "token",
+                        "type": "text",
+                        "label": "Token"
+                    },
+                    {
+                        "name": "response_id",
+                        "type": "text",
+                        "label": "Response ID"
+                    },
+                    {
+                        "name": "landed_at",
+                        "type": "date",
+                        "label": "Landed at"
+                    },
+                    {
+                        "name": "submitted_at",
+                        "type": "date",
+                        "label": "Submitted at"
+                    },
+                    {
+                        "name": "metadata",
+                        "spec": [
+                            {
+                                "name": "user_agent",
+                                "type": "text",
+                                "label": "User Agent"
+                            },
+                            {
+                                "name": "platform",
+                                "type": "text",
+                                "label": "Platform"
+                            },
+                            {
+                                "name": "referer",
+                                "type": "url",
+                                "label": "Referer"
+                            },
+                            {
+                                "name": "network_id",
+                                "type": "text",
+                                "label": "Network ID"
+                            },
+                            {
+                                "name": "browser",
+                                "type": "text",
+                                "label": "Browser"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Metadata"
+                    },
+                    {
+                        "name": "answers",
+                        "spec": [
+                            {
+                                "name": "field",
+                                "spec": [
+                                    {
+                                        "name": "id",
+                                        "type": "text",
+                                        "label": "ID"
+                                    },
+                                    {
+                                        "name": "type",
+                                        "type": "text",
+                                        "label": "Type"
+                                    },
+                                    {
+                                        "name": "ref",
+                                        "type": "text",
+                                        "label": "Readable Name"
+                                    }
+                                ],
+                                "type": "collection",
+                                "label": "Field"
+                            },
+                            {
+                                "name": "type",
+                                "type": "text",
+                                "label": "Type"
+                            },
+                            {
+                                "name": "text",
+                                "type": "text",
+                                "label": "Text"
+                            },
+                            {
+                                "name": "email",
+                                "type": "email",
+                                "label": "Email"
+                            },
+                            {
+                                "name": "boolean",
+                                "type": "boolean",
+                                "label": "Boolean"
+                            },
+                            {
+                                "name": "number",
+                                "type": "number",
+                                "label": "Number"
+                            },
+                            {
+                                "name": "date",
+                                "type": "date",
+                                "label": "Date"
+                            },
+                            {
+                                "name": "long_text",
+                                "type": "text",
+                                "label": "Long Text"
+                            },
+                            {
+                                "name": "short_text",
+                                "type": "text",
+                                "label": "Short Text"
+                            },
+                            {
+                                "name": "file_url",
+                                "type": "url",
+                                "label": "File URL"
+                            },
+                            {
+                                "name": "url",
+                                "type": "url",
+                                "label": "URL"
+                            },
+                            {
+                                "name": "phone_number",
+                                "type": "text",
+                                "label": "Phone Number"
+                            },
+                            {
+                                "name": "choice",
+                                "spec": [
+                                    {
+                                        "name": "label",
+                                        "type": "text",
+                                        "label": "Label"
+                                    },
+                                    {
+                                        "name": "other",
+                                        "type": "text",
+                                        "label": "Other"
+                                    }
+                                ],
+                                "type": "collection",
+                                "label": "Choice"
+                            },
+                            {
+                                "name": "choices",
+                                "spec": [
+                                    {
+                                        "name": "labels",
+                                        "spec": {
+                                            "type": "text"
+                                        },
+                                        "type": "array",
+                                        "label": "Labels"
+                                    }
+                                ],
+                                "type": "collection",
+                                "label": "Choices"
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Answers"
+                    },
+                    {
+                        "name": "mappable_answers",
+                        "spec": [
+                            {
+                                "name": "ef9d2ca4-001e-4a88-b9ed-c7d03ad358cf",
+                                "type": "text",
+                                "label": "Tu informacion de contacto"
+                            },
+                            {
+                                "name": "6c4dcc48-01b0-494a-869a-b1301830f96c",
+                                "type": "text",
+                                "label": "¿Puedes darme una pequeña descripción sobre tu negocio?"
+                            },
+                            {
+                                "name": "b4a42dc2-046c-4717-889a-1867b362a421",
+                                "type": "text",
+                                "label": "¿Cuál es el problema que esta afrontando tu negocio?"
+                            },
+                            {
+                                "name": "e3c9e75d-dc40-407f-9708-c36bf37454ce",
+                                "type": "text",
+                                "label": "¿Cuáles son las herramientas o softwares que usan frecuentemente en su negocio?"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Mappable Answers"
+                    },
+                    {
+                        "name": "hidden",
+                        "spec": [],
+                        "type": "collection",
+                        "label": "Hidden"
+                    },
+                    {
+                        "name": "calculated",
+                        "spec": [
+                            {
+                                "name": "score",
+                                "type": "number",
+                                "label": "Score"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Calculated"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 63,
+            "module": "openai-gpt-3:CreateCompletion",
+            "version": 1,
+            "parameters": {
+                "__IMTCONN__": 3306766
+            },
+            "filter": {
+                "name": "Send Proposal?",
+                "conditions": []
+            },
+            "mapper": {
+                "model": "gpt-4-0613",
+                "top_p": "1",
+                "select": "chat",
+                "messages": [
+                    {
+                        "role": "system",
+                        "content": "Eres una asistente de ventas útil e inteligente."
+                    },
+                    {
+                        "role": "user",
+                        "content": "Somos una agencia de soluciones de IA que desarrollamos, Chatbots de cualquier proposito, automatizaciones de sistemas con make.com, Agentes de IA personales con N8N\n\nA continuación se muestra un visor suelto. Convierta ese alcance en una propuesta de alta calidad en JSON. \n\nNuestros clientes son empresarios, por lo que escriben en un tono espartano y sencillo que implica inteligencia."
+                    },
+                    {
+                        "role": "user",
+                        "content": "{\"businessDescription\":\"Flatiron Search Partners es una empresa de reclutamiento de ejecutivos que se especializa en clientes de tecnología de punta.\", \"problem\":\"En este momento están administrando todos sus clientes potenciales y proyectos en una hoja de Google masiva. Las cuestiones clave : su sistema está desorganizado, es incapaz de escalar y proporciona poca responsabilidad. Los miembros del equipo actualizan campos manualmente, copian y pegan datos, y no existe una única fuente de verdad.\",\"solution\": \"Migración a un. Una solución de gestión de proyectos y CRM dedicada como Monday.com, y una configuración personalizada que incluye un tablero de CRM para manejar nuevos clientes potenciales, junto con un tablero de PM para manejar proyectos nuevos y en curso. La creación de nuevos registros y varias tareas administrativas junto con ellos. manejarse usando automatizaciones integradas en Monday y herramientas de terceros. También crearé una biblioteca de procesos de SOP para mejorar las operaciones de manera más general.\", \"tools\":\"Monday.com: plataforma CRM/PM: tercera. herramienta de automatización de fiestas Typeform: entrada de datos con buena experiencia de usuario.\"}"
+                    },
+                    {
+                        "role": "assistant",
+                        "content": "{\"problemPitch\":\"1. Estás utilizando sistemas que no se escalan\\n\\nActualmente, tu equipo dedica una cantidad ridícula de tiempo a actualizar manualmente los campos en una hoja de cálculo de Google. Esto consume muchos recursos, es ineficiente y tedioso. es fácil que un pequeño error se convierta en uno grande, y esto ha sucedido varias veces. Quizás lo más importante es que no hay responsabilidad, por lo que cuando dichos problemas surgen inevitablemente, es imposible rastrearlos hasta su raíz y resolverlos.\\n \\n2.Estás haciendo (y pagando) demasiado\\n\\nGoogle Sheets es gratuito. Pero el impacto en su negocio ha sido costoso. Dada la naturaleza arcaica de su configuración actual, es difícil poner en práctica tareas diarias específicas, lo que hace que una gran parte de los costos de empleados/contratistas se destinen a tareas administrativas que son fácilmente automatizables.\\n\\n3. Te estás perdiendo un montón de funciones\\n\\nGoogle Sheets es principalmente textual y carece de la rica funcionalidad que ofrecen los CRM más intencionales. Por ejemplo, no puede asignar propietarios a los registros, ni notificar automáticamente a los miembros del equipo cuando es necesario que suceda algo (en cambio, todos deben estar en línea todo el tiempo \"por si acaso\"), ni aprovechar vistas más efectivas para representar datos. fluir.\",\"Punto de solución:\"1. Primero, migraré y crearé un sistema escalable:\\n\\nTe ayudaré a migrar a Monday.com, una plataforma de gestión de proyectos y CRM dedicada. Esto solucionará muchos de los problemas de escalabilidad inherentes a Google Sheets: su equipo podrá asignar propietarios a los registros, recibir notificaciones sobre tareas importantes y comunicarse entre sí de forma pública y responsable. \\n\\nAdemás, crearé automatizaciones personalizadas (tanto en lunes como utilizando una herramienta de terceros, Make.com) para eliminar la necesidad de creación manual de registros y funciones administrativas relacionadas. Esto mejorará el tiempo del ciclo, mejorará la calidad de vida de su personal y disminuirá la probabilidad de cometer un error costoso.\\n\\n2. Luego, lo ayudaré a mejorar la rentabilidad:\\n\\nA continuación, pondremos en funcionamiento sus procedimientos, los agregaremos a una biblioteca de SOP y comenzaremos a buscar soluciones automatizadas para mejorar la efectividad de cada tarea. Gran parte del conocimiento de su empresa existe actualmente en conversaciones o mensajes directos e hilos ocultos. Convertir esto en una base de conocimientos central y accesible agilizará la incorporación de nuevos empleados, mejorará significativamente los márgenes de las tareas y hará que su equipo sea mucho más flexible.\", \" title\":\"Simplificación de los socios de búsqueda de Flatiron y migración a Monday\", \"platformList\":\"Monday.com, Make.com, Typeform\"}"
+                    },
+                    {
+                        "role": "user",
+                        "content": "{\"businessDescription\":\"Memphis Home Buyers es una empresa de bienes raíces residenciales que compra (y luego cambia) casas con problemas de pago registrados en el área de Memphis.\", \"problem\":\"Tienen una lista de más de 50.000 contactos con casas que podrían estar lanzando pero no se están acercando en absoluto. Una simple campaña de correo electrónico sería suficiente, pero lo único que hacen es llamar, y aunque las llamadas generan tasas de conversión más altas que los correos electrónicos, también requieren mucho más tiempo y recursos. Están generando una pequeña fracción de los ingresos que podrían haber obtenido si ejecutaran una campaña omnicanal y usaran el correo electrónico para calificar. Muy poco optimizados.\",\"solution\": \"Usar una herramienta de correo electrónico frío dedicada como Instantly para administrar mil o más. correos electrónicos salientes por día, junto con un conjunto estandarizado de procedimientos operativos para que un vendedor califique por correo electrónico. Si el cliente potencial está calificado, se pasará a su equipo de cierre, que lo llamará y le hará una oferta de compra. en 24 horas. Esto multiplicará sus ganancias.\", \"tools\":\"Instantly.ai: herramienta de correo electrónico frío. Make.com: herramienta de automatización de terceros.\"}"
+                    },
+                    {
+                        "role": "assistant",
+                        "content": "{\"problemPitch\":\"1. Su sistema de extensión actual no se escala\\n\\nEn este momento, su equipo está llamando manualmente en frío a cada cliente potencial en su base de datos. Esto requiere mucho tiempo (quizás de diez a veinte segundos, como mínimo). , para llegar a cada cliente potencial) y costoso (porque paga a sus vendedores por hora para obtener resultados). Si bien funciona ocasionalmente, este no es un sistema escalable. Uno mejor implicaría comunicación omnicanal, calificación automática. y un alcance mucho más rápido.\", \"solutionPitch:\"1. Primero, lo migraré a Instantly.ai, una herramienta de correo electrónico frío de gran volumen.\\n\\nMigraré todos sus contactos a Instantly.ai, la herramienta de correo electrónico frío de mejor rendimiento del mercado. Usaremos una campaña de correo electrónico frío para calificar a cada cliente potencial y haremos una oferta tan buena que la mayoría de sus clientes potenciales no puedan evitar responder (es decir, estamos dispuestos a enviarles una oferta en efectivo dentro de las 24 horas). n\\n2. Luego, crearé un conjunto de procedimientos operativos de ventas estándar.\\n\\nAl dividir su sistema de extensión en dos pasos (primero el correo electrónico y luego una llamada), mejoraremos significativamente la eficiencia y los ingresos totales. A medida que crezca, necesitará un conjunto centralizado de documentos y procedimientos operativos que le permitan contratar nuevo personal de correo electrónico (preparadores) y operadores telefónicos (cerradores), así que crearé uno para usted. Esto permitirá que cualquier miembro de su equipo intercambie roles según sea necesario y reducirá drásticamente el tiempo de incorporación, lo que será una infraestructura suficiente para escalar más de 7 cifras a 10 millones por año y más.\", \"title\":\"Sistema de ventas omnicanal escalable para Memphis Home Compradores\", \"platformList\":\"Instantly.ai, Make.com\"}"
+                    },
+                    {
+                        "role": "user",
+                        "content": "{\"businessDescription\":\"{{57.mappable_answers.`6c4dcc48-01b0-494a-869a-b1301830f96c`}}\", \"problem\":\"{{57.mappable_answers.`b4a42dc2-046c-4717-889a-1867b362a421`}}\", \"tools\":\"{{57.mappable_answers.`e3c9e75d-dc40-407f-9708-c36bf37454ce`}}\"}"
+                    }
+                ],
+                "max_tokens": "0",
+                "temperature": "1",
+                "n_completions": "1",
+                "response_format": "text"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 988,
+                    "y": -757,
+                    "name": "Propuesta"
+                },
+                "restore": {
+                    "expect": {
+                        "stop": {
+                            "mode": "chose"
+                        },
+                        "model": {
+                            "mode": "chose",
+                            "label": "gpt-4-0613"
+                        },
+                        "select": {
+                            "label": "Create a Chat Completion (GPT Models)"
+                        },
+                        "messages": {
+                            "mode": "chose",
+                            "items": [
+                                {
+                                    "role": {
+                                        "mode": "chose",
+                                        "label": "System"
+                                    }
+                                },
+                                {
+                                    "role": {
+                                        "mode": "chose",
+                                        "label": "User"
+                                    }
+                                },
+                                {
+                                    "role": {
+                                        "mode": "chose",
+                                        "label": "User"
+                                    }
+                                },
+                                {
+                                    "role": {
+                                        "mode": "chose",
+                                        "label": "Assistant"
+                                    }
+                                },
+                                {
+                                    "role": {
+                                        "mode": "chose",
+                                        "label": "User"
+                                    }
+                                },
+                                {
+                                    "role": {
+                                        "mode": "chose",
+                                        "label": "Assistant"
+                                    }
+                                },
+                                {
+                                    "role": {
+                                        "mode": "chose",
+                                        "label": "User"
+                                    }
+                                }
+                            ]
+                        },
+                        "logit_bias": {
+                            "mode": "chose"
+                        },
+                        "response_format": {
+                            "mode": "chose",
+                            "label": "Text"
+                        },
+                        "additionalParameters": {
+                            "mode": "chose"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "openai-gpt-3"
+                            },
+                            "label": "Recordatorios"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:openai-gpt-3",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "select",
+                        "type": "select",
+                        "label": "Select Method",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "chat",
+                                "prompt"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "max_tokens",
+                        "type": "number",
+                        "label": "Max Tokens",
+                        "required": true
+                    },
+                    {
+                        "name": "temperature",
+                        "type": "number",
+                        "label": "Temperature",
+                        "validate": {
+                            "max": 2,
+                            "min": 0
+                        }
+                    },
+                    {
+                        "name": "top_p",
+                        "type": "number",
+                        "label": "Top P",
+                        "validate": {
+                            "max": 1,
+                            "min": 0
+                        }
+                    },
+                    {
+                        "name": "n_completions",
+                        "type": "number",
+                        "label": "Number"
+                    },
+                    {
+                        "name": "frequency_penalty",
+                        "type": "number",
+                        "label": "Frequency Penalty",
+                        "validate": {
+                            "max": 2,
+                            "min": -2
+                        }
+                    },
+                    {
+                        "name": "presence_penalty",
+                        "type": "number",
+                        "label": "Presence Penalty",
+                        "validate": {
+                            "max": 2,
+                            "min": -2
+                        }
+                    },
+                    {
+                        "name": "logit_bias",
+                        "spec": {
+                            "name": "value",
+                            "spec": [
+                                {
+                                    "name": "token",
+                                    "type": "text",
+                                    "label": "Token ID",
+                                    "required": true
+                                },
+                                {
+                                    "name": "probability",
+                                    "type": "number",
+                                    "label": "Probability",
+                                    "required": true,
+                                    "validate": {
+                                        "max": 100,
+                                        "min": -100
+                                    }
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Token Probability"
+                        },
+                        "type": "array",
+                        "label": "Token Probability"
+                    },
+                    {
+                        "name": "response_format",
+                        "type": "select",
+                        "label": "Response Format",
+                        "validate": {
+                            "enum": [
+                                "text",
+                                "json_object"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "seed",
+                        "type": "integer",
+                        "label": "Seed"
+                    },
+                    {
+                        "name": "stop",
+                        "spec": {
+                            "name": "value",
+                            "type": "text",
+                            "label": "Stop Sequence"
+                        },
+                        "type": "array",
+                        "label": "Stop Sequences",
+                        "validate": {
+                            "maxItems": 4
+                        }
+                    },
+                    {
+                        "name": "additionalParameters",
+                        "spec": {
+                            "name": "value",
+                            "spec": [
+                                {
+                                    "name": "key",
+                                    "type": "text",
+                                    "label": "Parameter Name",
+                                    "required": true
+                                },
+                                {
+                                    "name": "type",
+                                    "type": "select",
+                                    "label": "Input Type",
+                                    "options": [
+                                        {
+                                            "label": "Text",
+                                            "value": "text",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "text",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ],
+                                            "default": true
+                                        },
+                                        {
+                                            "label": "Number",
+                                            "value": "number",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "number",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Boolean",
+                                            "value": "boolean",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "boolean",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Date",
+                                            "value": "date",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "date",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Any",
+                                            "value": "any",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "any",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Input Parameter"
+                        },
+                        "type": "array",
+                        "label": "Other Input Parameters"
+                    },
+                    {
+                        "name": "model",
+                        "type": "select",
+                        "label": "Model",
+                        "required": true
+                    },
+                    {
+                        "name": "messages",
+                        "spec": {
+                            "name": "value",
+                            "spec": [
+                                {
+                                    "name": "role",
+                                    "type": "select",
+                                    "label": "Role",
+                                    "options": [
+                                        {
+                                            "label": "System",
+                                            "value": "system"
+                                        },
+                                        {
+                                            "label": "User",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "label": "Assistant",
+                                            "value": "assistant"
+                                        }
+                                    ],
+                                    "required": true
+                                },
+                                {
+                                    "name": "content",
+                                    "type": "text",
+                                    "label": "Message Content"
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Message"
+                        },
+                        "type": "array",
+                        "label": "Messages",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 88,
+            "module": "json:ParseJSON",
+            "version": 1,
+            "parameters": {
+                "type": ""
+            },
+            "mapper": {
+                "json": "{{63.choices[].message.content}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 1284,
+                    "y": -754
+                },
+                "restore": {
+                    "parameters": {
+                        "type": {
+                            "label": "Choose a data structure"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "type",
+                        "type": "udt",
+                        "label": "Data structure"
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "json",
+                        "type": "text",
+                        "label": "JSON string",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 72,
+            "module": "openai-gpt-3:CreateCompletion",
+            "version": 1,
+            "parameters": {
+                "__IMTCONN__": 3306766
+            },
+            "mapper": {
+                "model": "gpt-4-0613",
+                "top_p": "1",
+                "select": "chat",
+                "messages": [
+                    {
+                        "role": "system",
+                        "content": "Eres una asistente de escritura útil e inteligente.(femenino)"
+                    },
+                    {
+                        "role": "user",
+                        "content": "Escriba 4 hitos que suenen sofisticados y cronogramas asociados para una propuesta de proyecto. Utilice la declaración de solución proporcionada y el cronograma aproximado y el siguiente formato JSON.\n\n{\"hito-1\":\"descripción del hito 1\",\n\"timeline-1\": \"descripción de la línea de tiempo 1\",\n\"hito-2\": \"descripción del hito 2\",\n\"timeline-2\": \"descripción de la línea de tiempo 2\",\n\"hito-3\": \"descripción del hito 3\",\n\"timeline-3\": \"descripción de la línea de tiempo 3\",\n\"hito-4\": \"descripción del hito 4\",\n\"timeline-4\": \"descripción de la línea de tiempo 4\"}"
+                    },
+                    {
+                        "role": "user",
+                        "content": "{\"solución\": \"Un sistema optimizado basado en Airtable que le permite a su equipo aprovechar su capital humano donde más importa: dirigir el barco. Su equipo agregará términos de búsqueda de la industria (es decir, desarrollador de C++) usando un formulario simple, y' Activará un flujo de trabajo de divulgación.\\n\\nEl flujo de trabajo buscará automáticamente en LinkedIn trabajos que se hayan publicado para ese puesto o para personas con ese rol, canalizará esos datos hacia un canal de enriquecimiento y capacidad de entrega (DropContact, Neverbounce, etc.) y comenzará una secuencia coordinada de comunicación por correo electrónico para enviar a los candidatos interesados a Calendly. \\n\\nLa IA (GPT-4) realizará automáticamente la categorización de las respuestas, y su equipo solo recibirá una alerta cuando se alcance un resultado positivo (es decir, una reunión reservada) o si. surge una situación que el sistema aún no sabe cómo abordar, en cuyo caso la situación se agregaría al sistema de categorización para que la maneje de manera efectiva en el futuro.\", \"roughTimetable\":\"3 semanas\"}"
+                    },
+                    {
+                        "role": "assistant",
+                        "content": "{\"milestone-1\":\"Flujo del proceso de extensión y MVP\",\n\"cronograma-1\": \"7-10 días\",\n\"milestone-2\":\"Configuración de la plataforma (Airtable, Outreach, GPT-4)\",\n\"línea de tiempo-2\": \"5 días\",\n\"milestone-3\":\"Pruebas e iteración\",\n\"línea de tiempo-3\": \"3 días\",\n\"milestone-4\":\"Documentación del proceso\",\n\"línea de tiempo-4\": \"1 día\"}"
+                    },
+                    {
+                        "role": "user",
+                        "content": "{\"solution\":\"{{88.solutionPitch}}\", \"roughTimetable\":\"\"}"
+                    }
+                ],
+                "max_tokens": "0",
+                "temperature": "1",
+                "n_completions": "1",
+                "response_format": "text"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 1579,
+                    "y": -753,
+                    "name": "Cronograma"
+                },
+                "restore": {
+                    "expect": {
+                        "stop": {
+                            "mode": "chose"
+                        },
+                        "model": {
+                            "mode": "chose",
+                            "label": "gpt-4-0613"
+                        },
+                        "select": {
+                            "label": "Create a Chat Completion (GPT Models)"
+                        },
+                        "messages": {
+                            "mode": "chose",
+                            "items": [
+                                {
+                                    "role": {
+                                        "mode": "chose",
+                                        "label": "System"
+                                    }
+                                },
+                                {
+                                    "role": {
+                                        "mode": "chose",
+                                        "label": "User"
+                                    }
+                                },
+                                {
+                                    "role": {
+                                        "mode": "chose",
+                                        "label": "User"
+                                    }
+                                },
+                                {
+                                    "role": {
+                                        "mode": "chose",
+                                        "label": "Assistant"
+                                    }
+                                },
+                                {
+                                    "role": {
+                                        "mode": "chose",
+                                        "label": "User"
+                                    }
+                                }
+                            ]
+                        },
+                        "logit_bias": {
+                            "mode": "chose"
+                        },
+                        "response_format": {
+                            "mode": "chose",
+                            "label": "Text"
+                        },
+                        "additionalParameters": {
+                            "mode": "chose"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "openai-gpt-3"
+                            },
+                            "label": "Recordatorios"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:openai-gpt-3",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "select",
+                        "type": "select",
+                        "label": "Select Method",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "chat",
+                                "prompt"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "max_tokens",
+                        "type": "number",
+                        "label": "Max Tokens",
+                        "required": true
+                    },
+                    {
+                        "name": "temperature",
+                        "type": "number",
+                        "label": "Temperature",
+                        "validate": {
+                            "max": 2,
+                            "min": 0
+                        }
+                    },
+                    {
+                        "name": "top_p",
+                        "type": "number",
+                        "label": "Top P",
+                        "validate": {
+                            "max": 1,
+                            "min": 0
+                        }
+                    },
+                    {
+                        "name": "n_completions",
+                        "type": "number",
+                        "label": "Number"
+                    },
+                    {
+                        "name": "frequency_penalty",
+                        "type": "number",
+                        "label": "Frequency Penalty",
+                        "validate": {
+                            "max": 2,
+                            "min": -2
+                        }
+                    },
+                    {
+                        "name": "presence_penalty",
+                        "type": "number",
+                        "label": "Presence Penalty",
+                        "validate": {
+                            "max": 2,
+                            "min": -2
+                        }
+                    },
+                    {
+                        "name": "logit_bias",
+                        "spec": {
+                            "name": "value",
+                            "spec": [
+                                {
+                                    "name": "token",
+                                    "type": "text",
+                                    "label": "Token ID",
+                                    "required": true
+                                },
+                                {
+                                    "name": "probability",
+                                    "type": "number",
+                                    "label": "Probability",
+                                    "required": true,
+                                    "validate": {
+                                        "max": 100,
+                                        "min": -100
+                                    }
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Token Probability"
+                        },
+                        "type": "array",
+                        "label": "Token Probability"
+                    },
+                    {
+                        "name": "response_format",
+                        "type": "select",
+                        "label": "Response Format",
+                        "validate": {
+                            "enum": [
+                                "text",
+                                "json_object"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "seed",
+                        "type": "integer",
+                        "label": "Seed"
+                    },
+                    {
+                        "name": "stop",
+                        "spec": {
+                            "name": "value",
+                            "type": "text",
+                            "label": "Stop Sequence"
+                        },
+                        "type": "array",
+                        "label": "Stop Sequences",
+                        "validate": {
+                            "maxItems": 4
+                        }
+                    },
+                    {
+                        "name": "additionalParameters",
+                        "spec": {
+                            "name": "value",
+                            "spec": [
+                                {
+                                    "name": "key",
+                                    "type": "text",
+                                    "label": "Parameter Name",
+                                    "required": true
+                                },
+                                {
+                                    "name": "type",
+                                    "type": "select",
+                                    "label": "Input Type",
+                                    "options": [
+                                        {
+                                            "label": "Text",
+                                            "value": "text",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "text",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ],
+                                            "default": true
+                                        },
+                                        {
+                                            "label": "Number",
+                                            "value": "number",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "number",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Boolean",
+                                            "value": "boolean",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "boolean",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Date",
+                                            "value": "date",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "date",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Any",
+                                            "value": "any",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "any",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Input Parameter"
+                        },
+                        "type": "array",
+                        "label": "Other Input Parameters"
+                    },
+                    {
+                        "name": "model",
+                        "type": "select",
+                        "label": "Model",
+                        "required": true
+                    },
+                    {
+                        "name": "messages",
+                        "spec": {
+                            "name": "value",
+                            "spec": [
+                                {
+                                    "name": "role",
+                                    "type": "select",
+                                    "label": "Role",
+                                    "options": [
+                                        {
+                                            "label": "System",
+                                            "value": "system"
+                                        },
+                                        {
+                                            "label": "User",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "label": "Assistant",
+                                            "value": "assistant"
+                                        }
+                                    ],
+                                    "required": true
+                                },
+                                {
+                                    "name": "content",
+                                    "type": "text",
+                                    "label": "Message Content"
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Message"
+                        },
+                        "type": "array",
+                        "label": "Messages",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 73,
+            "module": "json:ParseJSON",
+            "version": 1,
+            "parameters": {
+                "type": ""
+            },
+            "mapper": {
+                "json": "{{72.choices[].message.content}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 1891,
+                    "y": -750
+                },
+                "restore": {
+                    "parameters": {
+                        "type": {
+                            "label": "Choose a data structure"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "type",
+                        "type": "udt",
+                        "label": "Data structure"
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "json",
+                        "type": "text",
+                        "label": "JSON string",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 91,
+            "module": "email:ActionCreateDraft",
+            "version": 7,
+            "parameters": {
+                "account": 3552743
+            },
+            "mapper": {
+                "cc": [],
+                "to": [
+                    "{{57.mappable_answers.`773701cf-54ba-4543-92b2-3819a9f1d959`}}"
+                ],
+                "bcc": [],
+                "from": "",
+                "text": "Hola {{57.mappable_answers.`1fab4316-0862-4d75-a680-7a15c0f99c40`}}Como estas? gracias por interesarte en nosotros y compartir tus necesidades. \nAca te dejo la propuesta que generamos para ti\n\nProblemas: {{88.problemPitch}}\n\nSoluciones{{88.solutionPitch}}\n\nTiempo del proyecto\n{{73.`hito-1`}}\n{{73.`cronograma-1`}}\n{{73.`hito-2`}}\n{{73.`cronograma-2`}}\n{{73.`hito-3`}}\n{{73.`cronograma-3`}}\n{{73.`hito-4`}}\n{{73.`cronograma-4`}}\n",
+                "folder": "[Gmail]/Borradores",
+                "sender": "",
+                "headers": [],
+                "replyTo": "",
+                "subject": "{{88.title}}",
+                "priority": "normal",
+                "inReplyTo": "",
+                "references": [],
+                "attachments": [],
+                "contentType": "text"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 2191,
+                    "y": -750
+                },
+                "restore": {
+                    "expect": {
+                        "cc": {
+                            "mode": "chose"
+                        },
+                        "to": {
+                            "mode": "chose",
+                            "items": [
+                                null
+                            ]
+                        },
+                        "bcc": {
+                            "mode": "chose"
+                        },
+                        "folder": {
+                            "mode": "chose",
+                            "path": [
+                                "Borradores",
+                                "Borradores"
+                            ]
+                        },
+                        "priority": {
+                            "label": "Normal"
+                        },
+                        "references": {
+                            "mode": "chose"
+                        },
+                        "attachments": {
+                            "mode": "chose"
+                        },
+                        "contentType": {
+                            "label": "Plaintext"
+                        }
+                    },
+                    "parameters": {
+                        "account": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "google-restricted"
+                            },
+                            "label": "07/10 (nacholeo005@gmail.com)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "account",
+                        "type": "account:imap,google-restricted,microsoft-smtp-imap",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "folder",
+                        "type": "folder",
+                        "label": "Folder",
+                        "required": true
+                    },
+                    {
+                        "name": "to",
+                        "spec": {
+                            "name": "value",
+                            "type": "email",
+                            "label": "Email address",
+                            "required": true
+                        },
+                        "type": "array",
+                        "label": "To",
+                        "required": true
+                    },
+                    {
+                        "name": "subject",
+                        "type": "text",
+                        "label": "Subject"
+                    },
+                    {
+                        "name": "contentType",
+                        "type": "select",
+                        "label": "Content Type",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "html",
+                                "text"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "attachments",
+                        "spec": [
+                            {
+                                "name": "fileName",
+                                "type": "filename",
+                                "label": "File name",
+                                "required": true,
+                                "semantic": "file:name"
+                            },
+                            {
+                                "name": "data",
+                                "type": "buffer",
+                                "label": "Data",
+                                "required": true,
+                                "semantic": "file:data"
+                            },
+                            {
+                                "name": "cid",
+                                "type": "text",
+                                "label": "Content-ID"
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Attachments"
+                    },
+                    {
+                        "name": "cc",
+                        "spec": {
+                            "name": "value",
+                            "type": "email",
+                            "label": "Email address"
+                        },
+                        "type": "array",
+                        "label": "Copy recipient"
+                    },
+                    {
+                        "name": "bcc",
+                        "spec": {
+                            "name": "value",
+                            "type": "email",
+                            "label": "Email address"
+                        },
+                        "type": "array",
+                        "label": "Blind copy recipient"
+                    },
+                    {
+                        "name": "from",
+                        "type": "text",
+                        "label": "From"
+                    },
+                    {
+                        "name": "sender",
+                        "type": "text",
+                        "label": "Sender"
+                    },
+                    {
+                        "name": "replyTo",
+                        "type": "text",
+                        "label": "Reply-To"
+                    },
+                    {
+                        "name": "inReplyTo",
+                        "type": "text",
+                        "label": "In-Reply-To"
+                    },
+                    {
+                        "name": "references",
+                        "spec": {
+                            "name": "value",
+                            "type": "text",
+                            "label": "Reference",
+                            "required": true
+                        },
+                        "type": "array",
+                        "label": "References"
+                    },
+                    {
+                        "name": "priority",
+                        "type": "select",
+                        "label": "Priority",
+                        "validate": {
+                            "enum": [
+                                "high",
+                                "normal",
+                                "low"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "headers",
+                        "spec": [
+                            {
+                                "name": "key",
+                                "type": "text",
+                                "label": "Key",
+                                "required": true
+                            },
+                            {
+                                "name": "value",
+                                "type": "text",
+                                "label": "Value",
+                                "required": true
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Headers"
+                    },
+                    {
+                        "name": "text",
+                        "type": "text",
+                        "label": "Content"
+                    }
+                ]
+            }
+        }
+    ],
+    "metadata": {
+        "instant": true,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": true,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "us1.make.com"
+    }
+}

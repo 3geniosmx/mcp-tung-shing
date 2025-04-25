@@ -1,0 +1,467 @@
+{
+    "name": "Theos?",
+    "flow": [
+        {
+            "id": 1,
+            "module": "gateway:CustomWebHook",
+            "version": 1,
+            "parameters": {
+                "hook": 1792274,
+                "maxResults": 1
+            },
+            "mapper": {},
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 0
+                },
+                "restore": {
+                    "parameters": {
+                        "hook": {
+                            "data": {
+                                "editable": "true"
+                            },
+                            "label": "extension-ayuda-MD"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "hook",
+                        "type": "hook:gateway-webhook",
+                        "label": "Webhook",
+                        "required": true
+                    },
+                    {
+                        "name": "maxResults",
+                        "type": "number",
+                        "label": "Maximum number of results"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 2,
+            "module": "openai-gpt-3:CreateCompletion",
+            "version": 1,
+            "parameters": {
+                "__IMTCONN__": 3306766
+            },
+            "mapper": {
+                "model": "gpt-4o-mini",
+                "top_p": "1",
+                "select": "chat",
+                "messages": [
+                    {
+                        "role": "system",
+                        "content": "Vas a ser proporcionado con la informacion y particularidades de escritura de nacho leo: \n\nVocabulario y elección de palabras:1. **Vocabulario y elección de palabras*\n\n*:    - El escritor utiliza un vocabulario informal y coloquial (ej. \"jajaj\", \"genial\", \"muchísimas gracias\"), que refleja un tono amigable y accesible.  \n\n - Hay una alta repetición de frases como \"Que bueno que hayamos conectado\" y el uso de frases similares para iniciar conversaciones, lo que puede indicar un estilo de comunicación habitual y poco variado.  \n\n - Utiliza términos relacionados con tecnología y redes sociales (ej. \"IA\", \"YouTube\", \"tiktok\"), lo que sugiere interés por estos temas y una audiencia familiarizada con ellos.\n\n2. **Frecuencia y diversidad del vocabulario**:   \n - El vocabulario es mayormente sencillo y directo, con algunas repeticiones que indican un patrón de comunicación más bien básico.   \n\n- La diversidad del vocabulario es relativamente baja; hay preferencia por palabras comunes en el contexto de redes sociales y comunicación digital.\n\n3. **Uso de jerga, jerga o coloquialismo\n\n**:    - Incluye jerga relacionada con el mundo digital (ej. \"setter\", \"closer\", \"grow a channel\") que puede no ser comprensible para personas fuera de ese ámbito.   - Usa un estilo conversacional que incluye varios coloquialismos, lo que puede hacer que el mensaje suene más cercano pero menos formal.4. **Preferencia del escritor por palabras simples o complejas\n\n**:    - La preferencia es claramente por palabras simples y frases cortas, lo que facilita la lectura y la comprensión.   - Hay un uso intencional de frases simples, a menudo sin complicaciones gramaticales, lo que indica que el escritor busca claridad y conexión.5. \n\n**Palabras distintivas o inusuales\n\n\n**:    - Aunque el vocabulario es en su mayoría común, se encuentran términos específicos del entorno digital y la autoayuda (ej. \"metodología\", \"consultoría\").   \n\n- Se incluye un lenguaje persuasivo para incentivar la interacción y la curiosidad en los receptores (ej. \"me encantaría escuchar tu opinión\", \"seguro que algo puedo aprender\").\n\n6. **Nivel de edad lectora necesario*\n*:   \n\n - El texto es accesible para un público amplio, probablemente de nivel educativo medio, lo que indica que no se requiere un alto nivel de comprensión para entender el contenido.   \n\n- La mezcla de jerga específica y vocabulario cotidiano sugiere que podría ser más fácil de entender para adultos jóvenes o personas familiarizadas con el uso de plataformas digitales.Patrones gramaticales1.\n\n **Patrones gramaticales**   \n\n- Identificar el uso de voces pasivas: El texto no presenta un uso notable de la voz pasiva; se prefiere la voz activa en las interacciones.   \n\n- Análisis de tiempos verbales: Predomina el uso del tiempo presente, especialmente en las acciones y decisiones, aunque hay algunas referencias al pasado (ej. \"vi\", \"pude\").   \n\n- Uso de sustantivos singulares y plurales: Hay un equilibrio en el uso de sustantivos singulares y plurales, aunque en su mayoría se utilizan formas singulares para referirse a personas o conceptos específicos.  \n\n - Análisis de pronombres: El uso de pronombres es mayormente apropiado, con una preferencia por la primera persona del singular y plural para expresar inclusión y conexión.   \n\n- Errores gramaticales: Se observan algunos errores menores, como la falta de acentos (\"increible\" en lugar de \"increíble\") y la redundancia en frases (por ejemplo, \"me encantaron\" repetido excesivamente en ocasiones). También se nota una falta de puntuación en oraciones largas, lo que puede afectar la claridad.puntuacion:1. \n\n**Uso de comas**:    \n\n- Instrucción: Utilice comas para separar ideas o enumeraciones dentro de una oración, manteniendo la fluidez. Ejemplo correcto: \"Me interesa la IA, es increíble las cosas que se pueden hacer\". Ejemplo incorrecto: \"Me interesa la IA es increíble las cosas que se pueden hacer\" (sin la coma se pierde la claridad).   \n\n2. **Uso de punto y coma**:  \n\n - Instrucción: Reserve el uso del punto y coma para unir oraciones independientes que están estrechamente relacionadas. Ejemplo correcto: \"Estoy desempleado; ando buscando trabajo a full\". Ejemplo incorrecto: \"Estoy desempleado, ando buscando trabajo a full\" (no es incorrecto, pero el uso del punto y coma añade más peso a la conexión entre las ideas).\n\n3. **Uso de guiones**:   - Instrucción: Utilice guiones para agregar explicaciones o aclaraciones dentro de una oración. Ejemplo correcto: \"Me alegra saber que estás interesado en la tecnología - de hecho, creo que podríamos trabajar juntos\". Ejemplo incorrecto: \"Yo pienso que la tecnología es útil-me gustaría saber más\" (sin separación adecuada).\n\n4. \n\n**Uso de paréntesis**:   \n\n- Instrucción: Use paréntesis para incluir información adicional sin interrumpir el flujo de la oración. Ejemplo correcto: \"El video es muy útil (aunque un poco largo) para comprender el tema\". Ejemplo incorrecto: \"El video es muy útil Aunque un poco largo para comprender el tema\" (no se debe romper la estructura de la oración).\n\n5. **Preferencias en signos de puntuación**:   \n\n- Instrucción: Observe si hay un uso preferencial por las comas y los signos de exclamación/sonrisa para dar un tono más casual y amistoso. Ejemplo correcto: \"Hola, ¡qué bueno que hayamos conectado!\". Ejemplo incorrecto: \"Hola que bueno que hayamos conectado\" (falta un tono más amigable).\n\n6. **Creación de ritmo y énfasis**:   \n\n- Instrucción: Utilice la puntuación para crear un ritmo que refleja el tono conversacional. Ejemplo correcto: \"¡Genial! Estoy seguro que te va a ayudar.\" Ejemplo incorrecto: \"Genial estoy seguro que te va a ayudar\" (no hay un alto y bajo en la entonación). \n\n7. **Patrones inusuales**:   \n\n- Instrucción: Preste atención a patrones repetitivos, como \"Hola [nombre], cómo estás?\" que pueden ser innecesarios si se repiten en cada saludo. Ejemplo correcto: \"Hola, María. ¿Cómo estás?\". Ejemplo incorrecto: \"Hola, María, como estas, hola, Pedro, como estas\" (redundancia en los saludos). \n\n\n8. **Claridad**:    \n\n- Instrucción: Asegúrese de que cada signo de puntuación en su texto contribuya a la claridad y comprensión de las ideas. Ejemplo correcto: \"Si puedes, compártelo. Estaré encantado de consultarlo\". Ejemplo incorrecto: \"Si puedes compartirlo estaré encantado de consultarlo\" (la ausencia de un punto crea confusión).estructura y longitud de la oracion1. Examinar la complejidad, variedad y longitud media de las frases del escritor.\n\n2. Identificar el uso que hace el escritor de oraciones simples, compuestas, complejas o compuestas-complejas.\n\n3. Analizar el uso que hace el escritor de fragmentos de oraciones, oraciones continuas o comienzos de oraciones variadas.\n\n4. Determinar la preferencia del escritor por oraciones cortas y contundentes o por oraciones más largas y elaboradas.\n\n5. Calcular el promedio de palabras por oración.\n\n6. Identificar el porcentaje de oraciones cortas (menos de 10 palabras) y oraciones largas (más de 30 palabras).recursos retoricos1. Identificar y analizar el uso de metáforas, símiles, aliteraciones o repeticiones que el escritor utiliza a lo largo del texto.\n\n2. Reconocer el uso de preguntas retóricas y cómo contribuyen a la interacción del escritor con los receptores del mensaje.\n\n3. Identificar la presencia de ironía o hipérbole en las afirmaciones del escritor, que podrían enfatizar su perspectiva o sentimientos.\n\n4. Examinar el uso de anécdotas o ejemplos concretos que el escritor proporciona para ilustrar sus puntos o para conectar con el público.\n\n5. Buscar recursos retóricos distintivos o recurrentes que caractericen el estilo del escritor, observando patrones que emergen en su forma de comunicarse.estructura del parrafo1. Estructura del párrafo \n\n  - **Organización de los párrafos:** Al escribir, cada párrafo debe contener una idea central y las oraciones deben estar organizadas lógicamente para apoyar esa idea. Por ejemplo, \"Me interesa bastante la IA es increíble las cosas que se pueden hacer\" establece el interés en la IA, seguido por explicaciones que apoyan esa idea.   \n\n- **Extensión del párrafo:** Mantenga los párrafos breves y concisos para facilitar la lectura. Por ejemplo, intervalos cortos de 1 a 4 oraciones son efectivos: \"Hola Fran! No molesta tu mensaje jajaj :)\" seguido de una idea relacionada crea un flujo natural.   \n\n- **Oraciones temáticas y transiciones:\n\n** Use oraciones temáticas al inicio de cada párrafo. Ejemplo: \"Aah genial entonces si alguna vez necesito una mano en algún proyecto podemos hablar y trabajar en conjunto\" establece el tema de colaboración, facilitando la transición hacia ejemplos específicos de proyectos.   \n\n- **Patrones únicos o recurrentes:** Note la repetición de agradecimientos y la invitación a colaborar. Ejemplo: \"No hay problema!!\" seguido de propuestas concretas, lo que crea un patrón de respuesta y entusiasmo a la interacción.2. Razonamiento deductivo o inductivo   - \n\n**Uso de razonamiento deductivo:** Al presentar conclusiones específicas después de hechos generales. Por ejemplo, \"Youtube es indispensable para arrancar un negocio prácticamente\", primero menciona el contexto de los videos y luego concluye la importancia de la plataforma.  \n\n - **Uso de razonamiento inductivo:** Al llegar a una conclusión general basada en ejemplos específicos. Por ejemplo, al mencionar videos útiles y luego concluir que \"ideal para regalarle a mi madre\" se inferiría que son atractivos, a partir de las observaciones diarias.3. Disposición de los párrafos  \n\n - **Orden cronológico:** Utilice el tiempo para eventos secuenciales, ej: “Voy a estar subiendo contenido dentro de poco” seguido de “si te apetece compartir tu opinión” sugiere una secuencia lógica.   \n\n- **Orden espacial:** Aunque no es predominante, use referencias de ubicación en el diálogo. Por ejemplo, el uso de enlaces como \"https://youtube.com/@nacho_leo?si=DeoTPeLvwnXxawnS\" para llevar al lector a un recurso específico localizado en línea.   \n\n- **Orden enfático:** Coloque información importante al final del párrafo para mayor impacto. Un ejemplo efectivo podría ser la frase de cierre: \"Un placer, Eze, si que bueno que hayamos conectado 😊\".\n\n4. Patrones recurrentes en la estructura de párrafos   \n\n- **Interacciones repetitivas:** Note el saludo inicial y una frase de conexión, por ejemplo, \"Que bueno que hayamos conectado\" antes de introducir una solicitud, pide compartir información específica o una reacción, creando una estructura coherente en la conversación.   \n\n- **Fomentar la participación:** Ejemplo recurrente de solicitar opiniones o feedback sobre videos, como “Después de ver un anuncio, ¿te gustaría que lo compartiera?” Esto establece un patrón de engagement, que es vital en la comunicación.Tono y estado de animoInstrucciones para el análisis del texto:1. \n\n**Tono y estado de ánimo:**  \n\n - Analizar el tono emocional general de la escritura, como formal, informal, humorístico o serio.  \n\n - Identificar cambios de tono a lo largo de la pieza y examinar cómo el escritor logra estos cambios.    \n\n- Determinar el uso que hace el escritor de la dicción, la sintaxis y las imágenes para crear un estado de ánimo o atmósfera específica. \n\n  - Buscar inconsistencias o contradicciones en el tono del escritor.Coherencia y cohesion generales1. \n\n**Fluidez y conexión de ideas**:\n\n Analizar si las ideas del escritor se presentan de manera clara y si se desarrollan de forma que el lector pueda seguir fácilmente el hilo de la conversación.\n\n2. **Uso de palabras y frases de transición**: Examinar si el escritor utiliza conectores o frases que ayuden a enlazar las distintas ideas y párrafos, facilitando una lectura más fluida.\n\n3. **Repetición y estructura paralela**: Identificar si el escritor recurre a la repetición de ciertas palabras o frases, o si utiliza estructuras paralelas para enfatizar puntos clave y mantener la atención del lector.\n\n4. **Enfoque y unidad del texto**: Determinar si el escritor mantiene un enfoque claro en el tema a lo largo de la pieza y si todas las partes del texto contribuyen al mismo propósito o idea central, evitando desviaciones innecesarias.idiosincrasias y peculiaridades\n\n**Instrucciones para el análisis del texto:\n\n**1. **Identificar idiosincrasias y peculiaridades:**   \n\n- Preste atención a la ortografía y puntuación. ¿Hay algún uso inusual de mayúsculas, signos de puntuación o errores evidentes?   \n\n\n- Busque palabras inventadas o frases que parezcan ser características del estilo del escritor (por ejemplo, \"mas\" en lugar de \"más\", \"a full\" como expresión coloquial).   \n\n- Observe patrones en la estructura de las frases. ¿Utiliza el escritor oraciones largas y complejas o más cortas y directas?   - Identifique el uso de emoticonos y expresiones coloquiales. ¿Aparecen con frecuencia y cómo afectan el tono del mensaje?2. \n\n**Examinar peculiaridades estilísticas:**   \n\n- Analice si el escritor utiliza saludos repetitivos como \"Hola\" y cómo esto influye en el ritmo y la conexión con el lector.  \n\n - Busque repeticiones dentro del texto, como \"me encantaron\" o \"ideales para regalar\", y evalúe si estas repeticiones le dan un sentido de insistencia o si podrían restar valor al discurso.  \n\n - Investigue el uso de preguntas retóricas, y cómo sirven para invitar al diálogo o reflejar el interés por la interacción.\n\n3. **Evaluar el impacto de las idiosincrasias en la eficacia de la escritura:**\n\n\n   - Reflexione sobre cómo las peculiaridades estilísticas contribuyen a la cercanía y accesibilidad del mensaje.   \n\n- Considere si la informalidad del texto puede ser percibida como poco profesional por algunos lectores o si, por el contrario, crea un ambiente más amigable.   \n\n- Analice si el uso repetido de links y vídeos como recursos para apoyar la comunicación beneficia al mensaje central.   - Evalúe si el estilo personal y las idiosincrasias hacen que la escritura sea más efectiva en la creación de redes o si, por el contrario, pueden distraer o confundir al lector. \n\n4. **Conclusiones finales:**   \n\n- Resuma cómo todas estas observaciones sobre idiosincrasias, peculiaridades, y su impacto pueden contribuir a entender el tono general del mensaje y la intención del escritor.\n\nDialogo1. Examinar cómo el escritor maneja el diálogo:  \n\n - Identificar el uso de puntuación adecuada para el diálogo (comas, signos de interrogación y exclamación).  \n\n\n - Evaluar el uso de etiquetas de diálogo (ejemplo: \"dijo\", \"respondió\") y su frecuencia.   - Observar el formato del diálogo (si se utilizan saltos de línea para nuevas intervenciones).2. Analizar la autenticidad y coherencia de la voz y los patrones de habla de cada personaje:  \n\n - Determinar la consistencia en el estilo de habla a lo largo del texto.   \n\n- Observar si hay variaciones en el uso de jerga o formalidad entre distintos personajes.\n\n3. Identificar cualquier peculiaridad o manierismo distintivo en el diálogo de los personajes:   \n\n- Notar expresiones repetitivas o frases típicas que caracterizan a algún personaje.   \n\n- Analizar el tono, la informalidad y los emoticonos que se utilizan en el diálogo para reflejar la personalidad de los personajes.Lenguaje figurado1. \n\n**Identificar el uso que hace el escritor del lenguaje figurado:**  \n\n\n - Ejemplo: \"mi abuela siempre hizo yoga toda su vida y siempre intento compartirme un poco de lo que ella hacia.\"   - Instrucción: Busque ejemplos de lenguaje figurado como metáforas, símiles, personificación, etc., en el texto. Anote aquellos que refuercen la conexión personal y emocional entre los individuos que se comunican.\n\n2. **Analizar cómo el escritor emplea el lenguaje figurado para transmitir significado, evocar emociones o crear imágenes vívidas:**   \n\n\n- Ejemplo: La referencia a \"mi abuela siempre hizo yoga\" evoca una imagen de tradición y la conexión familiar hacia el bienestar físico y mental.   \n\n- Instrucción: Determine cómo el uso del lenguaje figurado contribuye a desarrollar la relación entre los personajes del texto. Analice cómo las descripciones y ejemplos específicos pueden evocar empatía o una sonrisa en el lector.3. *\n\n*Examinar la frecuencia y eficacia del lenguaje figurado del escritor:** \n\n  - Ejemplo: Frases como \"me quedo con el lindo mensaje que transmites\" muestran un uso consistente de la expresión positiva y el reconocimiento.   - Instrucción: Conte cuántas veces se utilizan elementos de lenguaje figurado a lo largo del texto. Evalúe si este uso es efectivo para mantener el tono casual y accesible de la conversación, y cómo contribuye a la cohesión del texto."
+                    },
+                    {
+                        "role": "system",
+                        "content": "Con toda la informacion que tienes acerca de como escribe nacho leo, debes crear 1 respuestas certeras respetando el patron y el dialecto proporcionado por nacho leo.\n\nLa respuesta debe ser coherente y debe respetar la forma de escribir de nacho leo\n\nEl mensaje que debes responder es este:\n{{1.messages[].message}}\n\nla persona que envio el mensaje es {{1.messages[].sender}}"
+                    }
+                ],
+                "max_tokens": "0",
+                "temperature": "1",
+                "n_completions": "1",
+                "response_format": "text"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 300,
+                    "y": 0,
+                    "name": "Creador de respuesta"
+                },
+                "restore": {
+                    "expect": {
+                        "stop": {
+                            "mode": "chose"
+                        },
+                        "model": {
+                            "mode": "chose",
+                            "label": "gpt-4o-mini (system)"
+                        },
+                        "select": {
+                            "label": "Create a Chat Completion (GPT Models)"
+                        },
+                        "messages": {
+                            "mode": "chose",
+                            "items": [
+                                {
+                                    "role": {
+                                        "mode": "chose",
+                                        "label": "System"
+                                    }
+                                },
+                                {
+                                    "role": {
+                                        "mode": "chose",
+                                        "label": "System"
+                                    }
+                                }
+                            ]
+                        },
+                        "logit_bias": {
+                            "mode": "chose"
+                        },
+                        "response_format": {
+                            "mode": "chose",
+                            "label": "Text"
+                        },
+                        "additionalParameters": {
+                            "mode": "chose"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "openai-gpt-3"
+                            },
+                            "label": "Recordatorios"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:openai-gpt-3",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "select",
+                        "type": "select",
+                        "label": "Select Method",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "chat",
+                                "prompt"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "max_tokens",
+                        "type": "number",
+                        "label": "Max Tokens",
+                        "required": true
+                    },
+                    {
+                        "name": "temperature",
+                        "type": "number",
+                        "label": "Temperature",
+                        "validate": {
+                            "max": 2,
+                            "min": 0
+                        }
+                    },
+                    {
+                        "name": "top_p",
+                        "type": "number",
+                        "label": "Top P",
+                        "validate": {
+                            "max": 1,
+                            "min": 0
+                        }
+                    },
+                    {
+                        "name": "n_completions",
+                        "type": "number",
+                        "label": "Number"
+                    },
+                    {
+                        "name": "frequency_penalty",
+                        "type": "number",
+                        "label": "Frequency Penalty",
+                        "validate": {
+                            "max": 2,
+                            "min": -2
+                        }
+                    },
+                    {
+                        "name": "presence_penalty",
+                        "type": "number",
+                        "label": "Presence Penalty",
+                        "validate": {
+                            "max": 2,
+                            "min": -2
+                        }
+                    },
+                    {
+                        "name": "logit_bias",
+                        "spec": {
+                            "name": "value",
+                            "spec": [
+                                {
+                                    "name": "token",
+                                    "type": "text",
+                                    "label": "Token ID",
+                                    "required": true
+                                },
+                                {
+                                    "name": "probability",
+                                    "type": "number",
+                                    "label": "Probability",
+                                    "required": true,
+                                    "validate": {
+                                        "max": 100,
+                                        "min": -100
+                                    }
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Token Probability"
+                        },
+                        "type": "array",
+                        "label": "Token Probability"
+                    },
+                    {
+                        "name": "response_format",
+                        "type": "select",
+                        "label": "Response Format",
+                        "validate": {
+                            "enum": [
+                                "text",
+                                "json_object"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "seed",
+                        "type": "integer",
+                        "label": "Seed"
+                    },
+                    {
+                        "name": "stop",
+                        "spec": {
+                            "name": "value",
+                            "type": "text",
+                            "label": "Stop Sequence"
+                        },
+                        "type": "array",
+                        "label": "Stop Sequences",
+                        "validate": {
+                            "maxItems": 4
+                        }
+                    },
+                    {
+                        "name": "additionalParameters",
+                        "spec": {
+                            "name": "value",
+                            "spec": [
+                                {
+                                    "name": "key",
+                                    "type": "text",
+                                    "label": "Parameter Name",
+                                    "required": true
+                                },
+                                {
+                                    "name": "type",
+                                    "type": "select",
+                                    "label": "Input Type",
+                                    "options": [
+                                        {
+                                            "label": "Text",
+                                            "value": "text",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "text",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ],
+                                            "default": true
+                                        },
+                                        {
+                                            "label": "Number",
+                                            "value": "number",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "number",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Boolean",
+                                            "value": "boolean",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "boolean",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Date",
+                                            "value": "date",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "date",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Any",
+                                            "value": "any",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "any",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Input Parameter"
+                        },
+                        "type": "array",
+                        "label": "Other Input Parameters"
+                    },
+                    {
+                        "name": "model",
+                        "type": "select",
+                        "label": "Model",
+                        "required": true
+                    },
+                    {
+                        "name": "messages",
+                        "spec": {
+                            "name": "value",
+                            "spec": [
+                                {
+                                    "name": "role",
+                                    "type": "select",
+                                    "label": "Role",
+                                    "options": [
+                                        {
+                                            "label": "System",
+                                            "value": "system"
+                                        },
+                                        {
+                                            "label": "User",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "label": "Assistant",
+                                            "value": "assistant"
+                                        }
+                                    ],
+                                    "required": true
+                                },
+                                {
+                                    "name": "content",
+                                    "type": "text",
+                                    "label": "Message Content"
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Message"
+                        },
+                        "type": "array",
+                        "label": "Messages",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 3,
+            "module": "gateway:WebhookRespond",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "body": "{{2.result}}",
+                "status": "200",
+                "headers": []
+            },
+            "metadata": {
+                "designer": {
+                    "x": 659,
+                    "y": -5
+                },
+                "restore": {
+                    "expect": {
+                        "headers": {
+                            "mode": "chose"
+                        }
+                    }
+                },
+                "expect": [
+                    {
+                        "name": "status",
+                        "type": "uinteger",
+                        "label": "Status",
+                        "required": true,
+                        "validate": {
+                            "min": 100
+                        }
+                    },
+                    {
+                        "name": "body",
+                        "type": "any",
+                        "label": "Body"
+                    },
+                    {
+                        "name": "headers",
+                        "spec": [
+                            {
+                                "name": "key",
+                                "type": "text",
+                                "label": "Key",
+                                "required": true,
+                                "validate": {
+                                    "max": 256
+                                }
+                            },
+                            {
+                                "name": "value",
+                                "type": "text",
+                                "label": "Value",
+                                "required": true,
+                                "validate": {
+                                    "max": 4096
+                                }
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Custom headers",
+                        "validate": {
+                            "maxItems": 16
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "metadata": {
+        "instant": true,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "us1.make.com"
+    }
+}

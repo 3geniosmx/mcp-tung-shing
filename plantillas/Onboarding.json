@@ -1,0 +1,3577 @@
+{
+    "name": "Proceso de onboarding",
+    "flow": [
+        {
+            "id": 1,
+            "module": "pandadoc:watchDocuments",
+            "version": 1,
+            "parameters": {
+                "__IMTHOOK__": 1842994
+            },
+            "mapper": {},
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 600
+                },
+                "restore": {
+                    "parameters": {
+                        "__IMTHOOK__": {
+                            "data": {
+                                "editable": "false"
+                            },
+                            "label": "My Document webhook"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTHOOK__",
+                        "type": "hook:pandadoc",
+                        "label": "Webhook",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 34,
+            "module": "airtable:ActionSearchRecords",
+            "version": 3,
+            "parameters": {
+                "__IMTCONN__": 3059356
+            },
+            "mapper": {
+                "base": "appYdkptPnve2hS3R",
+                "table": "tblsn1vZvEL9U4bZZ",
+                "fields": [
+                    "ID",
+                    "Nombre",
+                    "Email",
+                    "Direccion",
+                    "Servicio",
+                    "Precio",
+                    "inicio",
+                    "Fin",
+                    "Enviar",
+                    "Estado",
+                    "Id contrato pandadoc"
+                ],
+                "formula": "{Id contrato pandadoc} = \"{{1.id}}\"\n",
+                "maxRecords": "10",
+                "useColumnId": false
+            },
+            "metadata": {
+                "designer": {
+                    "x": 300,
+                    "y": 600
+                },
+                "restore": {
+                    "expect": {
+                        "base": {
+                            "mode": "chose",
+                            "label": "Contrato Traid"
+                        },
+                        "sort": {
+                            "mode": "chose"
+                        },
+                        "view": {
+                            "mode": "chose"
+                        },
+                        "table": {
+                            "mode": "chose",
+                            "label": "Table 1"
+                        },
+                        "fields": {
+                            "mode": "chose",
+                            "label": [
+                                "ID",
+                                "Nombre",
+                                "Email",
+                                "Direccion",
+                                "Servicio",
+                                "Precio",
+                                "inicio",
+                                "Fin",
+                                "Enviar",
+                                "Estado",
+                                "Id contrato pandadoc"
+                            ]
+                        },
+                        "useColumnId": {
+                            "mode": "chose"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "airtable3"
+                            },
+                            "label": "ahora si (User ID: usrmHuf5xfnSU75z7)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:airtable3,airtable2",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "base",
+                        "type": "select",
+                        "label": "Base",
+                        "required": true
+                    },
+                    {
+                        "name": "useColumnId",
+                        "type": "boolean",
+                        "label": "Use Column ID",
+                        "required": true
+                    },
+                    {
+                        "name": "table",
+                        "type": "select",
+                        "label": "Table",
+                        "required": true
+                    },
+                    {
+                        "name": "formula",
+                        "type": "text",
+                        "label": "Formula"
+                    },
+                    {
+                        "name": "maxRecords",
+                        "type": "integer",
+                        "label": "Limit"
+                    },
+                    {
+                        "name": "sort",
+                        "spec": [
+                            {
+                                "name": "field",
+                                "type": "select",
+                                "label": "Field",
+                                "dynamic": true,
+                                "options": []
+                            },
+                            {
+                                "name": "direction",
+                                "type": "select",
+                                "label": "Direction",
+                                "options": [
+                                    {
+                                        "label": "Descending",
+                                        "value": "desc"
+                                    },
+                                    {
+                                        "label": "Ascending",
+                                        "value": "asc"
+                                    }
+                                ]
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Sort"
+                    },
+                    {
+                        "name": "view",
+                        "type": "select",
+                        "label": "View"
+                    },
+                    {
+                        "name": "fields",
+                        "type": "select",
+                        "label": "Output Fields",
+                        "multiple": true
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "__IMTLENGTH__",
+                        "type": "uinteger",
+                        "label": "Total number of bundles"
+                    },
+                    {
+                        "name": "__IMTINDEX__",
+                        "type": "uinteger",
+                        "label": "Bundle order position"
+                    },
+                    {
+                        "name": "id",
+                        "type": "text",
+                        "label": "ID"
+                    },
+                    {
+                        "name": "createdTime",
+                        "type": "date",
+                        "label": "Created Time"
+                    },
+                    {
+                        "name": "ID",
+                        "type": "number",
+                        "label": "ID"
+                    },
+                    {
+                        "name": "Nombre",
+                        "type": "text",
+                        "label": "Nombre",
+                        "multiline": true
+                    },
+                    {
+                        "name": "Email",
+                        "type": "text",
+                        "label": "Email",
+                        "multiline": true
+                    },
+                    {
+                        "name": "Direccion",
+                        "type": "text",
+                        "label": "Direccion",
+                        "multiline": true
+                    },
+                    {
+                        "name": "Servicio",
+                        "type": "array",
+                        "label": "Servicio",
+                        "dynamic": true,
+                        "editable": true
+                    },
+                    {
+                        "name": "Precio",
+                        "type": "number",
+                        "label": "Precio"
+                    },
+                    {
+                        "name": "inicio",
+                        "type": "date",
+                        "label": "inicio"
+                    },
+                    {
+                        "name": "Fin",
+                        "type": "date",
+                        "label": "Fin"
+                    },
+                    {
+                        "name": "Enviar",
+                        "type": "boolean",
+                        "label": "Enviar"
+                    },
+                    {
+                        "name": "Estado",
+                        "type": "text",
+                        "label": "Estado"
+                    },
+                    {
+                        "name": "Id contrato pandadoc",
+                        "type": "text",
+                        "label": "Id contrato pandadoc",
+                        "multiline": true
+                    }
+                ],
+                "advanced": true
+            }
+        },
+        {
+            "id": 5,
+            "module": "builtin:BasicRouter",
+            "version": 1,
+            "filter": {
+                "name": "",
+                "conditions": [
+                    [
+                        {
+                            "a": "{{34.`Id contrato pandadoc`}}",
+                            "b": "{{1.id}}",
+                            "o": "text:equal"
+                        }
+                    ]
+                ]
+            },
+            "mapper": null,
+            "metadata": {
+                "designer": {
+                    "x": 600,
+                    "y": 600
+                }
+            },
+            "routes": [
+                {
+                    "flow": [
+                        {
+                            "id": 2,
+                            "module": "slack:CreateMessage",
+                            "version": 4,
+                            "parameters": {
+                                "__IMTCONN__": 3428113
+                            },
+                            "mapper": {
+                                "text": "El nuevo cliente {{34.Nombre}}  ha firmado el documento",
+                                "parse": false,
+                                "mrkdwn": true,
+                                "channel": "C07L5TVCPPE",
+                                "channelType": "public",
+                                "channelWType": "list"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 900,
+                                    "y": 0
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "parse": {
+                                            "mode": "chose"
+                                        },
+                                        "mrkdwn": {
+                                            "mode": "chose"
+                                        },
+                                        "channel": {
+                                            "mode": "chose",
+                                            "label": "nuevo-espacio-de-trabajo-completa"
+                                        },
+                                        "link_names": {
+                                            "mode": "chose"
+                                        },
+                                        "channelType": {
+                                            "label": "Public channel"
+                                        },
+                                        "channelWType": {
+                                            "label": "Select from the list"
+                                        },
+                                        "unfurl_links": {
+                                            "mode": "chose"
+                                        },
+                                        "unfurl_media": {
+                                            "mode": "chose"
+                                        },
+                                        "reply_broadcast": {
+                                            "mode": "chose"
+                                        }
+                                    },
+                                    "parameters": {
+                                        "__IMTCONN__": {
+                                            "data": {
+                                                "scoped": "true",
+                                                "connection": "slack2"
+                                            },
+                                            "label": "demo (nacholeo005)"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "__IMTCONN__",
+                                        "type": "account:slack2,slack3",
+                                        "label": "Connection",
+                                        "required": true
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "channelWType",
+                                        "type": "select",
+                                        "label": "Enter a channel ID or name",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "manualy",
+                                                "list"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "text",
+                                        "type": "text",
+                                        "label": "Text"
+                                    },
+                                    {
+                                        "name": "blocks",
+                                        "type": "text",
+                                        "label": "Blocks"
+                                    },
+                                    {
+                                        "name": "thread_ts",
+                                        "type": "text",
+                                        "label": "Thread message ID (time stamp)"
+                                    },
+                                    {
+                                        "name": "reply_broadcast",
+                                        "type": "boolean",
+                                        "label": "Reply broadcast"
+                                    },
+                                    {
+                                        "name": "link_names",
+                                        "type": "boolean",
+                                        "label": "Link names"
+                                    },
+                                    {
+                                        "name": "parse",
+                                        "type": "boolean",
+                                        "label": "Parse message text"
+                                    },
+                                    {
+                                        "name": "mrkdwn",
+                                        "type": "boolean",
+                                        "label": "Use markdown"
+                                    },
+                                    {
+                                        "name": "unfurl_links",
+                                        "type": "boolean",
+                                        "label": "Unfurl primarily text-based content"
+                                    },
+                                    {
+                                        "name": "unfurl_media",
+                                        "type": "boolean",
+                                        "label": "Unfurl media content"
+                                    },
+                                    {
+                                        "name": "icon_emoji",
+                                        "type": "text",
+                                        "label": "Icon emoji"
+                                    },
+                                    {
+                                        "name": "icon_url",
+                                        "type": "url",
+                                        "label": "Icon url"
+                                    },
+                                    {
+                                        "name": "username",
+                                        "type": "text",
+                                        "label": "User name"
+                                    },
+                                    {
+                                        "name": "channelType",
+                                        "type": "select",
+                                        "label": "Channel type",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "public",
+                                                "private",
+                                                "im",
+                                                "mpim"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "channel",
+                                        "type": "select",
+                                        "label": "Public channel",
+                                        "required": true
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "flow": [
+                        {
+                            "id": 6,
+                            "module": "slack:CreateChannel",
+                            "version": 4,
+                            "parameters": {
+                                "__IMTCONN__": 3593958
+                            },
+                            "mapper": {
+                                "name": "{{34.Nombre}}",
+                                "is_private": false
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 900,
+                                    "y": 300
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "is_private": {
+                                            "mode": "chose"
+                                        }
+                                    },
+                                    "parameters": {
+                                        "__IMTCONN__": {
+                                            "data": {
+                                                "scoped": "true",
+                                                "connection": "slack2"
+                                            },
+                                            "label": "My Slack (user) connection (nacholeo005)"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "__IMTCONN__",
+                                        "type": "account:slack2",
+                                        "label": "Connection",
+                                        "required": true
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "name",
+                                        "type": "text",
+                                        "label": "Name",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "is_private",
+                                        "type": "boolean",
+                                        "label": "Is private",
+                                        "required": true
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": 9,
+                            "module": "slack:CreateMessage",
+                            "version": 4,
+                            "parameters": {
+                                "__IMTCONN__": 3428113
+                            },
+                            "mapper": {
+                                "text": "Invitar a {{34.Email}} a este canal",
+                                "parse": false,
+                                "mrkdwn": true,
+                                "channel": "{{6.id}}",
+                                "channelWType": "manualy"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 1200,
+                                    "y": 300
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "parse": {
+                                            "mode": "chose"
+                                        },
+                                        "mrkdwn": {
+                                            "mode": "chose"
+                                        },
+                                        "link_names": {
+                                            "mode": "chose"
+                                        },
+                                        "channelWType": {
+                                            "label": "Enter manually"
+                                        },
+                                        "unfurl_links": {
+                                            "mode": "chose"
+                                        },
+                                        "unfurl_media": {
+                                            "mode": "chose"
+                                        },
+                                        "reply_broadcast": {
+                                            "mode": "chose"
+                                        }
+                                    },
+                                    "parameters": {
+                                        "__IMTCONN__": {
+                                            "data": {
+                                                "scoped": "true",
+                                                "connection": "slack2"
+                                            },
+                                            "label": "demo (nacholeo005)"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "__IMTCONN__",
+                                        "type": "account:slack2,slack3",
+                                        "label": "Connection",
+                                        "required": true
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "channelWType",
+                                        "type": "select",
+                                        "label": "Enter a channel ID or name",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "manualy",
+                                                "list"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "text",
+                                        "type": "text",
+                                        "label": "Text"
+                                    },
+                                    {
+                                        "name": "blocks",
+                                        "type": "text",
+                                        "label": "Blocks"
+                                    },
+                                    {
+                                        "name": "thread_ts",
+                                        "type": "text",
+                                        "label": "Thread message ID (time stamp)"
+                                    },
+                                    {
+                                        "name": "reply_broadcast",
+                                        "type": "boolean",
+                                        "label": "Reply broadcast"
+                                    },
+                                    {
+                                        "name": "link_names",
+                                        "type": "boolean",
+                                        "label": "Link names"
+                                    },
+                                    {
+                                        "name": "parse",
+                                        "type": "boolean",
+                                        "label": "Parse message text"
+                                    },
+                                    {
+                                        "name": "mrkdwn",
+                                        "type": "boolean",
+                                        "label": "Use markdown"
+                                    },
+                                    {
+                                        "name": "unfurl_links",
+                                        "type": "boolean",
+                                        "label": "Unfurl primarily text-based content"
+                                    },
+                                    {
+                                        "name": "unfurl_media",
+                                        "type": "boolean",
+                                        "label": "Unfurl media content"
+                                    },
+                                    {
+                                        "name": "icon_emoji",
+                                        "type": "text",
+                                        "label": "Icon emoji"
+                                    },
+                                    {
+                                        "name": "icon_url",
+                                        "type": "url",
+                                        "label": "Icon url"
+                                    },
+                                    {
+                                        "name": "username",
+                                        "type": "text",
+                                        "label": "User name"
+                                    },
+                                    {
+                                        "name": "channel",
+                                        "type": "text",
+                                        "label": "Channel ID or name",
+                                        "required": true
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": 22,
+                            "module": "util:SetVariable2",
+                            "version": 1,
+                            "parameters": {},
+                            "mapper": {
+                                "name": "Canal de slack",
+                                "scope": "roundtrip",
+                                "value": "{{6.id}}"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 1500,
+                                    "y": 300
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "scope": {
+                                            "label": "One cycle"
+                                        }
+                                    }
+                                },
+                                "expect": [
+                                    {
+                                        "name": "name",
+                                        "type": "text",
+                                        "label": "Variable name",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "scope",
+                                        "type": "select",
+                                        "label": "Variable lifetime",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "roundtrip",
+                                                "execution"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "value",
+                                        "type": "any",
+                                        "label": "Variable value"
+                                    }
+                                ],
+                                "interface": [
+                                    {
+                                        "name": "Canal de slack",
+                                        "type": "any",
+                                        "label": "Canal de slack"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": 36,
+                            "module": "airtable:ActionUpdateRecords",
+                            "version": 3,
+                            "parameters": {
+                                "__IMTCONN__": 3059356
+                            },
+                            "mapper": {
+                                "id": "{{34.id}}",
+                                "base": "appYdkptPnve2hS3R",
+                                "table": "tblsn1vZvEL9U4bZZ",
+                                "record": {
+                                    "fldFtebvlRPTNyIQD": true
+                                },
+                                "typecast": false,
+                                "useColumnId": false
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 1800,
+                                    "y": 300
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "base": {
+                                            "label": "Contrato Traid"
+                                        },
+                                        "table": {
+                                            "label": "Table 1"
+                                        },
+                                        "record": {
+                                            "nested": {
+                                                "fld6LV1VfWmeEWMY3": {
+                                                    "mode": "chose"
+                                                },
+                                                "fldDHsbA9Nk06vSwk": {
+                                                    "mode": "chose"
+                                                },
+                                                "fldFtebvlRPTNyIQD": {
+                                                    "mode": "chose"
+                                                },
+                                                "fldVK1yXyt8nfZ84o": {
+                                                    "mode": "chose"
+                                                },
+                                                "fldXcUHGemX22FsxY": {
+                                                    "mode": "edit"
+                                                },
+                                                "fldpVYQAhpMiE6cH2": {
+                                                    "mode": "chose"
+                                                }
+                                            }
+                                        },
+                                        "typecast": {
+                                            "mode": "chose"
+                                        },
+                                        "useColumnId": {
+                                            "mode": "chose"
+                                        }
+                                    },
+                                    "parameters": {
+                                        "__IMTCONN__": {
+                                            "data": {
+                                                "scoped": "true",
+                                                "connection": "airtable3"
+                                            },
+                                            "label": "ahora si (User ID: usrmHuf5xfnSU75z7)"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "__IMTCONN__",
+                                        "type": "account:airtable3,airtable2",
+                                        "label": "Connection",
+                                        "required": true
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "base",
+                                        "type": "select",
+                                        "label": "Base",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "typecast",
+                                        "type": "boolean",
+                                        "label": "Smart links",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "useColumnId",
+                                        "type": "boolean",
+                                        "label": "Use Column ID",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "table",
+                                        "type": "select",
+                                        "label": "Table",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "id",
+                                        "type": "text",
+                                        "label": "Record ID",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "record",
+                                        "spec": [
+                                            {
+                                                "name": "fldc07USg8GUkkJx1",
+                                                "type": "text",
+                                                "label": "Nombre"
+                                            },
+                                            {
+                                                "name": "fldcPYhqU3BpTKXE9",
+                                                "type": "text",
+                                                "label": "Email"
+                                            },
+                                            {
+                                                "name": "fldxdhuBpJ5Q2e64x",
+                                                "type": "text",
+                                                "label": "Direccion"
+                                            },
+                                            {
+                                                "name": "fldVK1yXyt8nfZ84o",
+                                                "spec": {
+                                                    "mode": "edit",
+                                                    "name": "value",
+                                                    "type": "select",
+                                                    "label": "Value",
+                                                    "dynamic": true,
+                                                    "options": [
+                                                        {
+                                                            "label": "Chatbot",
+                                                            "value": "Chatbot"
+                                                        },
+                                                        {
+                                                            "label": "Automatizaciones",
+                                                            "value": "Automatizaciones"
+                                                        },
+                                                        {
+                                                            "label": "Las dos",
+                                                            "value": "Las dos"
+                                                        }
+                                                    ],
+                                                    "validate": false
+                                                },
+                                                "type": "array",
+                                                "label": "Servicio"
+                                            },
+                                            {
+                                                "name": "fld5pp7HyZhwgIPAP",
+                                                "type": "number",
+                                                "label": "Precio"
+                                            },
+                                            {
+                                                "name": "fld6LV1VfWmeEWMY3",
+                                                "type": "boolean",
+                                                "label": "Enviar"
+                                            },
+                                            {
+                                                "mode": "edit",
+                                                "name": "fldXcUHGemX22FsxY",
+                                                "type": "select",
+                                                "label": "Estado"
+                                            },
+                                            {
+                                                "name": "fldDHsbA9Nk06vSwk",
+                                                "type": "boolean",
+                                                "label": "carpeta creado"
+                                            },
+                                            {
+                                                "name": "fldpVYQAhpMiE6cH2",
+                                                "type": "boolean",
+                                                "label": "Archivos enviados"
+                                            },
+                                            {
+                                                "name": "fldwGIBFmYNjsbbiW",
+                                                "type": "text",
+                                                "label": "Url carpeta google drive"
+                                            },
+                                            {
+                                                "name": "fld3Vt4XTtjVS2p3j",
+                                                "type": "text",
+                                                "label": "Id contrato pandadoc"
+                                            },
+                                            {
+                                                "name": "fldFtebvlRPTNyIQD",
+                                                "type": "boolean",
+                                                "label": "Canal de slack"
+                                            }
+                                        ],
+                                        "type": "collection",
+                                        "label": "Record"
+                                    }
+                                ],
+                                "interface": [
+                                    {
+                                        "name": "id",
+                                        "type": "text",
+                                        "label": "ID"
+                                    },
+                                    {
+                                        "name": "createdTime",
+                                        "type": "date",
+                                        "label": "Created Time"
+                                    },
+                                    {
+                                        "name": "ID",
+                                        "type": "number",
+                                        "label": "ID"
+                                    },
+                                    {
+                                        "name": "Nombre",
+                                        "type": "text",
+                                        "label": "Nombre",
+                                        "multiline": true
+                                    },
+                                    {
+                                        "name": "Email",
+                                        "type": "text",
+                                        "label": "Email",
+                                        "multiline": true
+                                    },
+                                    {
+                                        "name": "Direccion",
+                                        "type": "text",
+                                        "label": "Direccion",
+                                        "multiline": true
+                                    },
+                                    {
+                                        "name": "Servicio",
+                                        "type": "array",
+                                        "label": "Servicio",
+                                        "dynamic": true,
+                                        "editable": true
+                                    },
+                                    {
+                                        "name": "Precio",
+                                        "type": "number",
+                                        "label": "Precio"
+                                    },
+                                    {
+                                        "name": "inicio",
+                                        "type": "date",
+                                        "label": "inicio"
+                                    },
+                                    {
+                                        "name": "Fin",
+                                        "type": "date",
+                                        "label": "Fin"
+                                    },
+                                    {
+                                        "name": "Enviar",
+                                        "type": "boolean",
+                                        "label": "Enviar"
+                                    },
+                                    {
+                                        "name": "Estado",
+                                        "type": "text",
+                                        "label": "Estado"
+                                    },
+                                    {
+                                        "name": "carpeta creado",
+                                        "type": "boolean",
+                                        "label": "carpeta creado"
+                                    },
+                                    {
+                                        "name": "Archivos enviados",
+                                        "type": "boolean",
+                                        "label": "Archivos enviados"
+                                    },
+                                    {
+                                        "name": "Url carpeta google drive",
+                                        "type": "text",
+                                        "label": "Url carpeta google drive"
+                                    },
+                                    {
+                                        "name": "Id contrato pandadoc",
+                                        "type": "text",
+                                        "label": "Id contrato pandadoc",
+                                        "multiline": true
+                                    },
+                                    {
+                                        "name": "Canal de slack",
+                                        "type": "boolean",
+                                        "label": "Canal de slack"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "flow": [
+                        {
+                            "id": 14,
+                            "module": "google-drive:searchForFilesFolders",
+                            "version": 4,
+                            "parameters": {
+                                "__IMTCONN__": 3552743
+                            },
+                            "mapper": {
+                                "limit": "10",
+                                "query": "{{34.Nombre}}",
+                                "select": "list",
+                                "folderId": "/",
+                                "operator": "=",
+                                "retrieve": "folder",
+                                "searchType": "title",
+                                "destination": "drive"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 909,
+                                    "y": 688
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "select": {
+                                            "label": "Select from the list"
+                                        },
+                                        "folderId": {
+                                            "mode": "chose",
+                                            "path": [
+                                                "/"
+                                            ]
+                                        },
+                                        "operator": {
+                                            "label": "Search for exact term"
+                                        },
+                                        "retrieve": {
+                                            "label": "Folders"
+                                        },
+                                        "searchType": {
+                                            "label": "Search within file/folder names"
+                                        },
+                                        "destination": {
+                                            "label": "My Drive"
+                                        }
+                                    },
+                                    "parameters": {
+                                        "__IMTCONN__": {
+                                            "data": {
+                                                "scoped": "true",
+                                                "connection": "google-restricted"
+                                            },
+                                            "label": "07/10 (nacholeo005@gmail.com)"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "__IMTCONN__",
+                                        "type": "account:google-restricted",
+                                        "label": "Connection",
+                                        "required": true
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "select",
+                                        "type": "select",
+                                        "label": "Select the Method",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "map",
+                                                "list"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "retrieve",
+                                        "type": "select",
+                                        "label": "Retrieve",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "file",
+                                                "folder",
+                                                "file_folder"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "searchType",
+                                        "type": "select",
+                                        "label": "Search",
+                                        "validate": {
+                                            "enum": [
+                                                "title",
+                                                "fulltext",
+                                                "custom"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "limit",
+                                        "type": "uinteger",
+                                        "label": "Limit"
+                                    },
+                                    {
+                                        "name": "destination",
+                                        "type": "select",
+                                        "label": "Choose a Drive",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "drive",
+                                                "share",
+                                                "team"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "folderId",
+                                        "type": "folder",
+                                        "label": "Choose a Folder"
+                                    },
+                                    {
+                                        "name": "query",
+                                        "type": "text",
+                                        "label": "Query",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "operator",
+                                        "type": "select",
+                                        "label": "Search options",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "=",
+                                                "contains"
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": 15,
+                            "module": "builtin:BasicRouter",
+                            "version": 1,
+                            "mapper": null,
+                            "metadata": {
+                                "designer": {
+                                    "x": 1200,
+                                    "y": 750
+                                }
+                            },
+                            "routes": [
+                                {
+                                    "flow": [
+                                        {
+                                            "id": 18,
+                                            "module": "airtable:ActionUpdateRecords",
+                                            "version": 3,
+                                            "parameters": {
+                                                "__IMTCONN__": 3059356
+                                            },
+                                            "filter": {
+                                                "name": "",
+                                                "conditions": [
+                                                    [
+                                                        {
+                                                            "a": "{{14.id}}",
+                                                            "b": "{{34.Nombre}}",
+                                                            "o": "text:equal"
+                                                        }
+                                                    ]
+                                                ]
+                                            },
+                                            "mapper": {
+                                                "id": "{{34.id}}",
+                                                "base": "appYdkptPnve2hS3R",
+                                                "table": "tblsn1vZvEL9U4bZZ",
+                                                "record": {
+                                                    "fldDHsbA9Nk06vSwk": true
+                                                },
+                                                "typecast": false,
+                                                "useColumnId": false
+                                            },
+                                            "metadata": {
+                                                "designer": {
+                                                    "x": 1500,
+                                                    "y": 600
+                                                },
+                                                "restore": {
+                                                    "expect": {
+                                                        "base": {
+                                                            "label": "Contrato Traid"
+                                                        },
+                                                        "table": {
+                                                            "label": "Table 1"
+                                                        },
+                                                        "record": {
+                                                            "nested": {
+                                                                "fld6LV1VfWmeEWMY3": {
+                                                                    "mode": "chose"
+                                                                },
+                                                                "fldDHsbA9Nk06vSwk": {
+                                                                    "mode": "chose"
+                                                                },
+                                                                "fldVK1yXyt8nfZ84o": {
+                                                                    "mode": "chose"
+                                                                },
+                                                                "fldXcUHGemX22FsxY": {
+                                                                    "mode": "edit"
+                                                                },
+                                                                "fldpVYQAhpMiE6cH2": {
+                                                                    "mode": "chose"
+                                                                }
+                                                            }
+                                                        },
+                                                        "typecast": {
+                                                            "mode": "chose"
+                                                        },
+                                                        "useColumnId": {
+                                                            "mode": "chose"
+                                                        }
+                                                    },
+                                                    "parameters": {
+                                                        "__IMTCONN__": {
+                                                            "data": {
+                                                                "scoped": "true",
+                                                                "connection": "airtable3"
+                                                            },
+                                                            "label": "ahora si (User ID: usrmHuf5xfnSU75z7)"
+                                                        }
+                                                    }
+                                                },
+                                                "parameters": [
+                                                    {
+                                                        "name": "__IMTCONN__",
+                                                        "type": "account:airtable3,airtable2",
+                                                        "label": "Connection",
+                                                        "required": true
+                                                    }
+                                                ],
+                                                "expect": [
+                                                    {
+                                                        "name": "base",
+                                                        "type": "select",
+                                                        "label": "Base",
+                                                        "required": true
+                                                    },
+                                                    {
+                                                        "name": "typecast",
+                                                        "type": "boolean",
+                                                        "label": "Smart links",
+                                                        "required": true
+                                                    },
+                                                    {
+                                                        "name": "useColumnId",
+                                                        "type": "boolean",
+                                                        "label": "Use Column ID",
+                                                        "required": true
+                                                    },
+                                                    {
+                                                        "name": "table",
+                                                        "type": "select",
+                                                        "label": "Table",
+                                                        "required": true
+                                                    },
+                                                    {
+                                                        "name": "id",
+                                                        "type": "text",
+                                                        "label": "Record ID",
+                                                        "required": true
+                                                    },
+                                                    {
+                                                        "name": "record",
+                                                        "spec": [
+                                                            {
+                                                                "name": "fldc07USg8GUkkJx1",
+                                                                "type": "text",
+                                                                "label": "Nombre"
+                                                            },
+                                                            {
+                                                                "name": "fldcPYhqU3BpTKXE9",
+                                                                "type": "text",
+                                                                "label": "Email"
+                                                            },
+                                                            {
+                                                                "name": "fldxdhuBpJ5Q2e64x",
+                                                                "type": "text",
+                                                                "label": "Direccion"
+                                                            },
+                                                            {
+                                                                "name": "fldVK1yXyt8nfZ84o",
+                                                                "spec": {
+                                                                    "mode": "edit",
+                                                                    "name": "value",
+                                                                    "type": "select",
+                                                                    "label": "Value",
+                                                                    "dynamic": true,
+                                                                    "options": [
+                                                                        {
+                                                                            "label": "Chatbot",
+                                                                            "value": "Chatbot"
+                                                                        },
+                                                                        {
+                                                                            "label": "Automatizaciones",
+                                                                            "value": "Automatizaciones"
+                                                                        },
+                                                                        {
+                                                                            "label": "Las dos",
+                                                                            "value": "Las dos"
+                                                                        }
+                                                                    ],
+                                                                    "validate": false
+                                                                },
+                                                                "type": "array",
+                                                                "label": "Servicio"
+                                                            },
+                                                            {
+                                                                "name": "fld5pp7HyZhwgIPAP",
+                                                                "type": "number",
+                                                                "label": "Precio"
+                                                            },
+                                                            {
+                                                                "name": "fld6LV1VfWmeEWMY3",
+                                                                "type": "boolean",
+                                                                "label": "Enviar"
+                                                            },
+                                                            {
+                                                                "mode": "edit",
+                                                                "name": "fldXcUHGemX22FsxY",
+                                                                "type": "select",
+                                                                "label": "Estado"
+                                                            },
+                                                            {
+                                                                "name": "fldDHsbA9Nk06vSwk",
+                                                                "type": "boolean",
+                                                                "label": "carpeta creado"
+                                                            },
+                                                            {
+                                                                "name": "fldpVYQAhpMiE6cH2",
+                                                                "type": "boolean",
+                                                                "label": "Archivos enviados"
+                                                            },
+                                                            {
+                                                                "name": "fldwGIBFmYNjsbbiW",
+                                                                "type": "text",
+                                                                "label": "Url carpeta google drive"
+                                                            },
+                                                            {
+                                                                "name": "fld3Vt4XTtjVS2p3j",
+                                                                "type": "text",
+                                                                "label": "Id contrato pandadoc"
+                                                            }
+                                                        ],
+                                                        "type": "collection",
+                                                        "label": "Record"
+                                                    }
+                                                ],
+                                                "interface": [
+                                                    {
+                                                        "name": "id",
+                                                        "type": "text",
+                                                        "label": "ID"
+                                                    },
+                                                    {
+                                                        "name": "createdTime",
+                                                        "type": "date",
+                                                        "label": "Created Time"
+                                                    },
+                                                    {
+                                                        "name": "ID",
+                                                        "type": "number",
+                                                        "label": "ID"
+                                                    },
+                                                    {
+                                                        "name": "Nombre",
+                                                        "type": "text",
+                                                        "label": "Nombre",
+                                                        "multiline": true
+                                                    },
+                                                    {
+                                                        "name": "Email",
+                                                        "type": "text",
+                                                        "label": "Email",
+                                                        "multiline": true
+                                                    },
+                                                    {
+                                                        "name": "Direccion",
+                                                        "type": "text",
+                                                        "label": "Direccion",
+                                                        "multiline": true
+                                                    },
+                                                    {
+                                                        "name": "Servicio",
+                                                        "type": "array",
+                                                        "label": "Servicio",
+                                                        "dynamic": true,
+                                                        "editable": true
+                                                    },
+                                                    {
+                                                        "name": "Precio",
+                                                        "type": "number",
+                                                        "label": "Precio"
+                                                    },
+                                                    {
+                                                        "name": "inicio",
+                                                        "type": "date",
+                                                        "label": "inicio"
+                                                    },
+                                                    {
+                                                        "name": "Fin",
+                                                        "type": "date",
+                                                        "label": "Fin"
+                                                    },
+                                                    {
+                                                        "name": "Enviar",
+                                                        "type": "boolean",
+                                                        "label": "Enviar"
+                                                    },
+                                                    {
+                                                        "name": "Estado",
+                                                        "type": "text",
+                                                        "label": "Estado"
+                                                    },
+                                                    {
+                                                        "name": "carpeta creado",
+                                                        "type": "boolean",
+                                                        "label": "carpeta creado"
+                                                    },
+                                                    {
+                                                        "name": "Archivos enviados",
+                                                        "type": "boolean",
+                                                        "label": "Archivos enviados"
+                                                    },
+                                                    {
+                                                        "name": "Url carpeta google drive",
+                                                        "type": "text",
+                                                        "label": "Url carpeta google drive"
+                                                    },
+                                                    {
+                                                        "name": "Id contrato pandadoc",
+                                                        "type": "text",
+                                                        "label": "Id contrato pandadoc",
+                                                        "multiline": true
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "id": 19,
+                                            "module": "util:SetVariable2",
+                                            "version": 1,
+                                            "parameters": {},
+                                            "mapper": {
+                                                "name": "Id folder",
+                                                "scope": "roundtrip",
+                                                "value": "{{14.id}}"
+                                            },
+                                            "metadata": {
+                                                "designer": {
+                                                    "x": 1800,
+                                                    "y": 600
+                                                },
+                                                "restore": {
+                                                    "expect": {
+                                                        "scope": {
+                                                            "label": "One cycle"
+                                                        }
+                                                    }
+                                                },
+                                                "expect": [
+                                                    {
+                                                        "name": "name",
+                                                        "type": "text",
+                                                        "label": "Variable name",
+                                                        "required": true
+                                                    },
+                                                    {
+                                                        "name": "scope",
+                                                        "type": "select",
+                                                        "label": "Variable lifetime",
+                                                        "required": true,
+                                                        "validate": {
+                                                            "enum": [
+                                                                "roundtrip",
+                                                                "execution"
+                                                            ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "name": "value",
+                                                        "type": "any",
+                                                        "label": "Variable value"
+                                                    }
+                                                ],
+                                                "interface": [
+                                                    {
+                                                        "name": "Id folder",
+                                                        "type": "any",
+                                                        "label": "Id folder"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "flow": [
+                                        {
+                                            "id": 12,
+                                            "module": "google-drive:createAFolder",
+                                            "version": 4,
+                                            "parameters": {
+                                                "__IMTCONN__": 3552743
+                                            },
+                                            "filter": {
+                                                "name": "",
+                                                "conditions": [
+                                                    [
+                                                        {
+                                                            "a": "{{14.id}}",
+                                                            "o": "notexist"
+                                                        }
+                                                    ]
+                                                ]
+                                            },
+                                            "mapper": {
+                                                "name": "{{34.Nombre}}",
+                                                "role": "writer",
+                                                "type": "anyone",
+                                                "shared": true,
+                                                "folderId": "/19CQUODVoxd1fNtf3gmx2GqHQ5I9zAMzY",
+                                                "destination": "drive"
+                                            },
+                                            "metadata": {
+                                                "designer": {
+                                                    "x": 1500,
+                                                    "y": 900
+                                                },
+                                                "restore": {
+                                                    "expect": {
+                                                        "role": {
+                                                            "mode": "chose",
+                                                            "label": "Writer"
+                                                        },
+                                                        "type": {
+                                                            "mode": "chose",
+                                                            "label": "Anyone"
+                                                        },
+                                                        "folderId": {
+                                                            "mode": "chose",
+                                                            "path": [
+                                                                "make"
+                                                            ]
+                                                        },
+                                                        "destination": {
+                                                            "label": "My Drive"
+                                                        }
+                                                    },
+                                                    "parameters": {
+                                                        "__IMTCONN__": {
+                                                            "data": {
+                                                                "scoped": "true",
+                                                                "connection": "google-restricted"
+                                                            },
+                                                            "label": "07/10 (nacholeo005@gmail.com)"
+                                                        }
+                                                    }
+                                                },
+                                                "parameters": [
+                                                    {
+                                                        "name": "__IMTCONN__",
+                                                        "type": "account:google-restricted",
+                                                        "label": "Connection",
+                                                        "required": true
+                                                    }
+                                                ],
+                                                "expect": [
+                                                    {
+                                                        "name": "destination",
+                                                        "type": "select",
+                                                        "label": "New Drive Location",
+                                                        "required": true,
+                                                        "validate": {
+                                                            "enum": [
+                                                                "drive",
+                                                                "share",
+                                                                "team"
+                                                            ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "name": "folderId",
+                                                        "type": "folder",
+                                                        "label": "New Folder Location",
+                                                        "required": true
+                                                    },
+                                                    {
+                                                        "name": "name",
+                                                        "type": "text",
+                                                        "label": "New Folder's Name"
+                                                    },
+                                                    {
+                                                        "name": "shared",
+                                                        "type": "boolean",
+                                                        "label": "Share Folder",
+                                                        "required": true
+                                                    },
+                                                    {
+                                                        "name": "role",
+                                                        "type": "select",
+                                                        "label": "Role",
+                                                        "required": true,
+                                                        "validate": {
+                                                            "enum": [
+                                                                "owner",
+                                                                "writer",
+                                                                "commenter",
+                                                                "reader"
+                                                            ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "name": "type",
+                                                        "type": "select",
+                                                        "label": "Type",
+                                                        "required": true,
+                                                        "validate": {
+                                                            "enum": [
+                                                                "user",
+                                                                "group",
+                                                                "domain",
+                                                                "anyone"
+                                                            ]
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "id": 17,
+                                            "module": "airtable:ActionUpdateRecords",
+                                            "version": 3,
+                                            "parameters": {
+                                                "__IMTCONN__": 3059356
+                                            },
+                                            "mapper": {
+                                                "id": "{{34.id}}",
+                                                "base": "appYdkptPnve2hS3R",
+                                                "table": "tblsn1vZvEL9U4bZZ",
+                                                "record": {
+                                                    "fldDHsbA9Nk06vSwk": true,
+                                                    "fldwGIBFmYNjsbbiW": "{{12.webViewLink}}"
+                                                },
+                                                "typecast": false,
+                                                "useColumnId": false
+                                            },
+                                            "metadata": {
+                                                "designer": {
+                                                    "x": 1800,
+                                                    "y": 900
+                                                },
+                                                "restore": {
+                                                    "expect": {
+                                                        "base": {
+                                                            "label": "Contrato Traid"
+                                                        },
+                                                        "table": {
+                                                            "label": "Table 1"
+                                                        },
+                                                        "record": {
+                                                            "nested": {
+                                                                "fld6LV1VfWmeEWMY3": {
+                                                                    "mode": "chose"
+                                                                },
+                                                                "fldDHsbA9Nk06vSwk": {
+                                                                    "mode": "chose"
+                                                                },
+                                                                "fldVK1yXyt8nfZ84o": {
+                                                                    "mode": "chose"
+                                                                },
+                                                                "fldXcUHGemX22FsxY": {
+                                                                    "mode": "edit"
+                                                                },
+                                                                "fldpVYQAhpMiE6cH2": {
+                                                                    "mode": "chose"
+                                                                }
+                                                            }
+                                                        },
+                                                        "typecast": {
+                                                            "mode": "chose"
+                                                        },
+                                                        "useColumnId": {
+                                                            "mode": "chose"
+                                                        }
+                                                    },
+                                                    "parameters": {
+                                                        "__IMTCONN__": {
+                                                            "data": {
+                                                                "scoped": "true",
+                                                                "connection": "airtable3"
+                                                            },
+                                                            "label": "ahora si (User ID: usrmHuf5xfnSU75z7)"
+                                                        }
+                                                    }
+                                                },
+                                                "parameters": [
+                                                    {
+                                                        "name": "__IMTCONN__",
+                                                        "type": "account:airtable3,airtable2",
+                                                        "label": "Connection",
+                                                        "required": true
+                                                    }
+                                                ],
+                                                "expect": [
+                                                    {
+                                                        "name": "base",
+                                                        "type": "select",
+                                                        "label": "Base",
+                                                        "required": true
+                                                    },
+                                                    {
+                                                        "name": "typecast",
+                                                        "type": "boolean",
+                                                        "label": "Smart links",
+                                                        "required": true
+                                                    },
+                                                    {
+                                                        "name": "useColumnId",
+                                                        "type": "boolean",
+                                                        "label": "Use Column ID",
+                                                        "required": true
+                                                    },
+                                                    {
+                                                        "name": "table",
+                                                        "type": "select",
+                                                        "label": "Table",
+                                                        "required": true
+                                                    },
+                                                    {
+                                                        "name": "id",
+                                                        "type": "text",
+                                                        "label": "Record ID",
+                                                        "required": true
+                                                    },
+                                                    {
+                                                        "name": "record",
+                                                        "spec": [
+                                                            {
+                                                                "name": "fldc07USg8GUkkJx1",
+                                                                "type": "text",
+                                                                "label": "Nombre"
+                                                            },
+                                                            {
+                                                                "name": "fldcPYhqU3BpTKXE9",
+                                                                "type": "text",
+                                                                "label": "Email"
+                                                            },
+                                                            {
+                                                                "name": "fldxdhuBpJ5Q2e64x",
+                                                                "type": "text",
+                                                                "label": "Direccion"
+                                                            },
+                                                            {
+                                                                "name": "fldVK1yXyt8nfZ84o",
+                                                                "spec": {
+                                                                    "mode": "edit",
+                                                                    "name": "value",
+                                                                    "type": "select",
+                                                                    "label": "Value",
+                                                                    "dynamic": true,
+                                                                    "options": [
+                                                                        {
+                                                                            "label": "Chatbot",
+                                                                            "value": "Chatbot"
+                                                                        },
+                                                                        {
+                                                                            "label": "Automatizaciones",
+                                                                            "value": "Automatizaciones"
+                                                                        },
+                                                                        {
+                                                                            "label": "Las dos",
+                                                                            "value": "Las dos"
+                                                                        }
+                                                                    ],
+                                                                    "validate": false
+                                                                },
+                                                                "type": "array",
+                                                                "label": "Servicio"
+                                                            },
+                                                            {
+                                                                "name": "fld5pp7HyZhwgIPAP",
+                                                                "type": "number",
+                                                                "label": "Precio"
+                                                            },
+                                                            {
+                                                                "name": "fld6LV1VfWmeEWMY3",
+                                                                "type": "boolean",
+                                                                "label": "Enviar"
+                                                            },
+                                                            {
+                                                                "mode": "edit",
+                                                                "name": "fldXcUHGemX22FsxY",
+                                                                "type": "select",
+                                                                "label": "Estado"
+                                                            },
+                                                            {
+                                                                "name": "fldDHsbA9Nk06vSwk",
+                                                                "type": "boolean",
+                                                                "label": "carpeta creado"
+                                                            },
+                                                            {
+                                                                "name": "fldpVYQAhpMiE6cH2",
+                                                                "type": "boolean",
+                                                                "label": "Archivos enviados"
+                                                            },
+                                                            {
+                                                                "name": "fldwGIBFmYNjsbbiW",
+                                                                "type": "text",
+                                                                "label": "Url carpeta google drive"
+                                                            },
+                                                            {
+                                                                "name": "fld3Vt4XTtjVS2p3j",
+                                                                "type": "text",
+                                                                "label": "Id contrato pandadoc"
+                                                            }
+                                                        ],
+                                                        "type": "collection",
+                                                        "label": "Record"
+                                                    }
+                                                ],
+                                                "interface": [
+                                                    {
+                                                        "name": "id",
+                                                        "type": "text",
+                                                        "label": "ID"
+                                                    },
+                                                    {
+                                                        "name": "createdTime",
+                                                        "type": "date",
+                                                        "label": "Created Time"
+                                                    },
+                                                    {
+                                                        "name": "ID",
+                                                        "type": "number",
+                                                        "label": "ID"
+                                                    },
+                                                    {
+                                                        "name": "Nombre",
+                                                        "type": "text",
+                                                        "label": "Nombre",
+                                                        "multiline": true
+                                                    },
+                                                    {
+                                                        "name": "Email",
+                                                        "type": "text",
+                                                        "label": "Email",
+                                                        "multiline": true
+                                                    },
+                                                    {
+                                                        "name": "Direccion",
+                                                        "type": "text",
+                                                        "label": "Direccion",
+                                                        "multiline": true
+                                                    },
+                                                    {
+                                                        "name": "Servicio",
+                                                        "type": "array",
+                                                        "label": "Servicio",
+                                                        "dynamic": true,
+                                                        "editable": true
+                                                    },
+                                                    {
+                                                        "name": "Precio",
+                                                        "type": "number",
+                                                        "label": "Precio"
+                                                    },
+                                                    {
+                                                        "name": "inicio",
+                                                        "type": "date",
+                                                        "label": "inicio"
+                                                    },
+                                                    {
+                                                        "name": "Fin",
+                                                        "type": "date",
+                                                        "label": "Fin"
+                                                    },
+                                                    {
+                                                        "name": "Enviar",
+                                                        "type": "boolean",
+                                                        "label": "Enviar"
+                                                    },
+                                                    {
+                                                        "name": "Estado",
+                                                        "type": "text",
+                                                        "label": "Estado"
+                                                    },
+                                                    {
+                                                        "name": "carpeta creado",
+                                                        "type": "boolean",
+                                                        "label": "carpeta creado"
+                                                    },
+                                                    {
+                                                        "name": "Archivos enviados",
+                                                        "type": "boolean",
+                                                        "label": "Archivos enviados"
+                                                    },
+                                                    {
+                                                        "name": "Url carpeta google drive",
+                                                        "type": "text",
+                                                        "label": "Url carpeta google drive"
+                                                    },
+                                                    {
+                                                        "name": "Id contrato pandadoc",
+                                                        "type": "text",
+                                                        "label": "Id contrato pandadoc",
+                                                        "multiline": true
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "id": 20,
+                                            "module": "util:SetVariable2",
+                                            "version": 1,
+                                            "parameters": {},
+                                            "mapper": {
+                                                "name": "Id folder",
+                                                "scope": "roundtrip",
+                                                "value": "{{12.id}}"
+                                            },
+                                            "metadata": {
+                                                "designer": {
+                                                    "x": 2100,
+                                                    "y": 900
+                                                },
+                                                "restore": {
+                                                    "expect": {
+                                                        "scope": {
+                                                            "label": "One cycle"
+                                                        }
+                                                    }
+                                                },
+                                                "expect": [
+                                                    {
+                                                        "name": "name",
+                                                        "type": "text",
+                                                        "label": "Variable name",
+                                                        "required": true
+                                                    },
+                                                    {
+                                                        "name": "scope",
+                                                        "type": "select",
+                                                        "label": "Variable lifetime",
+                                                        "required": true,
+                                                        "validate": {
+                                                            "enum": [
+                                                                "roundtrip",
+                                                                "execution"
+                                                            ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "name": "value",
+                                                        "type": "any",
+                                                        "label": "Variable value"
+                                                    }
+                                                ],
+                                                "interface": [
+                                                    {
+                                                        "name": "Id folder",
+                                                        "type": "any",
+                                                        "label": "Id folder"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "flow": [
+                        {
+                            "id": 21,
+                            "module": "util:GetVariable2",
+                            "version": 1,
+                            "parameters": {},
+                            "mapper": {
+                                "name": "Id folder"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 900,
+                                    "y": 1200
+                                },
+                                "restore": {},
+                                "expect": [
+                                    {
+                                        "name": "name",
+                                        "type": "text",
+                                        "label": "Variable name",
+                                        "required": true
+                                    }
+                                ],
+                                "interface": [
+                                    {
+                                        "name": "Id folder",
+                                        "type": "any",
+                                        "label": "Id folder"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": 23,
+                            "module": "pandadoc:makeApiCall",
+                            "version": 1,
+                            "parameters": {
+                                "__IMTCONN__": 3593462
+                            },
+                            "mapper": {
+                                "url": "/public/v1/documents/{{1.id}}/download",
+                                "method": "GET",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ]
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 1200,
+                                    "y": 1200
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "qs": {
+                                            "mode": "chose"
+                                        },
+                                        "method": {
+                                            "mode": "chose",
+                                            "label": "GET"
+                                        },
+                                        "headers": {
+                                            "mode": "chose",
+                                            "items": [
+                                                null
+                                            ]
+                                        }
+                                    },
+                                    "parameters": {
+                                        "__IMTCONN__": {
+                                            "data": {
+                                                "scoped": "true",
+                                                "connection": "pandadoc"
+                                            },
+                                            "label": "My PandaDoc connection (traid.bussiness@gmail.com)"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "__IMTCONN__",
+                                        "type": "account:pandadoc",
+                                        "label": "Connection",
+                                        "required": true
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "url",
+                                        "type": "text",
+                                        "label": "URL",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "method",
+                                        "type": "select",
+                                        "label": "Method",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "GET",
+                                                "POST",
+                                                "PUT",
+                                                "PATCH",
+                                                "DELETE"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "headers",
+                                        "spec": [
+                                            {
+                                                "name": "key",
+                                                "type": "text",
+                                                "label": "Key"
+                                            },
+                                            {
+                                                "name": "value",
+                                                "type": "text",
+                                                "label": "Value"
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Headers"
+                                    },
+                                    {
+                                        "name": "qs",
+                                        "spec": [
+                                            {
+                                                "name": "key",
+                                                "type": "text",
+                                                "label": "Key"
+                                            },
+                                            {
+                                                "name": "value",
+                                                "type": "text",
+                                                "label": "Value"
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Query String"
+                                    },
+                                    {
+                                        "name": "body",
+                                        "type": "any",
+                                        "label": "Body"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": 27,
+                            "module": "google-drive:uploadAFile",
+                            "version": 4,
+                            "parameters": {
+                                "__IMTCONN__": 3552743
+                            },
+                            "mapper": {
+                                "data": "{{23.body}}",
+                                "select": "map",
+                                "convert": false,
+                                "filename": "{{34.Email}}-{{1.name}}.pdf",
+                                "folderId": "{{21.`Id folder`}}"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 1500,
+                                    "y": 1200
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "select": {
+                                            "label": "Enter manually"
+                                        }
+                                    },
+                                    "parameters": {
+                                        "__IMTCONN__": {
+                                            "data": {
+                                                "scoped": "true",
+                                                "connection": "google-restricted"
+                                            },
+                                            "label": "07/10 (nacholeo005@gmail.com)"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "__IMTCONN__",
+                                        "type": "account:google-restricted",
+                                        "label": "Connection",
+                                        "required": true
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "select",
+                                        "type": "select",
+                                        "label": "Enter a Folder ID",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "map",
+                                                "value"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "title",
+                                        "type": "text",
+                                        "label": "New File Name"
+                                    },
+                                    {
+                                        "name": "filename",
+                                        "type": "text",
+                                        "label": "File Name",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "data",
+                                        "type": "buffer",
+                                        "label": "Data",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "convert",
+                                        "type": "boolean",
+                                        "label": "Convert a File",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "folderId",
+                                        "type": "text",
+                                        "label": "Folder ID",
+                                        "required": true
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": 28,
+                            "module": "google-drive:shareAFileFolder",
+                            "version": 4,
+                            "parameters": {
+                                "__IMTCONN__": 3552743
+                            },
+                            "mapper": {
+                                "file": "{{27.id}}",
+                                "role": "reader",
+                                "type": "anyone",
+                                "select": "file",
+                                "destination": "drive",
+                                "allowFileDiscovery": false
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 1800,
+                                    "y": 1200
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "file": {
+                                            "mode": "edit",
+                                            "path": []
+                                        },
+                                        "role": {
+                                            "mode": "chose",
+                                            "label": "Reader"
+                                        },
+                                        "type": {
+                                            "mode": "chose",
+                                            "label": "Anyone"
+                                        },
+                                        "select": {
+                                            "label": "File"
+                                        },
+                                        "destination": {
+                                            "label": "My Drive"
+                                        },
+                                        "allowFileDiscovery": {
+                                            "mode": "chose"
+                                        }
+                                    },
+                                    "parameters": {
+                                        "__IMTCONN__": {
+                                            "data": {
+                                                "scoped": "true",
+                                                "connection": "google-restricted"
+                                            },
+                                            "label": "07/10 (nacholeo005@gmail.com)"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "__IMTCONN__",
+                                        "type": "account:google-restricted",
+                                        "label": "Connection",
+                                        "required": true
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "destination",
+                                        "type": "select",
+                                        "label": "Choose a Drive",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "drive",
+                                                "share",
+                                                "team"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "select",
+                                        "type": "select",
+                                        "label": "Select",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "file",
+                                                "folder"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "role",
+                                        "type": "select",
+                                        "label": "Role",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "owner",
+                                                "writer",
+                                                "commenter",
+                                                "reader"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "type",
+                                        "type": "select",
+                                        "label": "Type",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "user",
+                                                "group",
+                                                "domain",
+                                                "anyone"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "mode": "edit",
+                                        "name": "file",
+                                        "type": "file",
+                                        "label": "File ID",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "allowFileDiscovery",
+                                        "type": "boolean",
+                                        "label": "Allow File Discovery",
+                                        "required": true
+                                    }
+                                ],
+                                "interface": [
+                                    {
+                                        "name": "fileId",
+                                        "type": "text",
+                                        "label": "File ID"
+                                    },
+                                    {
+                                        "name": "kind",
+                                        "type": "text",
+                                        "label": "Kind"
+                                    },
+                                    {
+                                        "name": "id",
+                                        "type": "text",
+                                        "label": "Permission ID"
+                                    },
+                                    {
+                                        "name": "type",
+                                        "type": "text",
+                                        "label": "Type"
+                                    },
+                                    {
+                                        "name": "shareLink",
+                                        "type": "url",
+                                        "label": "Share Link"
+                                    },
+                                    {
+                                        "name": "emailAddress",
+                                        "type": "text",
+                                        "label": "Email Address"
+                                    },
+                                    {
+                                        "name": "domain",
+                                        "type": "text",
+                                        "label": "Domain"
+                                    },
+                                    {
+                                        "name": "role",
+                                        "type": "text",
+                                        "label": "Role"
+                                    },
+                                    {
+                                        "name": "allowFileDiscovery",
+                                        "type": "boolean",
+                                        "label": "Allow File Discovery"
+                                    },
+                                    {
+                                        "name": "displayName",
+                                        "type": "text",
+                                        "label": "Display Name"
+                                    },
+                                    {
+                                        "name": "photoLink",
+                                        "type": "text",
+                                        "label": "Photo Link"
+                                    },
+                                    {
+                                        "name": "expirationTime",
+                                        "type": "date",
+                                        "label": "Expiration Time"
+                                    },
+                                    {
+                                        "name": "teamDrivePermissionDetails",
+                                        "spec": {
+                                            "spec": [
+                                                {
+                                                    "name": "teamDrivePermissionType",
+                                                    "type": "text",
+                                                    "label": "Team Drive Permission Type"
+                                                },
+                                                {
+                                                    "name": "role",
+                                                    "type": "text",
+                                                    "label": "Role"
+                                                },
+                                                {
+                                                    "name": "inheritedFrom",
+                                                    "type": "text",
+                                                    "label": "Inherited From"
+                                                },
+                                                {
+                                                    "name": "inherited",
+                                                    "type": "boolean",
+                                                    "label": "Inherited"
+                                                }
+                                            ],
+                                            "type": "collection"
+                                        },
+                                        "type": "array",
+                                        "label": "Team Drive Permission Details"
+                                    },
+                                    {
+                                        "name": "permissionDetails",
+                                        "spec": {
+                                            "spec": [
+                                                {
+                                                    "name": "permissionType",
+                                                    "type": "text",
+                                                    "label": "Permission Type"
+                                                },
+                                                {
+                                                    "name": "role",
+                                                    "type": "text",
+                                                    "label": "Role"
+                                                },
+                                                {
+                                                    "name": "inheritedFrom",
+                                                    "type": "text",
+                                                    "label": "Inherited From"
+                                                },
+                                                {
+                                                    "name": "inherited",
+                                                    "type": "boolean",
+                                                    "label": "Inherited"
+                                                }
+                                            ],
+                                            "type": "collection"
+                                        },
+                                        "type": "array",
+                                        "label": "Permission Details"
+                                    },
+                                    {
+                                        "name": "deleted",
+                                        "type": "boolean",
+                                        "label": "Deleted"
+                                    },
+                                    {
+                                        "name": "pendingOwner",
+                                        "type": "boolean",
+                                        "label": "Pending Owner"
+                                    },
+                                    {
+                                        "name": "webContentLink",
+                                        "type": "url",
+                                        "label": "Web Content Link"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": 29,
+                            "module": "google-docs:createADocumentFromTemplate",
+                            "version": 1,
+                            "parameters": {
+                                "__IMTCONN__": 3054103
+                            },
+                            "mapper": {
+                                "name": "Onboarding clientes",
+                                "select": "map",
+                                "document": "18J8y3pmz9y_3HJN3_sst434G1OepxgApmFQBZAhpNBY",
+                                "folderId": "{{21.`Id folder`}}",
+                                "requests": [
+                                    {
+                                        "text": "nombre",
+                                        "replaceText": "{{34.Nombre}}"
+                                    }
+                                ],
+                                "destination": "drive"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 2100,
+                                    "y": 1200
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "select": {
+                                            "label": "By Mapping"
+                                        },
+                                        "folderId": {
+                                            "mode": "edit",
+                                            "path": []
+                                        },
+                                        "requests": {
+                                            "mode": "chose",
+                                            "items": [
+                                                null
+                                            ]
+                                        },
+                                        "destination": {
+                                            "label": "My Drive"
+                                        },
+                                        "imageReplacement": {
+                                            "mode": "chose"
+                                        }
+                                    },
+                                    "parameters": {
+                                        "__IMTCONN__": {
+                                            "data": {
+                                                "scoped": "true",
+                                                "connection": "google"
+                                            },
+                                            "label": "nacholeo (nacholeo005@gmail.com)"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "__IMTCONN__",
+                                        "type": "account:google",
+                                        "label": "Connection",
+                                        "required": true
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "select",
+                                        "type": "select",
+                                        "label": "Create a Document from a Template",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "map",
+                                                "dropdown"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "name",
+                                        "type": "text",
+                                        "label": "Title",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "destination",
+                                        "type": "select",
+                                        "label": "New Drive Location",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "drive",
+                                                "share",
+                                                "team"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "document",
+                                        "type": "text",
+                                        "label": "Document ID",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "requests",
+                                        "spec": [
+                                            {
+                                                "name": "text",
+                                                "type": "text",
+                                                "label": "Tags",
+                                                "required": true
+                                            },
+                                            {
+                                                "name": "replaceText",
+                                                "type": "text",
+                                                "label": "Replaced Value"
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Values"
+                                    },
+                                    {
+                                        "name": "imageReplacement",
+                                        "spec": [
+                                            {
+                                                "name": "imageObjectId",
+                                                "type": "text",
+                                                "label": "Image Object ID",
+                                                "required": true
+                                            },
+                                            {
+                                                "name": "url",
+                                                "type": "text",
+                                                "label": "Image URL",
+                                                "required": true
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Images Replacement"
+                                    },
+                                    {
+                                        "name": "folderId",
+                                        "type": "folder",
+                                        "label": "New Document's Location",
+                                        "required": true
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": 30,
+                            "module": "google-drive:shareAFileFolder",
+                            "version": 4,
+                            "parameters": {
+                                "__IMTCONN__": 3552743
+                            },
+                            "mapper": {
+                                "file": "{{29.id}}",
+                                "role": "reader",
+                                "type": "anyone",
+                                "select": "file",
+                                "destination": "drive",
+                                "allowFileDiscovery": false
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 2400,
+                                    "y": 1200
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "file": {
+                                            "mode": "edit",
+                                            "path": []
+                                        },
+                                        "role": {
+                                            "mode": "chose",
+                                            "label": "Reader"
+                                        },
+                                        "type": {
+                                            "mode": "chose",
+                                            "label": "Anyone"
+                                        },
+                                        "select": {
+                                            "label": "File"
+                                        },
+                                        "destination": {
+                                            "label": "My Drive"
+                                        },
+                                        "allowFileDiscovery": {
+                                            "mode": "chose"
+                                        }
+                                    },
+                                    "parameters": {
+                                        "__IMTCONN__": {
+                                            "data": {
+                                                "scoped": "true",
+                                                "connection": "google-restricted"
+                                            },
+                                            "label": "07/10 (nacholeo005@gmail.com)"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "__IMTCONN__",
+                                        "type": "account:google-restricted",
+                                        "label": "Connection",
+                                        "required": true
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "destination",
+                                        "type": "select",
+                                        "label": "Choose a Drive",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "drive",
+                                                "share",
+                                                "team"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "select",
+                                        "type": "select",
+                                        "label": "Select",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "file",
+                                                "folder"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "role",
+                                        "type": "select",
+                                        "label": "Role",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "owner",
+                                                "writer",
+                                                "commenter",
+                                                "reader"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "type",
+                                        "type": "select",
+                                        "label": "Type",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "user",
+                                                "group",
+                                                "domain",
+                                                "anyone"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "mode": "edit",
+                                        "name": "file",
+                                        "type": "file",
+                                        "label": "File ID",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "allowFileDiscovery",
+                                        "type": "boolean",
+                                        "label": "Allow File Discovery",
+                                        "required": true
+                                    }
+                                ],
+                                "interface": [
+                                    {
+                                        "name": "fileId",
+                                        "type": "text",
+                                        "label": "File ID"
+                                    },
+                                    {
+                                        "name": "kind",
+                                        "type": "text",
+                                        "label": "Kind"
+                                    },
+                                    {
+                                        "name": "id",
+                                        "type": "text",
+                                        "label": "Permission ID"
+                                    },
+                                    {
+                                        "name": "type",
+                                        "type": "text",
+                                        "label": "Type"
+                                    },
+                                    {
+                                        "name": "shareLink",
+                                        "type": "url",
+                                        "label": "Share Link"
+                                    },
+                                    {
+                                        "name": "emailAddress",
+                                        "type": "text",
+                                        "label": "Email Address"
+                                    },
+                                    {
+                                        "name": "domain",
+                                        "type": "text",
+                                        "label": "Domain"
+                                    },
+                                    {
+                                        "name": "role",
+                                        "type": "text",
+                                        "label": "Role"
+                                    },
+                                    {
+                                        "name": "allowFileDiscovery",
+                                        "type": "boolean",
+                                        "label": "Allow File Discovery"
+                                    },
+                                    {
+                                        "name": "displayName",
+                                        "type": "text",
+                                        "label": "Display Name"
+                                    },
+                                    {
+                                        "name": "photoLink",
+                                        "type": "text",
+                                        "label": "Photo Link"
+                                    },
+                                    {
+                                        "name": "expirationTime",
+                                        "type": "date",
+                                        "label": "Expiration Time"
+                                    },
+                                    {
+                                        "name": "teamDrivePermissionDetails",
+                                        "spec": {
+                                            "spec": [
+                                                {
+                                                    "name": "teamDrivePermissionType",
+                                                    "type": "text",
+                                                    "label": "Team Drive Permission Type"
+                                                },
+                                                {
+                                                    "name": "role",
+                                                    "type": "text",
+                                                    "label": "Role"
+                                                },
+                                                {
+                                                    "name": "inheritedFrom",
+                                                    "type": "text",
+                                                    "label": "Inherited From"
+                                                },
+                                                {
+                                                    "name": "inherited",
+                                                    "type": "boolean",
+                                                    "label": "Inherited"
+                                                }
+                                            ],
+                                            "type": "collection"
+                                        },
+                                        "type": "array",
+                                        "label": "Team Drive Permission Details"
+                                    },
+                                    {
+                                        "name": "permissionDetails",
+                                        "spec": {
+                                            "spec": [
+                                                {
+                                                    "name": "permissionType",
+                                                    "type": "text",
+                                                    "label": "Permission Type"
+                                                },
+                                                {
+                                                    "name": "role",
+                                                    "type": "text",
+                                                    "label": "Role"
+                                                },
+                                                {
+                                                    "name": "inheritedFrom",
+                                                    "type": "text",
+                                                    "label": "Inherited From"
+                                                },
+                                                {
+                                                    "name": "inherited",
+                                                    "type": "boolean",
+                                                    "label": "Inherited"
+                                                }
+                                            ],
+                                            "type": "collection"
+                                        },
+                                        "type": "array",
+                                        "label": "Permission Details"
+                                    },
+                                    {
+                                        "name": "deleted",
+                                        "type": "boolean",
+                                        "label": "Deleted"
+                                    },
+                                    {
+                                        "name": "pendingOwner",
+                                        "type": "boolean",
+                                        "label": "Pending Owner"
+                                    },
+                                    {
+                                        "name": "webContentLink",
+                                        "type": "url",
+                                        "label": "Web Content Link"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": 31,
+                            "module": "airtable:ActionUpdateRecords",
+                            "version": 3,
+                            "parameters": {
+                                "__IMTCONN__": 3059356
+                            },
+                            "mapper": {
+                                "id": "{{34.id}}",
+                                "base": "appYdkptPnve2hS3R",
+                                "table": "tblsn1vZvEL9U4bZZ",
+                                "record": {
+                                    "fldpVYQAhpMiE6cH2": true
+                                },
+                                "typecast": false,
+                                "useColumnId": false
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 2700,
+                                    "y": 1200
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "base": {
+                                            "label": "Contrato Traid"
+                                        },
+                                        "table": {
+                                            "label": "Table 1"
+                                        },
+                                        "record": {
+                                            "nested": {
+                                                "fld6LV1VfWmeEWMY3": {
+                                                    "mode": "chose"
+                                                },
+                                                "fldDHsbA9Nk06vSwk": {
+                                                    "mode": "chose"
+                                                },
+                                                "fldVK1yXyt8nfZ84o": {
+                                                    "mode": "chose"
+                                                },
+                                                "fldXcUHGemX22FsxY": {
+                                                    "mode": "edit"
+                                                },
+                                                "fldpVYQAhpMiE6cH2": {
+                                                    "mode": "chose"
+                                                }
+                                            }
+                                        },
+                                        "typecast": {
+                                            "mode": "chose"
+                                        },
+                                        "useColumnId": {
+                                            "mode": "chose"
+                                        }
+                                    },
+                                    "parameters": {
+                                        "__IMTCONN__": {
+                                            "data": {
+                                                "scoped": "true",
+                                                "connection": "airtable3"
+                                            },
+                                            "label": "ahora si (User ID: usrmHuf5xfnSU75z7)"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "__IMTCONN__",
+                                        "type": "account:airtable3,airtable2",
+                                        "label": "Connection",
+                                        "required": true
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "base",
+                                        "type": "select",
+                                        "label": "Base",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "typecast",
+                                        "type": "boolean",
+                                        "label": "Smart links",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "useColumnId",
+                                        "type": "boolean",
+                                        "label": "Use Column ID",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "table",
+                                        "type": "select",
+                                        "label": "Table",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "id",
+                                        "type": "text",
+                                        "label": "Record ID",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "record",
+                                        "spec": [
+                                            {
+                                                "name": "fldc07USg8GUkkJx1",
+                                                "type": "text",
+                                                "label": "Nombre"
+                                            },
+                                            {
+                                                "name": "fldcPYhqU3BpTKXE9",
+                                                "type": "text",
+                                                "label": "Email"
+                                            },
+                                            {
+                                                "name": "fldxdhuBpJ5Q2e64x",
+                                                "type": "text",
+                                                "label": "Direccion"
+                                            },
+                                            {
+                                                "name": "fldVK1yXyt8nfZ84o",
+                                                "spec": {
+                                                    "mode": "edit",
+                                                    "name": "value",
+                                                    "type": "select",
+                                                    "label": "Value",
+                                                    "dynamic": true,
+                                                    "options": [
+                                                        {
+                                                            "label": "Chatbot",
+                                                            "value": "Chatbot"
+                                                        },
+                                                        {
+                                                            "label": "Automatizaciones",
+                                                            "value": "Automatizaciones"
+                                                        },
+                                                        {
+                                                            "label": "Las dos",
+                                                            "value": "Las dos"
+                                                        }
+                                                    ],
+                                                    "validate": false
+                                                },
+                                                "type": "array",
+                                                "label": "Servicio"
+                                            },
+                                            {
+                                                "name": "fld5pp7HyZhwgIPAP",
+                                                "type": "number",
+                                                "label": "Precio"
+                                            },
+                                            {
+                                                "name": "fld6LV1VfWmeEWMY3",
+                                                "type": "boolean",
+                                                "label": "Enviar"
+                                            },
+                                            {
+                                                "mode": "edit",
+                                                "name": "fldXcUHGemX22FsxY",
+                                                "type": "select",
+                                                "label": "Estado"
+                                            },
+                                            {
+                                                "name": "fldDHsbA9Nk06vSwk",
+                                                "type": "boolean",
+                                                "label": "carpeta creado"
+                                            },
+                                            {
+                                                "name": "fldpVYQAhpMiE6cH2",
+                                                "type": "boolean",
+                                                "label": "Archivos enviados"
+                                            },
+                                            {
+                                                "name": "fldwGIBFmYNjsbbiW",
+                                                "type": "text",
+                                                "label": "Url carpeta google drive"
+                                            },
+                                            {
+                                                "name": "fld3Vt4XTtjVS2p3j",
+                                                "type": "text",
+                                                "label": "Id contrato pandadoc"
+                                            }
+                                        ],
+                                        "type": "collection",
+                                        "label": "Record"
+                                    }
+                                ],
+                                "interface": [
+                                    {
+                                        "name": "id",
+                                        "type": "text",
+                                        "label": "ID"
+                                    },
+                                    {
+                                        "name": "createdTime",
+                                        "type": "date",
+                                        "label": "Created Time"
+                                    },
+                                    {
+                                        "name": "ID",
+                                        "type": "number",
+                                        "label": "ID"
+                                    },
+                                    {
+                                        "name": "Nombre",
+                                        "type": "text",
+                                        "label": "Nombre",
+                                        "multiline": true
+                                    },
+                                    {
+                                        "name": "Email",
+                                        "type": "text",
+                                        "label": "Email",
+                                        "multiline": true
+                                    },
+                                    {
+                                        "name": "Direccion",
+                                        "type": "text",
+                                        "label": "Direccion",
+                                        "multiline": true
+                                    },
+                                    {
+                                        "name": "Servicio",
+                                        "type": "array",
+                                        "label": "Servicio",
+                                        "dynamic": true,
+                                        "editable": true
+                                    },
+                                    {
+                                        "name": "Precio",
+                                        "type": "number",
+                                        "label": "Precio"
+                                    },
+                                    {
+                                        "name": "inicio",
+                                        "type": "date",
+                                        "label": "inicio"
+                                    },
+                                    {
+                                        "name": "Fin",
+                                        "type": "date",
+                                        "label": "Fin"
+                                    },
+                                    {
+                                        "name": "Enviar",
+                                        "type": "boolean",
+                                        "label": "Enviar"
+                                    },
+                                    {
+                                        "name": "Estado",
+                                        "type": "text",
+                                        "label": "Estado"
+                                    },
+                                    {
+                                        "name": "carpeta creado",
+                                        "type": "boolean",
+                                        "label": "carpeta creado"
+                                    },
+                                    {
+                                        "name": "Archivos enviados",
+                                        "type": "boolean",
+                                        "label": "Archivos enviados"
+                                    },
+                                    {
+                                        "name": "Url carpeta google drive",
+                                        "type": "text",
+                                        "label": "Url carpeta google drive"
+                                    },
+                                    {
+                                        "name": "Id contrato pandadoc",
+                                        "type": "text",
+                                        "label": "Id contrato pandadoc",
+                                        "multiline": true
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": 32,
+                            "module": "email:ActionSendEmail",
+                            "version": 7,
+                            "parameters": {
+                                "account": 3552743,
+                                "saveAfterSent": false
+                            },
+                            "mapper": {
+                                "cc": [],
+                                "to": [
+                                    "{{34.Email}}"
+                                ],
+                                "bcc": [],
+                                "from": "",
+                                "text": "Hola {{34.Nombre}} Como estas?? Gracias por confiar en nosotros y permitirnos ayudarte\n\nEste email es completamente de onboarding\n\nAqui tienes al acceso al link del documentos que debes rellenar para que nosotros usemos como guia y comencemos correctamente sin perder el tiempo\n\nLink:{{30.shareLink}}\n\nY aqui tambien esta el link para que agendes la primera llamada con nosotros para que comencemos a tranajar [link]",
+                                "sender": "",
+                                "headers": [],
+                                "replyTo": "",
+                                "subject": "Onboarding",
+                                "priority": "normal",
+                                "inReplyTo": "",
+                                "references": [],
+                                "attachments": [
+                                    {
+                                        "cid": "",
+                                        "data": "{{23.body}}",
+                                        "fileName": "{{1.name}}"
+                                    }
+                                ],
+                                "contentType": "text"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 3000,
+                                    "y": 1200
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "cc": {
+                                            "mode": "chose"
+                                        },
+                                        "to": {
+                                            "mode": "chose",
+                                            "items": [
+                                                null
+                                            ]
+                                        },
+                                        "bcc": {
+                                            "mode": "chose"
+                                        },
+                                        "priority": {
+                                            "label": "Normal"
+                                        },
+                                        "references": {
+                                            "mode": "chose"
+                                        },
+                                        "attachments": {
+                                            "mode": "chose",
+                                            "items": [
+                                                null
+                                            ]
+                                        },
+                                        "contentType": {
+                                            "label": "Plaintext"
+                                        }
+                                    },
+                                    "parameters": {
+                                        "account": {
+                                            "data": {
+                                                "scoped": "true",
+                                                "connection": "google-restricted"
+                                            },
+                                            "label": "07/10 (nacholeo005@gmail.com)"
+                                        },
+                                        "saveAfterSent": {
+                                            "label": "No"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "account",
+                                        "type": "account:smtp,google-restricted,microsoft-smtp-imap",
+                                        "label": "Connection",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "saveAfterSent",
+                                        "type": "select",
+                                        "label": "Save message after sending",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                true,
+                                                false
+                                            ]
+                                        }
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "to",
+                                        "spec": {
+                                            "name": "value",
+                                            "type": "email",
+                                            "label": "Email address",
+                                            "required": true
+                                        },
+                                        "type": "array",
+                                        "label": "To",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "subject",
+                                        "type": "text",
+                                        "label": "Subject"
+                                    },
+                                    {
+                                        "name": "contentType",
+                                        "type": "select",
+                                        "label": "Content Type",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "html",
+                                                "text"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "attachments",
+                                        "spec": [
+                                            {
+                                                "name": "fileName",
+                                                "type": "filename",
+                                                "label": "File name",
+                                                "required": true,
+                                                "semantic": "file:name"
+                                            },
+                                            {
+                                                "name": "data",
+                                                "type": "buffer",
+                                                "label": "Data",
+                                                "required": true,
+                                                "semantic": "file:data"
+                                            },
+                                            {
+                                                "name": "cid",
+                                                "type": "text",
+                                                "label": "Content-ID"
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Attachments"
+                                    },
+                                    {
+                                        "name": "cc",
+                                        "spec": {
+                                            "name": "value",
+                                            "type": "email",
+                                            "label": "Email address"
+                                        },
+                                        "type": "array",
+                                        "label": "Copy recipient"
+                                    },
+                                    {
+                                        "name": "bcc",
+                                        "spec": {
+                                            "name": "value",
+                                            "type": "email",
+                                            "label": "Email address"
+                                        },
+                                        "type": "array",
+                                        "label": "Blind copy recipient"
+                                    },
+                                    {
+                                        "name": "from",
+                                        "type": "text",
+                                        "label": "From"
+                                    },
+                                    {
+                                        "name": "sender",
+                                        "type": "text",
+                                        "label": "Sender"
+                                    },
+                                    {
+                                        "name": "replyTo",
+                                        "type": "text",
+                                        "label": "Reply-To"
+                                    },
+                                    {
+                                        "name": "inReplyTo",
+                                        "type": "text",
+                                        "label": "In-Reply-To"
+                                    },
+                                    {
+                                        "name": "references",
+                                        "spec": {
+                                            "name": "value",
+                                            "type": "text",
+                                            "label": "Reference",
+                                            "required": true
+                                        },
+                                        "type": "array",
+                                        "label": "References"
+                                    },
+                                    {
+                                        "name": "priority",
+                                        "type": "select",
+                                        "label": "Priority",
+                                        "validate": {
+                                            "enum": [
+                                                "high",
+                                                "normal",
+                                                "low"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "headers",
+                                        "spec": [
+                                            {
+                                                "name": "key",
+                                                "type": "text",
+                                                "label": "Key",
+                                                "required": true
+                                            },
+                                            {
+                                                "name": "value",
+                                                "type": "text",
+                                                "label": "Value",
+                                                "required": true
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Headers"
+                                    },
+                                    {
+                                        "name": "text",
+                                        "type": "text",
+                                        "label": "Content"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": 35,
+                            "module": "util:SetVariables",
+                            "version": 1,
+                            "parameters": {},
+                            "mapper": {
+                                "scope": "roundtrip",
+                                "variables": [
+                                    {
+                                        "name": "Link documento",
+                                        "value": "{{30.shareLink}}"
+                                    },
+                                    {
+                                        "name": "Link contrato",
+                                        "value": "{{28.shareLink}}"
+                                    }
+                                ]
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 3300,
+                                    "y": 1200
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "scope": {
+                                            "label": "One cycle"
+                                        },
+                                        "variables": {
+                                            "items": [
+                                                null,
+                                                null
+                                            ]
+                                        }
+                                    }
+                                },
+                                "expect": [
+                                    {
+                                        "name": "variables",
+                                        "spec": [
+                                            {
+                                                "name": "name",
+                                                "type": "text",
+                                                "label": "Variable name",
+                                                "required": true
+                                            },
+                                            {
+                                                "name": "value",
+                                                "type": "any",
+                                                "label": "Variable value"
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Variables"
+                                    },
+                                    {
+                                        "name": "scope",
+                                        "type": "select",
+                                        "label": "Variable lifetime",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "roundtrip",
+                                                "execution"
+                                            ]
+                                        }
+                                    }
+                                ],
+                                "interface": [
+                                    {
+                                        "name": "Link documento",
+                                        "type": "any",
+                                        "label": "Link documento"
+                                    },
+                                    {
+                                        "name": "Link contrato",
+                                        "type": "any",
+                                        "label": "Link contrato"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "metadata": {
+        "instant": true,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "us1.make.com"
+    }
+}

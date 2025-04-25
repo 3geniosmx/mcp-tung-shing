@@ -1,0 +1,1680 @@
+{
+    "name": "Creación de contenido",
+    "flow": [
+        {
+            "id": 1,
+            "module": "rss:TriggerNewArticle",
+            "version": 4,
+            "parameters": {
+                "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UCXJOpn2kqDu9AE160IDFJzA",
+                "gzip": true,
+                "include": [],
+                "password": "",
+                "username": "",
+                "maxResults": 1
+            },
+            "mapper": {},
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 0
+                },
+                "restore": {},
+                "parameters": [
+                    {
+                        "name": "url",
+                        "type": "url",
+                        "label": "URL",
+                        "required": true
+                    },
+                    {
+                        "name": "maxResults",
+                        "type": "number",
+                        "label": "Maximum number of returned items",
+                        "required": true
+                    },
+                    {
+                        "name": "username",
+                        "type": "text",
+                        "label": "User name"
+                    },
+                    {
+                        "name": "password",
+                        "type": "text",
+                        "label": "Password"
+                    },
+                    {
+                        "name": "include",
+                        "type": "select",
+                        "label": "Process RSS fields",
+                        "multiple": true,
+                        "validate": {
+                            "enum": [
+                                "google-merchant-center",
+                                "itunes"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "gzip",
+                        "type": "boolean",
+                        "label": "Request compressed content",
+                        "required": true
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "title",
+                        "type": "text",
+                        "label": "Title"
+                    },
+                    {
+                        "name": "description",
+                        "type": "text",
+                        "label": "Description"
+                    },
+                    {
+                        "name": "summary",
+                        "type": "text",
+                        "label": "Summary"
+                    },
+                    {
+                        "name": "author",
+                        "type": "text",
+                        "label": "Author"
+                    },
+                    {
+                        "name": "url",
+                        "type": "url",
+                        "label": "URL"
+                    },
+                    {
+                        "name": "dateUpdated",
+                        "type": "date",
+                        "label": "Date updated"
+                    },
+                    {
+                        "name": "dateCreated",
+                        "type": "date",
+                        "label": "Date created"
+                    },
+                    {
+                        "name": "comments",
+                        "type": "url",
+                        "label": "Comments"
+                    },
+                    {
+                        "name": "image",
+                        "spec": [
+                            {
+                                "name": "title",
+                                "type": "text",
+                                "label": "Name"
+                            },
+                            {
+                                "name": "url",
+                                "type": "url",
+                                "label": "URL"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Image"
+                    },
+                    {
+                        "name": "categories",
+                        "spec": {
+                            "type": "text"
+                        },
+                        "type": "array",
+                        "label": "Categories"
+                    },
+                    {
+                        "name": "source",
+                        "spec": [
+                            {
+                                "name": "title",
+                                "type": "text",
+                                "label": "Name"
+                            },
+                            {
+                                "name": "url",
+                                "type": "url",
+                                "label": "URL"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Source"
+                    },
+                    {
+                        "name": "enclosures",
+                        "spec": [
+                            {
+                                "name": "url",
+                                "type": "url",
+                                "label": "URL"
+                            },
+                            {
+                                "name": "type",
+                                "type": "text",
+                                "label": "Type"
+                            },
+                            {
+                                "name": "length",
+                                "type": "number",
+                                "label": "Length"
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Enclosures"
+                    },
+                    {
+                        "help": "Other RSS fields. All values are in text format.",
+                        "name": "rssFields",
+                        "spec": [
+                            {
+                                "name": "media:group",
+                                "spec": [
+                                    {
+                                        "name": "props",
+                                        "spec": [],
+                                        "type": "collection",
+                                        "label": "Properties"
+                                    },
+                                    {
+                                        "name": "value",
+                                        "type": "text",
+                                        "label": "Value"
+                                    },
+                                    {
+                                        "name": "media:title",
+                                        "spec": [
+                                            {
+                                                "name": "props",
+                                                "spec": [],
+                                                "type": "collection",
+                                                "label": "Properties"
+                                            },
+                                            {
+                                                "name": "value",
+                                                "type": "text",
+                                                "label": "Value"
+                                            }
+                                        ],
+                                        "type": "collection",
+                                        "label": "media:title"
+                                    },
+                                    {
+                                        "name": "media:content",
+                                        "spec": [
+                                            {
+                                                "name": "props",
+                                                "spec": [
+                                                    {
+                                                        "name": "url",
+                                                        "type": "text",
+                                                        "label": "url"
+                                                    },
+                                                    {
+                                                        "name": "type",
+                                                        "type": "text",
+                                                        "label": "type"
+                                                    },
+                                                    {
+                                                        "name": "width",
+                                                        "type": "number",
+                                                        "label": "width"
+                                                    },
+                                                    {
+                                                        "name": "height",
+                                                        "type": "number",
+                                                        "label": "height"
+                                                    }
+                                                ],
+                                                "type": "collection",
+                                                "label": "Properties"
+                                            },
+                                            {
+                                                "name": "value",
+                                                "type": "text",
+                                                "label": "Value"
+                                            }
+                                        ],
+                                        "type": "collection",
+                                        "label": "media:content"
+                                    },
+                                    {
+                                        "name": "media:thumbnail",
+                                        "spec": [
+                                            {
+                                                "name": "props",
+                                                "spec": [
+                                                    {
+                                                        "name": "url",
+                                                        "type": "text",
+                                                        "label": "url"
+                                                    },
+                                                    {
+                                                        "name": "width",
+                                                        "type": "number",
+                                                        "label": "width"
+                                                    },
+                                                    {
+                                                        "name": "height",
+                                                        "type": "number",
+                                                        "label": "height"
+                                                    }
+                                                ],
+                                                "type": "collection",
+                                                "label": "Properties"
+                                            },
+                                            {
+                                                "name": "value",
+                                                "type": "text",
+                                                "label": "Value"
+                                            }
+                                        ],
+                                        "type": "collection",
+                                        "label": "media:thumbnail"
+                                    },
+                                    {
+                                        "name": "media:description",
+                                        "spec": [
+                                            {
+                                                "name": "props",
+                                                "spec": [],
+                                                "type": "collection",
+                                                "label": "Properties"
+                                            },
+                                            {
+                                                "name": "value",
+                                                "type": "text",
+                                                "label": "Value"
+                                            }
+                                        ],
+                                        "type": "collection",
+                                        "label": "media:description"
+                                    },
+                                    {
+                                        "name": "media:community",
+                                        "spec": [
+                                            {
+                                                "name": "props",
+                                                "spec": [],
+                                                "type": "collection",
+                                                "label": "Properties"
+                                            },
+                                            {
+                                                "name": "value",
+                                                "type": "text",
+                                                "label": "Value"
+                                            },
+                                            {
+                                                "name": "media:starrating",
+                                                "spec": [
+                                                    {
+                                                        "name": "props",
+                                                        "spec": [
+                                                            {
+                                                                "name": "count",
+                                                                "type": "number",
+                                                                "label": "count"
+                                                            },
+                                                            {
+                                                                "name": "average",
+                                                                "type": "number",
+                                                                "label": "average"
+                                                            },
+                                                            {
+                                                                "name": "min",
+                                                                "type": "number",
+                                                                "label": "min"
+                                                            },
+                                                            {
+                                                                "name": "max",
+                                                                "type": "number",
+                                                                "label": "max"
+                                                            }
+                                                        ],
+                                                        "type": "collection",
+                                                        "label": "Properties"
+                                                    },
+                                                    {
+                                                        "name": "value",
+                                                        "type": "text",
+                                                        "label": "Value"
+                                                    }
+                                                ],
+                                                "type": "collection",
+                                                "label": "media:starrating"
+                                            },
+                                            {
+                                                "name": "media:statistics",
+                                                "spec": [
+                                                    {
+                                                        "name": "props",
+                                                        "spec": [
+                                                            {
+                                                                "name": "views",
+                                                                "type": "number",
+                                                                "label": "views"
+                                                            }
+                                                        ],
+                                                        "type": "collection",
+                                                        "label": "Properties"
+                                                    },
+                                                    {
+                                                        "name": "value",
+                                                        "type": "text",
+                                                        "label": "Value"
+                                                    }
+                                                ],
+                                                "type": "collection",
+                                                "label": "media:statistics"
+                                            }
+                                        ],
+                                        "type": "collection",
+                                        "label": "media:community"
+                                    }
+                                ],
+                                "type": "collection",
+                                "label": "media:group"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "RSS fields"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 2,
+            "module": "dumplingai:getYoutubeTranscript",
+            "version": 1,
+            "parameters": {
+                "__IMTCONN__": 3443473
+            },
+            "mapper": {
+                "videoUrl": "{{1.url}}",
+                "includeTimestamps": true,
+                "preferredLanguage": "es",
+                "timestampsToCombine": "5"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 300,
+                    "y": 0
+                },
+                "restore": {
+                    "expect": {
+                        "includeTimestamps": {
+                            "mode": "chose"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "dumplingai"
+                            },
+                            "label": "My Dumpling AI connection (demo)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:dumplingai",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "videoUrl",
+                        "type": "text",
+                        "label": "YouTube Video URL",
+                        "required": true
+                    },
+                    {
+                        "name": "includeTimestamps",
+                        "type": "boolean",
+                        "label": "Include timestamps",
+                        "required": true
+                    },
+                    {
+                        "name": "timestampsToCombine",
+                        "type": "number",
+                        "label": "Timestamps to combine",
+                        "required": true
+                    },
+                    {
+                        "name": "preferredLanguage",
+                        "type": "text",
+                        "label": "Preferred Language"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 7,
+            "module": "openai-gpt-3:CreateCompletion",
+            "version": 1,
+            "parameters": {
+                "__IMTCONN__": 3306766
+            },
+            "mapper": {
+                "model": "gpt-4o-mini",
+                "top_p": "1",
+                "select": "chat",
+                "messages": [
+                    {
+                        "role": "system",
+                        "content": "\"Eres un experto en la creación de publicaciones de LinkedIn que generan interacción, seguidores y ventas. A partir de la transcripción de un video proporcionado, debes crear una publicación de LinkedIn de aproximadamente un minuto de lectura. La publicación debe estar directamente relacionada con los temas tratados en el video y debe ser atractiva, clara y con un llamado a la acción (CTA) que impulse la interacción con la audiencia. Además, asegúrate de captar la esencia del video, destacar puntos clave, y utilizar un tono profesional pero cercano, adecuado para la red social LinkedIn.\"Instrucciones adicionales:Inicia con una frase que capte la atención de inmediato.Resume los puntos más importantes del video en un lenguaje simple y fácil de leer.Incluye una pregunta o reflexión que motive la participación de los lectores.Cierra con un llamado a la acción claro, que anime a compartir, comentar o contactar.\n\nesta es la transcripcion {{2.transcript}}"
+                    },
+                    {
+                        "role": "system",
+                        "content": "Puedes usar estas plantillas para inspirarte : \n\nPlantilla 1: Estilo Dickie Bush - Claves simples y estructuradas\nTítulo: El Secreto para Mejorar 1% Cada Día\nContenido:\nEl crecimiento no es un gran salto, es una suma de pequeños avances. Si quieres ser mejor en cualquier área, aquí tienes un enfoque simple:\n1️⃣ Define una meta clara: ¿Qué quieres mejorar?\n2️⃣ Realiza una acción pequeña hoy: El éxito viene de hábitos.\n3️⃣ Reflexiona al final del día: ¿Qué salió bien? ¿Qué puedes mejorar?Céntrate en mejorar un 1% cada día. ¿Qué cosa pequeña puedes hacer HOY para acercarte a tu objetivo?\n\nHashtags: #CrecimientoPersonal #Productividad #1MejorCadaDía\n\nPlantilla 2: Estilo Nicolas Cole - Storytelling + Estrategia\n\nTítulo: Cómo Me Desperté a las 5 AM por un Mes y Cambió mi Vida\n\nContenido:Siempre pensé que despertarme temprano era imposible... hasta que lo probé durante 30 días. Al principio, me costaba, pero estos fueron los resultados:Aumento mi productividad un 20% 🚀Terminé tareas que llevaba meses posponiendo 📝Descubrí que las mañanas son mi momento más creativo ✍️La clave: no se trata solo de levantarse temprano, sino de tener un propósito para hacerlo.¿Qué harías con 2 horas más al día?\n\nHashtags: #Hábitos #Productividad #CambioDeVida\n\nPlantilla 3: Estilo Alex Hormozi - Directo y agresivo\n\nTítulo: ¿Quieres Resultados? Aquí está lo que NO estás haciendo\n\nContenido:¿Estás estancado? La mayoría de la gente está, y hay una razón clara:Estás siendo poco consistente.No se trata de motivación ni de tener más energía, se trata de hacer lo necesario cada día.La mayoría NO está dispuesta a trabajar lo suficiente. Si tú lo haces, ya estás adelante.Deja de pensar en \"qué debería hacer\" y haz lo que sabes que tienes que hacer.Haz esto por 30 días y verás la diferencia.\n\nHashtags: #Éxito #Disciplina #Resultados #HazLoQueDebesHacer\n\nPlantilla 4: Estilo Conversacional - Cercano y amigable\nTítulo: El Pequeño Hábito que Cambió mi Productividad\nContenido:Te contaré algo que puede sonar simple, pero ha cambiado completamente mi forma de trabajar: hacer una lista de 3 cosas importantes cada mañana.Lo he probado durante una semana, y en lugar de sentirme abrumado por una lista interminable, me concentro solo en lo crucial.¿Mi consejo? Si sientes que tienes demasiadas cosas por hacer, reduce tus expectativas. Cumplir con 3 tareas importantes cada día es más efectivo que intentar hacer 10 y no terminar ninguna.¿Lo intentarías mañana?\nHashtags: #ConsejosProductividad #Simplicidad #EstrategiaDiaria\n\nPlantilla 5: Estilo Inspiracional - Motivador\n\nTítulo: El Mejor Momento Para Empezar Era Ayer, El Segundo Mejor es HOY\n\nContenido:Siempre pensamos que no estamos listos. Que necesitamos más tiempo, más recursos, más experiencia. Pero la realidad es esta:Nunca estarás 100% listo.El éxito no depende de empezar en el momento perfecto, sino de tomar la decisión de comenzar ahora, con lo que tienes y aprender en el camino.Deja de esperar la oportunidad ideal, porque no existe.Hoy es tu día.¿Qué vas a hacer con él?\nHashtags: #Inspiración #Emprendimiento #Acción #Motivación"
+                    },
+                    {
+                        "role": "system",
+                        "content": "Para crear el post debes tener en cuenta este dialecto que pertenece a la persona dueña de los post:\n\nVas a ser proporcionado con la informacion y particularidades de escritura de nacho leo: \n\nVocabulario y elección de palabras:1. **Vocabulario y elección de palabras*\n\n*:    - El escritor utiliza un vocabulario informal y coloquial (ej. \"jajaj\", \"genial\", \"muchísimas gracias\"), que refleja un tono amigable y accesible.  \n\n - Hay una alta repetición de frases como \"Que bueno que hayamos conectado\" y el uso de frases similares para iniciar conversaciones, lo que puede indicar un estilo de comunicación habitual y poco variado.  \n\n - Utiliza términos relacionados con tecnología y redes sociales (ej. \"IA\", \"YouTube\", \"tiktok\"), lo que sugiere interés por estos temas y una audiencia familiarizada con ellos.\n\n2. **Frecuencia y diversidad del vocabulario**:   \n - El vocabulario es mayormente sencillo y directo, con algunas repeticiones que indican un patrón de comunicación más bien básico.   \n\n- La diversidad del vocabulario es relativamente baja; hay preferencia por palabras comunes en el contexto de redes sociales y comunicación digital.\n\n3. **Uso de jerga, jerga o coloquialismo\n\n**:    - Incluye jerga relacionada con el mundo digital (ej. \"setter\", \"closer\", \"grow a channel\") que puede no ser comprensible para personas fuera de ese ámbito.   - Usa un estilo conversacional que incluye varios coloquialismos, lo que puede hacer que el mensaje suene más cercano pero menos formal.4. **Preferencia del escritor por palabras simples o complejas\n\n**:    - La preferencia es claramente por palabras simples y frases cortas, lo que facilita la lectura y la comprensión.   - Hay un uso intencional de frases simples, a menudo sin complicaciones gramaticales, lo que indica que el escritor busca claridad y conexión.5. \n\n**Palabras distintivas o inusuales\n\n\n**:    - Aunque el vocabulario es en su mayoría común, se encuentran términos específicos del entorno digital y la autoayuda (ej. \"metodología\", \"consultoría\").   \n\n- Se incluye un lenguaje persuasivo para incentivar la interacción y la curiosidad en los receptores (ej. \"me encantaría escuchar tu opinión\", \"seguro que algo puedo aprender\").\n\n6. **Nivel de edad lectora necesario*\n*:   \n\n - El texto es accesible para un público amplio, probablemente de nivel educativo medio, lo que indica que no se requiere un alto nivel de comprensión para entender el contenido.   \n\n- La mezcla de jerga específica y vocabulario cotidiano sugiere que podría ser más fácil de entender para adultos jóvenes o personas familiarizadas con el uso de plataformas digitales.Patrones gramaticales1.\n\n **Patrones gramaticales**   \n\n- Identificar el uso de voces pasivas: El texto no presenta un uso notable de la voz pasiva; se prefiere la voz activa en las interacciones.   \n\n- Análisis de tiempos verbales: Predomina el uso del tiempo presente, especialmente en las acciones y decisiones, aunque hay algunas referencias al pasado (ej. \"vi\", \"pude\").   \n\n- Uso de sustantivos singulares y plurales: Hay un equilibrio en el uso de sustantivos singulares y plurales, aunque en su mayoría se utilizan formas singulares para referirse a personas o conceptos específicos.  \n\n - Análisis de pronombres: El uso de pronombres es mayormente apropiado, con una preferencia por la primera persona del singular y plural para expresar inclusión y conexión.   \n\n- Errores gramaticales: Se observan algunos errores menores, como la falta de acentos (\"increible\" en lugar de \"increíble\") y la redundancia en frases (por ejemplo, \"me encantaron\" repetido excesivamente en ocasiones). También se nota una falta de puntuación en oraciones largas, lo que puede afectar la claridad.puntuacion:1. \n\n**Uso de comas**:    \n\n- Instrucción: Utilice comas para separar ideas o enumeraciones dentro de una oración, manteniendo la fluidez. Ejemplo correcto: \"Me interesa la IA, es increíble las cosas que se pueden hacer\". Ejemplo incorrecto: \"Me interesa la IA es increíble las cosas que se pueden hacer\" (sin la coma se pierde la claridad).   \n\n2. **Uso de punto y coma**:  \n\n - Instrucción: Reserve el uso del punto y coma para unir oraciones independientes que están estrechamente relacionadas. Ejemplo correcto: \"Estoy desempleado; ando buscando trabajo a full\". Ejemplo incorrecto: \"Estoy desempleado, ando buscando trabajo a full\" (no es incorrecto, pero el uso del punto y coma añade más peso a la conexión entre las ideas).\n\n3. **Uso de guiones**:   - Instrucción: Utilice guiones para agregar explicaciones o aclaraciones dentro de una oración. Ejemplo correcto: \"Me alegra saber que estás interesado en la tecnología - de hecho, creo que podríamos trabajar juntos\". Ejemplo incorrecto: \"Yo pienso que la tecnología es útil-me gustaría saber más\" (sin separación adecuada).\n\n4. \n\n**Uso de paréntesis**:   \n\n- Instrucción: Use paréntesis para incluir información adicional sin interrumpir el flujo de la oración. Ejemplo correcto: \"El video es muy útil (aunque un poco largo) para comprender el tema\". Ejemplo incorrecto: \"El video es muy útil Aunque un poco largo para comprender el tema\" (no se debe romper la estructura de la oración).\n\n5. **Preferencias en signos de puntuación**:   \n\n- Instrucción: Observe si hay un uso preferencial por las comas y los signos de exclamación/sonrisa para dar un tono más casual y amistoso. Ejemplo correcto: \"Hola, ¡qué bueno que hayamos conectado!\". Ejemplo incorrecto: \"Hola que bueno que hayamos conectado\" (falta un tono más amigable).\n\n6. **Creación de ritmo y énfasis**:   \n\n- Instrucción: Utilice la puntuación para crear un ritmo que refleja el tono conversacional. Ejemplo correcto: \"¡Genial! Estoy seguro que te va a ayudar.\" Ejemplo incorrecto: \"Genial estoy seguro que te va a ayudar\" (no hay un alto y bajo en la entonación). \n\n7. **Patrones inusuales**:   \n\n- Instrucción: Preste atención a patrones repetitivos, como \"Hola [nombre], cómo estás?\" que pueden ser innecesarios si se repiten en cada saludo. Ejemplo correcto: \"Hola, María. ¿Cómo estás?\". Ejemplo incorrecto: \"Hola, María, como estas, hola, Pedro, como estas\" (redundancia en los saludos). \n\n\n8. **Claridad**:    \n\n- Instrucción: Asegúrese de que cada signo de puntuación en su texto contribuya a la claridad y comprensión de las ideas. Ejemplo correcto: \"Si puedes, compártelo. Estaré encantado de consultarlo\". Ejemplo incorrecto: \"Si puedes compartirlo estaré encantado de consultarlo\" (la ausencia de un punto crea confusión).estructura y longitud de la oracion1. Examinar la complejidad, variedad y longitud media de las frases del escritor.\n\n2. Identificar el uso que hace el escritor de oraciones simples, compuestas, complejas o compuestas-complejas.\n\n3. Analizar el uso que hace el escritor de fragmentos de oraciones, oraciones continuas o comienzos de oraciones variadas.\n\n4. Determinar la preferencia del escritor por oraciones cortas y contundentes o por oraciones más largas y elaboradas.\n\n5. Calcular el promedio de palabras por oración.\n\n6. Identificar el porcentaje de oraciones cortas (menos de 10 palabras) y oraciones largas (más de 30 palabras).recursos retoricos1. Identificar y analizar el uso de metáforas, símiles, aliteraciones o repeticiones que el escritor utiliza a lo largo del texto.\n\n2. Reconocer el uso de preguntas retóricas y cómo contribuyen a la interacción del escritor con los receptores del mensaje.\n\n3. Identificar la presencia de ironía o hipérbole en las afirmaciones del escritor, que podrían enfatizar su perspectiva o sentimientos.\n\n4. Examinar el uso de anécdotas o ejemplos concretos que el escritor proporciona para ilustrar sus puntos o para conectar con el público.\n\n5. Buscar recursos retóricos distintivos o recurrentes que caractericen el estilo del escritor, observando patrones que emergen en su forma de comunicarse.estructura del parrafo1. Estructura del párrafo \n\n  - **Organización de los párrafos:** Al escribir, cada párrafo debe contener una idea central y las oraciones deben estar organizadas lógicamente para apoyar esa idea. Por ejemplo, \"Me interesa bastante la IA es increíble las cosas que se pueden hacer\" establece el interés en la IA, seguido por explicaciones que apoyan esa idea.   \n\n- **Extensión del párrafo:** Mantenga los párrafos breves y concisos para facilitar la lectura. Por ejemplo, intervalos cortos de 1 a 4 oraciones son efectivos: \"Hola Fran! No molesta tu mensaje jajaj :)\" seguido de una idea relacionada crea un flujo natural.   \n\n- **Oraciones temáticas y transiciones:\n\n** Use oraciones temáticas al inicio de cada párrafo. Ejemplo: \"Aah genial entonces si alguna vez necesito una mano en algún proyecto podemos hablar y trabajar en conjunto\" establece el tema de colaboración, facilitando la transición hacia ejemplos específicos de proyectos.   \n\n- **Patrones únicos o recurrentes:** Note la repetición de agradecimientos y la invitación a colaborar. Ejemplo: \"No hay problema!!\" seguido de propuestas concretas, lo que crea un patrón de respuesta y entusiasmo a la interacción.2. Razonamiento deductivo o inductivo   - \n\n**Uso de razonamiento deductivo:** Al presentar conclusiones específicas después de hechos generales. Por ejemplo, \"Youtube es indispensable para arrancar un negocio prácticamente\", primero menciona el contexto de los videos y luego concluye la importancia de la plataforma.  \n\n - **Uso de razonamiento inductivo:** Al llegar a una conclusión general basada en ejemplos específicos. Por ejemplo, al mencionar videos útiles y luego concluir que \"ideal para regalarle a mi madre\" se inferiría que son atractivos, a partir de las observaciones diarias.3. Disposición de los párrafos  \n\n - **Orden cronológico:** Utilice el tiempo para eventos secuenciales, ej: “Voy a estar subiendo contenido dentro de poco” seguido de “si te apetece compartir tu opinión” sugiere una secuencia lógica.   \n\n- **Orden espacial:** Aunque no es predominante, use referencias de ubicación en el diálogo. Por ejemplo, el uso de enlaces como \"https://youtube.com/@nacho_leo?si=DeoTPeLvwnXxawnS\" para llevar al lector a un recurso específico localizado en línea.   \n\n- **Orden enfático:** Coloque información importante al final del párrafo para mayor impacto. Un ejemplo efectivo podría ser la frase de cierre: \"Un placer, Eze, si que bueno que hayamos conectado 😊\".\n\n4. Patrones recurrentes en la estructura de párrafos   \n\n- **Interacciones repetitivas:** Note el saludo inicial y una frase de conexión, por ejemplo, \"Que bueno que hayamos conectado\" antes de introducir una solicitud, pide compartir información específica o una reacción, creando una estructura coherente en la conversación.   \n\n- **Fomentar la participación:** Ejemplo recurrente de solicitar opiniones o feedback sobre videos, como “Después de ver un anuncio, ¿te gustaría que lo compartiera?” Esto establece un patrón de engagement, que es vital en la comunicación.Tono y estado de animoInstrucciones para el análisis del texto:1. \n\n**Tono y estado de ánimo:**  \n\n - Analizar el tono emocional general de la escritura, como formal, informal, humorístico o serio.  \n\n - Identificar cambios de tono a lo largo de la pieza y examinar cómo el escritor logra estos cambios.    \n\n- Determinar el uso que hace el escritor de la dicción, la sintaxis y las imágenes para crear un estado de ánimo o atmósfera específica. \n\n  - Buscar inconsistencias o contradicciones en el tono del escritor.Coherencia y cohesion generales1. \n\n**Fluidez y conexión de ideas**:\n\n Analizar si las ideas del escritor se presentan de manera clara y si se desarrollan de forma que el lector pueda seguir fácilmente el hilo de la conversación.\n\n2. **Uso de palabras y frases de transición**: Examinar si el escritor utiliza conectores o frases que ayuden a enlazar las distintas ideas y párrafos, facilitando una lectura más fluida.\n\n3. **Repetición y estructura paralela**: Identificar si el escritor recurre a la repetición de ciertas palabras o frases, o si utiliza estructuras paralelas para enfatizar puntos clave y mantener la atención del lector.\n\n4. **Enfoque y unidad del texto**: Determinar si el escritor mantiene un enfoque claro en el tema a lo largo de la pieza y si todas las partes del texto contribuyen al mismo propósito o idea central, evitando desviaciones innecesarias.idiosincrasias y peculiaridades\n\n**Instrucciones para el análisis del texto:\n\n**1. **Identificar idiosincrasias y peculiaridades:**   \n\n- Preste atención a la ortografía y puntuación. ¿Hay algún uso inusual de mayúsculas, signos de puntuación o errores evidentes?   \n\n\n- Busque palabras inventadas o frases que parezcan ser características del estilo del escritor (por ejemplo, \"mas\" en lugar de \"más\", \"a full\" como expresión coloquial).   \n\n- Observe patrones en la estructura de las frases. ¿Utiliza el escritor oraciones largas y complejas o más cortas y directas?   - Identifique el uso de emoticonos y expresiones coloquiales. ¿Aparecen con frecuencia y cómo afectan el tono del mensaje?2. \n\n**Examinar peculiaridades estilísticas:**   \n\n- Analice si el escritor utiliza saludos repetitivos como \"Hola\" y cómo esto influye en el ritmo y la conexión con el lector.  \n\n - Busque repeticiones dentro del texto, como \"me encantaron\" o \"ideales para regalar\", y evalúe si estas repeticiones le dan un sentido de insistencia o si podrían restar valor al discurso.  \n\n - Investigue el uso de preguntas retóricas, y cómo sirven para invitar al diálogo o reflejar el interés por la interacción.\n\n3. **Evaluar el impacto de las idiosincrasias en la eficacia de la escritura:**\n\n\n   - Reflexione sobre cómo las peculiaridades estilísticas contribuyen a la cercanía y accesibilidad del mensaje.   \n\n- Considere si la informalidad del texto puede ser percibida como poco profesional por algunos lectores o si, por el contrario, crea un ambiente más amigable.   \n\n- Analice si el uso repetido de links y vídeos como recursos para apoyar la comunicación beneficia al mensaje central.   - Evalúe si el estilo personal y las idiosincrasias hacen que la escritura sea más efectiva en la creación de redes o si, por el contrario, pueden distraer o confundir al lector. \n\n4. **Conclusiones finales:**   \n\n- Resuma cómo todas estas observaciones sobre idiosincrasias, peculiaridades, y su impacto pueden contribuir a entender el tono general del mensaje y la intención del escritor.\n\nDialogo1. Examinar cómo el escritor maneja el diálogo:  \n\n - Identificar el uso de puntuación adecuada para el diálogo (comas, signos de interrogación y exclamación).  \n\n\n - Evaluar el uso de etiquetas de diálogo (ejemplo: \"dijo\", \"respondió\") y su frecuencia.   - Observar el formato del diálogo (si se utilizan saltos de línea para nuevas intervenciones).2. Analizar la autenticidad y coherencia de la voz y los patrones de habla de cada personaje:  \n\n - Determinar la consistencia en el estilo de habla a lo largo del texto.   \n\n- Observar si hay variaciones en el uso de jerga o formalidad entre distintos personajes.\n\n3. Identificar cualquier peculiaridad o manierismo distintivo en el diálogo de los personajes:   \n\n- Notar expresiones repetitivas o frases típicas que caracterizan a algún personaje.   \n\n- Analizar el tono, la informalidad y los emoticonos que se utilizan en el diálogo para reflejar la personalidad de los personajes.Lenguaje figurado1. \n\n**Identificar el uso que hace el escritor del lenguaje figurado:**  \n\n\n - Ejemplo: \"mi abuela siempre hizo yoga toda su vida y siempre intento compartirme un poco de lo que ella hacia.\"   - Instrucción: Busque ejemplos de lenguaje figurado como metáforas, símiles, personificación, etc., en el texto. Anote aquellos que refuercen la conexión personal y emocional entre los individuos que se comunican.\n\n2. **Analizar cómo el escritor emplea el lenguaje figurado para transmitir significado, evocar emociones o crear imágenes vívidas:**   \n\n\n- Ejemplo: La referencia a \"mi abuela siempre hizo yoga\" evoca una imagen de tradición y la conexión familiar hacia el bienestar físico y mental.   \n\n- Instrucción: Determine cómo el uso del lenguaje figurado contribuye a desarrollar la relación entre los personajes del texto. Analice cómo las descripciones y ejemplos específicos pueden evocar empatía o una sonrisa en el lector.3. *\n\n*Examinar la frecuencia y eficacia del lenguaje figurado del escritor:** \n\n  - Ejemplo: Frases como \"me quedo con el lindo mensaje que transmites\" muestran un uso consistente de la expresión positiva y el reconocimiento.   - Instrucción: Conte cuántas veces se utilizan elementos de lenguaje figurado a lo largo del texto. Evalúe si este uso es efectivo para mantener el tono casual y accesible de la conversación, y cómo contribuye a la cohesión del texto."
+                    }
+                ],
+                "max_tokens": "0",
+                "temperature": "1",
+                "n_completions": "1",
+                "response_format": "text"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 600,
+                    "y": 0,
+                    "name": "linkedin"
+                },
+                "restore": {
+                    "expect": {
+                        "stop": {
+                            "mode": "chose"
+                        },
+                        "model": {
+                            "mode": "chose",
+                            "label": "gpt-4o-mini (system)"
+                        },
+                        "select": {
+                            "label": "Create a Chat Completion (GPT Models)"
+                        },
+                        "messages": {
+                            "mode": "chose",
+                            "items": [
+                                {
+                                    "role": {
+                                        "mode": "chose",
+                                        "label": "System"
+                                    }
+                                },
+                                {
+                                    "role": {
+                                        "mode": "chose",
+                                        "label": "System"
+                                    }
+                                },
+                                {
+                                    "role": {
+                                        "mode": "chose",
+                                        "label": "System"
+                                    }
+                                }
+                            ]
+                        },
+                        "logit_bias": {
+                            "mode": "chose"
+                        },
+                        "response_format": {
+                            "mode": "chose",
+                            "label": "Text"
+                        },
+                        "additionalParameters": {
+                            "mode": "chose"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "openai-gpt-3"
+                            },
+                            "label": "Recordatorios"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:openai-gpt-3",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "select",
+                        "type": "select",
+                        "label": "Select Method",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "chat",
+                                "prompt"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "max_tokens",
+                        "type": "number",
+                        "label": "Max Tokens",
+                        "required": true
+                    },
+                    {
+                        "name": "temperature",
+                        "type": "number",
+                        "label": "Temperature",
+                        "validate": {
+                            "max": 2,
+                            "min": 0
+                        }
+                    },
+                    {
+                        "name": "top_p",
+                        "type": "number",
+                        "label": "Top P",
+                        "validate": {
+                            "max": 1,
+                            "min": 0
+                        }
+                    },
+                    {
+                        "name": "n_completions",
+                        "type": "number",
+                        "label": "Number"
+                    },
+                    {
+                        "name": "frequency_penalty",
+                        "type": "number",
+                        "label": "Frequency Penalty",
+                        "validate": {
+                            "max": 2,
+                            "min": -2
+                        }
+                    },
+                    {
+                        "name": "presence_penalty",
+                        "type": "number",
+                        "label": "Presence Penalty",
+                        "validate": {
+                            "max": 2,
+                            "min": -2
+                        }
+                    },
+                    {
+                        "name": "logit_bias",
+                        "spec": {
+                            "name": "value",
+                            "spec": [
+                                {
+                                    "name": "token",
+                                    "type": "text",
+                                    "label": "Token ID",
+                                    "required": true
+                                },
+                                {
+                                    "name": "probability",
+                                    "type": "number",
+                                    "label": "Probability",
+                                    "required": true,
+                                    "validate": {
+                                        "max": 100,
+                                        "min": -100
+                                    }
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Token Probability"
+                        },
+                        "type": "array",
+                        "label": "Token Probability"
+                    },
+                    {
+                        "name": "response_format",
+                        "type": "select",
+                        "label": "Response Format",
+                        "validate": {
+                            "enum": [
+                                "text",
+                                "json_object"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "seed",
+                        "type": "integer",
+                        "label": "Seed"
+                    },
+                    {
+                        "name": "stop",
+                        "spec": {
+                            "name": "value",
+                            "type": "text",
+                            "label": "Stop Sequence"
+                        },
+                        "type": "array",
+                        "label": "Stop Sequences",
+                        "validate": {
+                            "maxItems": 4
+                        }
+                    },
+                    {
+                        "name": "additionalParameters",
+                        "spec": {
+                            "name": "value",
+                            "spec": [
+                                {
+                                    "name": "key",
+                                    "type": "text",
+                                    "label": "Parameter Name",
+                                    "required": true
+                                },
+                                {
+                                    "name": "type",
+                                    "type": "select",
+                                    "label": "Input Type",
+                                    "options": [
+                                        {
+                                            "label": "Text",
+                                            "value": "text",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "text",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ],
+                                            "default": true
+                                        },
+                                        {
+                                            "label": "Number",
+                                            "value": "number",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "number",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Boolean",
+                                            "value": "boolean",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "boolean",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Date",
+                                            "value": "date",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "date",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Any",
+                                            "value": "any",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "any",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Input Parameter"
+                        },
+                        "type": "array",
+                        "label": "Other Input Parameters"
+                    },
+                    {
+                        "name": "model",
+                        "type": "select",
+                        "label": "Model",
+                        "required": true
+                    },
+                    {
+                        "name": "messages",
+                        "spec": {
+                            "name": "value",
+                            "spec": [
+                                {
+                                    "name": "role",
+                                    "type": "select",
+                                    "label": "Role",
+                                    "options": [
+                                        {
+                                            "label": "System",
+                                            "value": "system"
+                                        },
+                                        {
+                                            "label": "User",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "label": "Assistant",
+                                            "value": "assistant"
+                                        }
+                                    ],
+                                    "required": true
+                                },
+                                {
+                                    "name": "content",
+                                    "type": "text",
+                                    "label": "Message Content"
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Message"
+                        },
+                        "type": "array",
+                        "label": "Messages",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 8,
+            "module": "openai-gpt-3:CreateCompletion",
+            "version": 1,
+            "parameters": {
+                "__IMTCONN__": 3306766
+            },
+            "mapper": {
+                "model": "gpt-4o-mini",
+                "top_p": "1",
+                "select": "chat",
+                "messages": [
+                    {
+                        "role": "system",
+                        "content": "\"Eres un experto en la creación de blogs que generan interacción, seguidores y ventas. A partir de la transcripción de un video proporcionado, debes crear un blog de aproximadamente un minuto de lectura. La publicación debe estar directamente relacionada con los temas tratados en el video y debe ser atractiva, clara y con un llamado a la acción (CTA) que impulse la interacción con la audiencia. Además, asegúrate de captar la esencia del video, destacar puntos clave, y utilizar un tono profesional pero cercano, adecuado para un blog.\"Instrucciones adicionales:Inicia con una frase que capte la atención de inmediato.Resume los puntos más importantes del video en un lenguaje simple y fácil de leer.Incluye una pregunta o reflexión que motive la participación de los lectores.Cierra con un llamado a la acción claro, que anime a compartir, comentar o contactar.\n\nesta es la transcripcion {{2.transcript}}"
+                    },
+                    {
+                        "role": "system",
+                        "content": "Para crear el post debes tener en cuenta este dialecto que pertenece a la persona dueña de los post:\n\nVas a ser proporcionado con la informacion y particularidades de escritura de nacho leo: \n\nVocabulario y elección de palabras:1. **Vocabulario y elección de palabras*\n\n*:    - El escritor utiliza un vocabulario informal y coloquial (ej. \"jajaj\", \"genial\", \"muchísimas gracias\"), que refleja un tono amigable y accesible.  \n\n - Hay una alta repetición de frases como \"Que bueno que hayamos conectado\" y el uso de frases similares para iniciar conversaciones, lo que puede indicar un estilo de comunicación habitual y poco variado.  \n\n - Utiliza términos relacionados con tecnología y redes sociales (ej. \"IA\", \"YouTube\", \"tiktok\"), lo que sugiere interés por estos temas y una audiencia familiarizada con ellos.\n\n2. **Frecuencia y diversidad del vocabulario**:   \n - El vocabulario es mayormente sencillo y directo, con algunas repeticiones que indican un patrón de comunicación más bien básico.   \n\n- La diversidad del vocabulario es relativamente baja; hay preferencia por palabras comunes en el contexto de redes sociales y comunicación digital.\n\n3. **Uso de jerga, jerga o coloquialismo\n\n**:    - Incluye jerga relacionada con el mundo digital (ej. \"setter\", \"closer\", \"grow a channel\") que puede no ser comprensible para personas fuera de ese ámbito.   - Usa un estilo conversacional que incluye varios coloquialismos, lo que puede hacer que el mensaje suene más cercano pero menos formal.4. **Preferencia del escritor por palabras simples o complejas\n\n**:    - La preferencia es claramente por palabras simples y frases cortas, lo que facilita la lectura y la comprensión.   - Hay un uso intencional de frases simples, a menudo sin complicaciones gramaticales, lo que indica que el escritor busca claridad y conexión.5. \n\n**Palabras distintivas o inusuales\n\n\n**:    - Aunque el vocabulario es en su mayoría común, se encuentran términos específicos del entorno digital y la autoayuda (ej. \"metodología\", \"consultoría\").   \n\n- Se incluye un lenguaje persuasivo para incentivar la interacción y la curiosidad en los receptores (ej. \"me encantaría escuchar tu opinión\", \"seguro que algo puedo aprender\").\n\n6. **Nivel de edad lectora necesario*\n*:   \n\n - El texto es accesible para un público amplio, probablemente de nivel educativo medio, lo que indica que no se requiere un alto nivel de comprensión para entender el contenido.   \n\n- La mezcla de jerga específica y vocabulario cotidiano sugiere que podría ser más fácil de entender para adultos jóvenes o personas familiarizadas con el uso de plataformas digitales.Patrones gramaticales1.\n\n **Patrones gramaticales**   \n\n- Identificar el uso de voces pasivas: El texto no presenta un uso notable de la voz pasiva; se prefiere la voz activa en las interacciones.   \n\n- Análisis de tiempos verbales: Predomina el uso del tiempo presente, especialmente en las acciones y decisiones, aunque hay algunas referencias al pasado (ej. \"vi\", \"pude\").   \n\n- Uso de sustantivos singulares y plurales: Hay un equilibrio en el uso de sustantivos singulares y plurales, aunque en su mayoría se utilizan formas singulares para referirse a personas o conceptos específicos.  \n\n - Análisis de pronombres: El uso de pronombres es mayormente apropiado, con una preferencia por la primera persona del singular y plural para expresar inclusión y conexión.   \n\n- Errores gramaticales: Se observan algunos errores menores, como la falta de acentos (\"increible\" en lugar de \"increíble\") y la redundancia en frases (por ejemplo, \"me encantaron\" repetido excesivamente en ocasiones). También se nota una falta de puntuación en oraciones largas, lo que puede afectar la claridad.puntuacion:1. \n\n**Uso de comas**:    \n\n- Instrucción: Utilice comas para separar ideas o enumeraciones dentro de una oración, manteniendo la fluidez. Ejemplo correcto: \"Me interesa la IA, es increíble las cosas que se pueden hacer\". Ejemplo incorrecto: \"Me interesa la IA es increíble las cosas que se pueden hacer\" (sin la coma se pierde la claridad).   \n\n2. **Uso de punto y coma**:  \n\n - Instrucción: Reserve el uso del punto y coma para unir oraciones independientes que están estrechamente relacionadas. Ejemplo correcto: \"Estoy desempleado; ando buscando trabajo a full\". Ejemplo incorrecto: \"Estoy desempleado, ando buscando trabajo a full\" (no es incorrecto, pero el uso del punto y coma añade más peso a la conexión entre las ideas).\n\n3. **Uso de guiones**:   - Instrucción: Utilice guiones para agregar explicaciones o aclaraciones dentro de una oración. Ejemplo correcto: \"Me alegra saber que estás interesado en la tecnología - de hecho, creo que podríamos trabajar juntos\". Ejemplo incorrecto: \"Yo pienso que la tecnología es útil-me gustaría saber más\" (sin separación adecuada).\n\n4. \n\n**Uso de paréntesis**:   \n\n- Instrucción: Use paréntesis para incluir información adicional sin interrumpir el flujo de la oración. Ejemplo correcto: \"El video es muy útil (aunque un poco largo) para comprender el tema\". Ejemplo incorrecto: \"El video es muy útil Aunque un poco largo para comprender el tema\" (no se debe romper la estructura de la oración).\n\n5. **Preferencias en signos de puntuación**:   \n\n- Instrucción: Observe si hay un uso preferencial por las comas y los signos de exclamación/sonrisa para dar un tono más casual y amistoso. Ejemplo correcto: \"Hola, ¡qué bueno que hayamos conectado!\". Ejemplo incorrecto: \"Hola que bueno que hayamos conectado\" (falta un tono más amigable).\n\n6. **Creación de ritmo y énfasis**:   \n\n- Instrucción: Utilice la puntuación para crear un ritmo que refleja el tono conversacional. Ejemplo correcto: \"¡Genial! Estoy seguro que te va a ayudar.\" Ejemplo incorrecto: \"Genial estoy seguro que te va a ayudar\" (no hay un alto y bajo en la entonación). \n\n7. **Patrones inusuales**:   \n\n- Instrucción: Preste atención a patrones repetitivos, como \"Hola [nombre], cómo estás?\" que pueden ser innecesarios si se repiten en cada saludo. Ejemplo correcto: \"Hola, María. ¿Cómo estás?\". Ejemplo incorrecto: \"Hola, María, como estas, hola, Pedro, como estas\" (redundancia en los saludos). \n\n\n8. **Claridad**:    \n\n- Instrucción: Asegúrese de que cada signo de puntuación en su texto contribuya a la claridad y comprensión de las ideas. Ejemplo correcto: \"Si puedes, compártelo. Estaré encantado de consultarlo\". Ejemplo incorrecto: \"Si puedes compartirlo estaré encantado de consultarlo\" (la ausencia de un punto crea confusión).estructura y longitud de la oracion1. Examinar la complejidad, variedad y longitud media de las frases del escritor.\n\n2. Identificar el uso que hace el escritor de oraciones simples, compuestas, complejas o compuestas-complejas.\n\n3. Analizar el uso que hace el escritor de fragmentos de oraciones, oraciones continuas o comienzos de oraciones variadas.\n\n4. Determinar la preferencia del escritor por oraciones cortas y contundentes o por oraciones más largas y elaboradas.\n\n5. Calcular el promedio de palabras por oración.\n\n6. Identificar el porcentaje de oraciones cortas (menos de 10 palabras) y oraciones largas (más de 30 palabras).recursos retoricos1. Identificar y analizar el uso de metáforas, símiles, aliteraciones o repeticiones que el escritor utiliza a lo largo del texto.\n\n2. Reconocer el uso de preguntas retóricas y cómo contribuyen a la interacción del escritor con los receptores del mensaje.\n\n3. Identificar la presencia de ironía o hipérbole en las afirmaciones del escritor, que podrían enfatizar su perspectiva o sentimientos.\n\n4. Examinar el uso de anécdotas o ejemplos concretos que el escritor proporciona para ilustrar sus puntos o para conectar con el público.\n\n5. Buscar recursos retóricos distintivos o recurrentes que caractericen el estilo del escritor, observando patrones que emergen en su forma de comunicarse.estructura del parrafo1. Estructura del párrafo \n\n  - **Organización de los párrafos:** Al escribir, cada párrafo debe contener una idea central y las oraciones deben estar organizadas lógicamente para apoyar esa idea. Por ejemplo, \"Me interesa bastante la IA es increíble las cosas que se pueden hacer\" establece el interés en la IA, seguido por explicaciones que apoyan esa idea.   \n\n- **Extensión del párrafo:** Mantenga los párrafos breves y concisos para facilitar la lectura. Por ejemplo, intervalos cortos de 1 a 4 oraciones son efectivos: \"Hola Fran! No molesta tu mensaje jajaj :)\" seguido de una idea relacionada crea un flujo natural.   \n\n- **Oraciones temáticas y transiciones:\n\n** Use oraciones temáticas al inicio de cada párrafo. Ejemplo: \"Aah genial entonces si alguna vez necesito una mano en algún proyecto podemos hablar y trabajar en conjunto\" establece el tema de colaboración, facilitando la transición hacia ejemplos específicos de proyectos.   \n\n- **Patrones únicos o recurrentes:** Note la repetición de agradecimientos y la invitación a colaborar. Ejemplo: \"No hay problema!!\" seguido de propuestas concretas, lo que crea un patrón de respuesta y entusiasmo a la interacción.2. Razonamiento deductivo o inductivo   - \n\n**Uso de razonamiento deductivo:** Al presentar conclusiones específicas después de hechos generales. Por ejemplo, \"Youtube es indispensable para arrancar un negocio prácticamente\", primero menciona el contexto de los videos y luego concluye la importancia de la plataforma.  \n\n - **Uso de razonamiento inductivo:** Al llegar a una conclusión general basada en ejemplos específicos. Por ejemplo, al mencionar videos útiles y luego concluir que \"ideal para regalarle a mi madre\" se inferiría que son atractivos, a partir de las observaciones diarias.3. Disposición de los párrafos  \n\n - **Orden cronológico:** Utilice el tiempo para eventos secuenciales, ej: “Voy a estar subiendo contenido dentro de poco” seguido de “si te apetece compartir tu opinión” sugiere una secuencia lógica.   \n\n- **Orden espacial:** Aunque no es predominante, use referencias de ubicación en el diálogo. Por ejemplo, el uso de enlaces como \"https://youtube.com/@nacho_leo?si=DeoTPeLvwnXxawnS\" para llevar al lector a un recurso específico localizado en línea.   \n\n- **Orden enfático:** Coloque información importante al final del párrafo para mayor impacto. Un ejemplo efectivo podría ser la frase de cierre: \"Un placer, Eze, si que bueno que hayamos conectado 😊\".\n\n4. Patrones recurrentes en la estructura de párrafos   \n\n- **Interacciones repetitivas:** Note el saludo inicial y una frase de conexión, por ejemplo, \"Que bueno que hayamos conectado\" antes de introducir una solicitud, pide compartir información específica o una reacción, creando una estructura coherente en la conversación.   \n\n- **Fomentar la participación:** Ejemplo recurrente de solicitar opiniones o feedback sobre videos, como “Después de ver un anuncio, ¿te gustaría que lo compartiera?” Esto establece un patrón de engagement, que es vital en la comunicación.Tono y estado de animoInstrucciones para el análisis del texto:1. \n\n**Tono y estado de ánimo:**  \n\n - Analizar el tono emocional general de la escritura, como formal, informal, humorístico o serio.  \n\n - Identificar cambios de tono a lo largo de la pieza y examinar cómo el escritor logra estos cambios.    \n\n- Determinar el uso que hace el escritor de la dicción, la sintaxis y las imágenes para crear un estado de ánimo o atmósfera específica. \n\n  - Buscar inconsistencias o contradicciones en el tono del escritor.Coherencia y cohesion generales1. \n\n**Fluidez y conexión de ideas**:\n\n Analizar si las ideas del escritor se presentan de manera clara y si se desarrollan de forma que el lector pueda seguir fácilmente el hilo de la conversación.\n\n2. **Uso de palabras y frases de transición**: Examinar si el escritor utiliza conectores o frases que ayuden a enlazar las distintas ideas y párrafos, facilitando una lectura más fluida.\n\n3. **Repetición y estructura paralela**: Identificar si el escritor recurre a la repetición de ciertas palabras o frases, o si utiliza estructuras paralelas para enfatizar puntos clave y mantener la atención del lector.\n\n4. **Enfoque y unidad del texto**: Determinar si el escritor mantiene un enfoque claro en el tema a lo largo de la pieza y si todas las partes del texto contribuyen al mismo propósito o idea central, evitando desviaciones innecesarias.idiosincrasias y peculiaridades\n\n**Instrucciones para el análisis del texto:\n\n**1. **Identificar idiosincrasias y peculiaridades:**   \n\n- Preste atención a la ortografía y puntuación. ¿Hay algún uso inusual de mayúsculas, signos de puntuación o errores evidentes?   \n\n\n- Busque palabras inventadas o frases que parezcan ser características del estilo del escritor (por ejemplo, \"mas\" en lugar de \"más\", \"a full\" como expresión coloquial).   \n\n- Observe patrones en la estructura de las frases. ¿Utiliza el escritor oraciones largas y complejas o más cortas y directas?   - Identifique el uso de emoticonos y expresiones coloquiales. ¿Aparecen con frecuencia y cómo afectan el tono del mensaje?2. \n\n**Examinar peculiaridades estilísticas:**   \n\n- Analice si el escritor utiliza saludos repetitivos como \"Hola\" y cómo esto influye en el ritmo y la conexión con el lector.  \n\n - Busque repeticiones dentro del texto, como \"me encantaron\" o \"ideales para regalar\", y evalúe si estas repeticiones le dan un sentido de insistencia o si podrían restar valor al discurso.  \n\n - Investigue el uso de preguntas retóricas, y cómo sirven para invitar al diálogo o reflejar el interés por la interacción.\n\n3. **Evaluar el impacto de las idiosincrasias en la eficacia de la escritura:**\n\n\n   - Reflexione sobre cómo las peculiaridades estilísticas contribuyen a la cercanía y accesibilidad del mensaje.   \n\n- Considere si la informalidad del texto puede ser percibida como poco profesional por algunos lectores o si, por el contrario, crea un ambiente más amigable.   \n\n- Analice si el uso repetido de links y vídeos como recursos para apoyar la comunicación beneficia al mensaje central.   - Evalúe si el estilo personal y las idiosincrasias hacen que la escritura sea más efectiva en la creación de redes o si, por el contrario, pueden distraer o confundir al lector. \n\n4. **Conclusiones finales:**   \n\n- Resuma cómo todas estas observaciones sobre idiosincrasias, peculiaridades, y su impacto pueden contribuir a entender el tono general del mensaje y la intención del escritor.\n\nDialogo1. Examinar cómo el escritor maneja el diálogo:  \n\n - Identificar el uso de puntuación adecuada para el diálogo (comas, signos de interrogación y exclamación).  \n\n\n - Evaluar el uso de etiquetas de diálogo (ejemplo: \"dijo\", \"respondió\") y su frecuencia.   - Observar el formato del diálogo (si se utilizan saltos de línea para nuevas intervenciones).2. Analizar la autenticidad y coherencia de la voz y los patrones de habla de cada personaje:  \n\n - Determinar la consistencia en el estilo de habla a lo largo del texto.   \n\n- Observar si hay variaciones en el uso de jerga o formalidad entre distintos personajes.\n\n3. Identificar cualquier peculiaridad o manierismo distintivo en el diálogo de los personajes:   \n\n- Notar expresiones repetitivas o frases típicas que caracterizan a algún personaje.   \n\n- Analizar el tono, la informalidad y los emoticonos que se utilizan en el diálogo para reflejar la personalidad de los personajes.Lenguaje figurado1. \n\n**Identificar el uso que hace el escritor del lenguaje figurado:**  \n\n\n - Ejemplo: \"mi abuela siempre hizo yoga toda su vida y siempre intento compartirme un poco de lo que ella hacia.\"   - Instrucción: Busque ejemplos de lenguaje figurado como metáforas, símiles, personificación, etc., en el texto. Anote aquellos que refuercen la conexión personal y emocional entre los individuos que se comunican.\n\n2. **Analizar cómo el escritor emplea el lenguaje figurado para transmitir significado, evocar emociones o crear imágenes vívidas:**   \n\n\n- Ejemplo: La referencia a \"mi abuela siempre hizo yoga\" evoca una imagen de tradición y la conexión familiar hacia el bienestar físico y mental.   \n\n- Instrucción: Determine cómo el uso del lenguaje figurado contribuye a desarrollar la relación entre los personajes del texto. Analice cómo las descripciones y ejemplos específicos pueden evocar empatía o una sonrisa en el lector.3. *\n\n*Examinar la frecuencia y eficacia del lenguaje figurado del escritor:** \n\n  - Ejemplo: Frases como \"me quedo con el lindo mensaje que transmites\" muestran un uso consistente de la expresión positiva y el reconocimiento.   - Instrucción: Conte cuántas veces se utilizan elementos de lenguaje figurado a lo largo del texto. Evalúe si este uso es efectivo para mantener el tono casual y accesible de la conversación, y cómo contribuye a la cohesión del texto."
+                    }
+                ],
+                "max_tokens": "0",
+                "temperature": "1",
+                "n_completions": "1",
+                "response_format": "text"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 900,
+                    "y": 0,
+                    "name": "blog"
+                },
+                "restore": {
+                    "expect": {
+                        "stop": {
+                            "mode": "chose"
+                        },
+                        "model": {
+                            "mode": "chose",
+                            "label": "gpt-4o-mini (system)"
+                        },
+                        "select": {
+                            "label": "Create a Chat Completion (GPT Models)"
+                        },
+                        "messages": {
+                            "mode": "chose",
+                            "items": [
+                                {
+                                    "role": {
+                                        "mode": "chose",
+                                        "label": "System"
+                                    }
+                                },
+                                {
+                                    "role": {
+                                        "mode": "chose",
+                                        "label": "System"
+                                    }
+                                }
+                            ]
+                        },
+                        "logit_bias": {
+                            "mode": "chose"
+                        },
+                        "response_format": {
+                            "mode": "chose",
+                            "label": "Text"
+                        },
+                        "additionalParameters": {
+                            "mode": "chose"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "openai-gpt-3"
+                            },
+                            "label": "Recordatorios"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:openai-gpt-3",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "select",
+                        "type": "select",
+                        "label": "Select Method",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "chat",
+                                "prompt"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "max_tokens",
+                        "type": "number",
+                        "label": "Max Tokens",
+                        "required": true
+                    },
+                    {
+                        "name": "temperature",
+                        "type": "number",
+                        "label": "Temperature",
+                        "validate": {
+                            "max": 2,
+                            "min": 0
+                        }
+                    },
+                    {
+                        "name": "top_p",
+                        "type": "number",
+                        "label": "Top P",
+                        "validate": {
+                            "max": 1,
+                            "min": 0
+                        }
+                    },
+                    {
+                        "name": "n_completions",
+                        "type": "number",
+                        "label": "Number"
+                    },
+                    {
+                        "name": "frequency_penalty",
+                        "type": "number",
+                        "label": "Frequency Penalty",
+                        "validate": {
+                            "max": 2,
+                            "min": -2
+                        }
+                    },
+                    {
+                        "name": "presence_penalty",
+                        "type": "number",
+                        "label": "Presence Penalty",
+                        "validate": {
+                            "max": 2,
+                            "min": -2
+                        }
+                    },
+                    {
+                        "name": "logit_bias",
+                        "spec": {
+                            "name": "value",
+                            "spec": [
+                                {
+                                    "name": "token",
+                                    "type": "text",
+                                    "label": "Token ID",
+                                    "required": true
+                                },
+                                {
+                                    "name": "probability",
+                                    "type": "number",
+                                    "label": "Probability",
+                                    "required": true,
+                                    "validate": {
+                                        "max": 100,
+                                        "min": -100
+                                    }
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Token Probability"
+                        },
+                        "type": "array",
+                        "label": "Token Probability"
+                    },
+                    {
+                        "name": "response_format",
+                        "type": "select",
+                        "label": "Response Format",
+                        "validate": {
+                            "enum": [
+                                "text",
+                                "json_object"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "seed",
+                        "type": "integer",
+                        "label": "Seed"
+                    },
+                    {
+                        "name": "stop",
+                        "spec": {
+                            "name": "value",
+                            "type": "text",
+                            "label": "Stop Sequence"
+                        },
+                        "type": "array",
+                        "label": "Stop Sequences",
+                        "validate": {
+                            "maxItems": 4
+                        }
+                    },
+                    {
+                        "name": "additionalParameters",
+                        "spec": {
+                            "name": "value",
+                            "spec": [
+                                {
+                                    "name": "key",
+                                    "type": "text",
+                                    "label": "Parameter Name",
+                                    "required": true
+                                },
+                                {
+                                    "name": "type",
+                                    "type": "select",
+                                    "label": "Input Type",
+                                    "options": [
+                                        {
+                                            "label": "Text",
+                                            "value": "text",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "text",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ],
+                                            "default": true
+                                        },
+                                        {
+                                            "label": "Number",
+                                            "value": "number",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "number",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Boolean",
+                                            "value": "boolean",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "boolean",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Date",
+                                            "value": "date",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "date",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Any",
+                                            "value": "any",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "any",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Input Parameter"
+                        },
+                        "type": "array",
+                        "label": "Other Input Parameters"
+                    },
+                    {
+                        "name": "model",
+                        "type": "select",
+                        "label": "Model",
+                        "required": true
+                    },
+                    {
+                        "name": "messages",
+                        "spec": {
+                            "name": "value",
+                            "spec": [
+                                {
+                                    "name": "role",
+                                    "type": "select",
+                                    "label": "Role",
+                                    "options": [
+                                        {
+                                            "label": "System",
+                                            "value": "system"
+                                        },
+                                        {
+                                            "label": "User",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "label": "Assistant",
+                                            "value": "assistant"
+                                        }
+                                    ],
+                                    "required": true
+                                },
+                                {
+                                    "name": "content",
+                                    "type": "text",
+                                    "label": "Message Content"
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Message"
+                        },
+                        "type": "array",
+                        "label": "Messages",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 10,
+            "module": "openai-gpt-3:CreateCompletion",
+            "version": 1,
+            "parameters": {
+                "__IMTCONN__": 3306766
+            },
+            "mapper": {
+                "model": "gpt-4o-mini",
+                "top_p": "1",
+                "select": "chat",
+                "messages": [
+                    {
+                        "role": "system",
+                        "content": "\"Eres un experto en la creación de contenido y examinador de podcast que crea post de texto que generan interacción, seguidores y ventas. A partir de la transcripción de un video proporcionado, debes crear un post de aproximadamente un minuto de lectura utilizando los mejores momentos del podcast, donde haya frases remarcables, discuciones o debates interesantes. La publicación debe estar directamente relacionada con los temas tratados en el video y debe ser atractiva, clara y con un llamado a la acción (CTA) que impulse la interacción con la audiencia. Además, asegúrate de captar la esencia del video, destacar puntos clave, y utilizar un tono profesional pero cercano, adecuado para un post.\n\n\"Instrucciones adicionales:Inicia con una frase que capte la atención de inmediato.Resume los puntos más importantes del video en un lenguaje simple y fácil de leer.Incluye una pregunta o reflexión que motive la participación de los lectores.Cierra con un llamado a la acción claro, que anime a compartir, comentar o contactar.\n\nesta es la transcripcion {{2.transcript}}"
+                    }
+                ],
+                "max_tokens": "0",
+                "temperature": "1",
+                "n_completions": "1",
+                "response_format": "text"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 1200,
+                    "y": 0,
+                    "name": "podcast"
+                },
+                "restore": {
+                    "expect": {
+                        "stop": {
+                            "mode": "chose"
+                        },
+                        "model": {
+                            "mode": "chose",
+                            "label": "gpt-4o-mini (system)"
+                        },
+                        "select": {
+                            "label": "Create a Chat Completion (GPT Models)"
+                        },
+                        "messages": {
+                            "mode": "chose",
+                            "items": [
+                                {
+                                    "role": {
+                                        "mode": "chose",
+                                        "label": "System"
+                                    }
+                                }
+                            ]
+                        },
+                        "logit_bias": {
+                            "mode": "chose"
+                        },
+                        "response_format": {
+                            "mode": "chose",
+                            "label": "Text"
+                        },
+                        "additionalParameters": {
+                            "mode": "chose"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "openai-gpt-3"
+                            },
+                            "label": "Recordatorios"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:openai-gpt-3",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "select",
+                        "type": "select",
+                        "label": "Select Method",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "chat",
+                                "prompt"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "max_tokens",
+                        "type": "number",
+                        "label": "Max Tokens",
+                        "required": true
+                    },
+                    {
+                        "name": "temperature",
+                        "type": "number",
+                        "label": "Temperature",
+                        "validate": {
+                            "max": 2,
+                            "min": 0
+                        }
+                    },
+                    {
+                        "name": "top_p",
+                        "type": "number",
+                        "label": "Top P",
+                        "validate": {
+                            "max": 1,
+                            "min": 0
+                        }
+                    },
+                    {
+                        "name": "n_completions",
+                        "type": "number",
+                        "label": "Number"
+                    },
+                    {
+                        "name": "frequency_penalty",
+                        "type": "number",
+                        "label": "Frequency Penalty",
+                        "validate": {
+                            "max": 2,
+                            "min": -2
+                        }
+                    },
+                    {
+                        "name": "presence_penalty",
+                        "type": "number",
+                        "label": "Presence Penalty",
+                        "validate": {
+                            "max": 2,
+                            "min": -2
+                        }
+                    },
+                    {
+                        "name": "logit_bias",
+                        "spec": {
+                            "name": "value",
+                            "spec": [
+                                {
+                                    "name": "token",
+                                    "type": "text",
+                                    "label": "Token ID",
+                                    "required": true
+                                },
+                                {
+                                    "name": "probability",
+                                    "type": "number",
+                                    "label": "Probability",
+                                    "required": true,
+                                    "validate": {
+                                        "max": 100,
+                                        "min": -100
+                                    }
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Token Probability"
+                        },
+                        "type": "array",
+                        "label": "Token Probability"
+                    },
+                    {
+                        "name": "response_format",
+                        "type": "select",
+                        "label": "Response Format",
+                        "validate": {
+                            "enum": [
+                                "text",
+                                "json_object"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "seed",
+                        "type": "integer",
+                        "label": "Seed"
+                    },
+                    {
+                        "name": "stop",
+                        "spec": {
+                            "name": "value",
+                            "type": "text",
+                            "label": "Stop Sequence"
+                        },
+                        "type": "array",
+                        "label": "Stop Sequences",
+                        "validate": {
+                            "maxItems": 4
+                        }
+                    },
+                    {
+                        "name": "additionalParameters",
+                        "spec": {
+                            "name": "value",
+                            "spec": [
+                                {
+                                    "name": "key",
+                                    "type": "text",
+                                    "label": "Parameter Name",
+                                    "required": true
+                                },
+                                {
+                                    "name": "type",
+                                    "type": "select",
+                                    "label": "Input Type",
+                                    "options": [
+                                        {
+                                            "label": "Text",
+                                            "value": "text",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "text",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ],
+                                            "default": true
+                                        },
+                                        {
+                                            "label": "Number",
+                                            "value": "number",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "number",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Boolean",
+                                            "value": "boolean",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "boolean",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Date",
+                                            "value": "date",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "date",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Any",
+                                            "value": "any",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "any",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Input Parameter"
+                        },
+                        "type": "array",
+                        "label": "Other Input Parameters"
+                    },
+                    {
+                        "name": "model",
+                        "type": "select",
+                        "label": "Model",
+                        "required": true
+                    },
+                    {
+                        "name": "messages",
+                        "spec": {
+                            "name": "value",
+                            "spec": [
+                                {
+                                    "name": "role",
+                                    "type": "select",
+                                    "label": "Role",
+                                    "options": [
+                                        {
+                                            "label": "System",
+                                            "value": "system"
+                                        },
+                                        {
+                                            "label": "User",
+                                            "value": "user"
+                                        },
+                                        {
+                                            "label": "Assistant",
+                                            "value": "assistant"
+                                        }
+                                    ],
+                                    "required": true
+                                },
+                                {
+                                    "name": "content",
+                                    "type": "text",
+                                    "label": "Message Content"
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Message"
+                        },
+                        "type": "array",
+                        "label": "Messages",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 9,
+            "module": "airtable:ActionCreateRecord",
+            "version": 3,
+            "parameters": {
+                "__IMTCONN__": 3059356
+            },
+            "mapper": {
+                "base": "appiqn0dGXrHAPlSL",
+                "table": "tblpAK6XVMxfRbxCm",
+                "record": {
+                    "fldOQsLFAK0kHalio": "{{8.result}}",
+                    "fldZWiNZ1IiTViFX9": "{{10.result}}",
+                    "fldbyuIs2wsvkjwf2": "{{7.result}}"
+                },
+                "typecast": false,
+                "useColumnId": false
+            },
+            "metadata": {
+                "designer": {
+                    "x": 1546,
+                    "y": -1
+                },
+                "restore": {
+                    "expect": {
+                        "base": {
+                            "label": "Guia de contenido"
+                        },
+                        "table": {
+                            "label": "post",
+                            "nested": [
+                                {
+                                    "name": "record",
+                                    "spec": [
+                                        {
+                                            "name": "fldbyuIs2wsvkjwf2",
+                                            "time": false,
+                                            "type": "date",
+                                            "label": "Post linkedin"
+                                        },
+                                        {
+                                            "name": "fldOQsLFAK0kHalio",
+                                            "type": "text",
+                                            "label": "Post blog",
+                                            "multiline": true
+                                        },
+                                        {
+                                            "name": "fld53QzdKKVsQPwAU",
+                                            "type": "boolean",
+                                            "label": "confirmar"
+                                        },
+                                        {
+                                            "name": "fldZWiNZ1IiTViFX9",
+                                            "type": "text",
+                                            "label": "post podcast",
+                                            "multiline": true
+                                        }
+                                    ],
+                                    "type": "collection",
+                                    "label": "Record"
+                                }
+                            ]
+                        },
+                        "record": {
+                            "nested": {
+                                "fld53QzdKKVsQPwAU": {
+                                    "mode": "chose"
+                                }
+                            }
+                        },
+                        "typecast": {
+                            "mode": "chose"
+                        },
+                        "useColumnId": {
+                            "mode": "chose"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "airtable3"
+                            },
+                            "label": "ahora si (User ID: usrmHuf5xfnSU75z7)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:airtable3,airtable2",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "base",
+                        "type": "select",
+                        "label": "Base",
+                        "required": true
+                    },
+                    {
+                        "name": "typecast",
+                        "type": "boolean",
+                        "label": "Smart links",
+                        "required": true
+                    },
+                    {
+                        "name": "useColumnId",
+                        "type": "boolean",
+                        "label": "Use Column ID",
+                        "required": true
+                    },
+                    {
+                        "name": "table",
+                        "type": "select",
+                        "label": "Table",
+                        "required": true
+                    },
+                    {
+                        "name": "record",
+                        "spec": [
+                            {
+                                "name": "fldbyuIs2wsvkjwf2",
+                                "time": false,
+                                "type": "date",
+                                "label": "Post linkedin"
+                            },
+                            {
+                                "name": "fldOQsLFAK0kHalio",
+                                "type": "text",
+                                "label": "Post blog"
+                            },
+                            {
+                                "name": "fld53QzdKKVsQPwAU",
+                                "type": "boolean",
+                                "label": "confirmar"
+                            },
+                            {
+                                "name": "fldZWiNZ1IiTViFX9",
+                                "type": "text",
+                                "label": "post podcast"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Record"
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "id",
+                        "type": "text",
+                        "label": "ID"
+                    },
+                    {
+                        "name": "createdTime",
+                        "type": "date",
+                        "label": "Created Time"
+                    },
+                    {
+                        "name": "Post linkedin",
+                        "time": false,
+                        "type": "date",
+                        "label": "Post linkedin"
+                    },
+                    {
+                        "name": "Post blog",
+                        "type": "text",
+                        "label": "Post blog",
+                        "multiline": true
+                    },
+                    {
+                        "name": "confirmar",
+                        "type": "boolean",
+                        "label": "confirmar"
+                    },
+                    {
+                        "name": "post podcast",
+                        "type": "text",
+                        "label": "post podcast",
+                        "multiline": true
+                    },
+                    {
+                        "name": "Creado",
+                        "type": "date",
+                        "label": "Creado"
+                    },
+                    {
+                        "name": "fin",
+                        "type": "date",
+                        "label": "fin"
+                    }
+                ]
+            }
+        }
+    ],
+    "metadata": {
+        "instant": false,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "us1.make.com"
+    }
+}

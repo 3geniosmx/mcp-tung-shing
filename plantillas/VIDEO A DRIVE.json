@@ -1,0 +1,649 @@
+{
+    "name": "Video a drive",
+    "flow": [
+        {
+            "id": 1,
+            "module": "google-drive:watchFilesInAFolder",
+            "version": 4,
+            "parameters": {
+                "limit": 2,
+                "select": "create",
+                "folderId": "/19CQUODVoxd1fNtf3gmx2GqHQ5I9zAMzY",
+                "mimeType": "all",
+                "__IMTCONN__": 541100,
+                "destination": "drive"
+            },
+            "mapper": {},
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 0
+                },
+                "restore": {
+                    "parameters": {
+                        "select": {
+                            "label": "By Created Time"
+                        },
+                        "folderId": {
+                            "path": [
+                                "make"
+                            ]
+                        },
+                        "mimeType": {
+                            "label": "All"
+                        },
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "google-restricted"
+                            },
+                            "label": "My Google Restricted connection (nacholeo005@gmail.com)"
+                        },
+                        "destination": {
+                            "label": "My Drive"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:google-restricted",
+                        "label": "Connection",
+                        "required": true
+                    },
+                    {
+                        "type": "hidden"
+                    },
+                    {
+                        "name": "select",
+                        "type": "select",
+                        "label": "Watch Files",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "create",
+                                "modify"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "destination",
+                        "type": "select",
+                        "label": "Choose a Drive",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "drive",
+                                "share",
+                                "team"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "mimeType",
+                        "type": "select",
+                        "label": "File Types to Watch",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "all",
+                                "document",
+                                "spreadsheet",
+                                "slide",
+                                "drawing"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "type": "uinteger",
+                        "label": "Limit",
+                        "required": true
+                    },
+                    {
+                        "name": "folderId",
+                        "type": "folder",
+                        "label": "Select the Folder to be Watched",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 2,
+            "module": "airtable:ActionCreateRecord",
+            "version": 3,
+            "parameters": {
+                "__IMTCONN__": 541077
+            },
+            "mapper": {
+                "base": "appFuvDhDH6m7g9Pg",
+                "table": "tbl1XpBWNRN1JforU",
+                "record": {
+                    "fldrDESlHtKOhBCJj": "{{1.name}}",
+                    "fldtSPHOfKwnoHJ06": "{{1.id}}"
+                },
+                "typecast": false,
+                "useColumnId": false
+            },
+            "metadata": {
+                "designer": {
+                    "x": 300,
+                    "y": 0
+                },
+                "restore": {
+                    "expect": {
+                        "base": {
+                            "label": "Contenido V2"
+                        },
+                        "table": {
+                            "label": "Table 1",
+                            "nested": [
+                                {
+                                    "name": "record",
+                                    "spec": [
+                                        {
+                                            "name": "fldrDESlHtKOhBCJj",
+                                            "type": "text",
+                                            "label": "Nombre del archivo"
+                                        },
+                                        {
+                                            "name": "fldtSPHOfKwnoHJ06",
+                                            "type": "text",
+                                            "label": "ID video"
+                                        },
+                                        {
+                                            "name": "fldh68vwNs47AA4wS",
+                                            "type": "text",
+                                            "label": "ID carpeta"
+                                        },
+                                        {
+                                            "name": "flduG5gawgIK1QG1G",
+                                            "spec": {
+                                                "mode": "edit",
+                                                "type": "select",
+                                                "label": "Value",
+                                                "dynamic": true,
+                                                "options": [
+                                                    {
+                                                        "label": "Youtube",
+                                                        "value": "Youtube"
+                                                    },
+                                                    {
+                                                        "label": "IG",
+                                                        "value": "IG"
+                                                    },
+                                                    {
+                                                        "label": "X",
+                                                        "value": "X"
+                                                    },
+                                                    {
+                                                        "label": "Linkedin",
+                                                        "value": "Linkedin"
+                                                    },
+                                                    {
+                                                        "label": "Tiktok",
+                                                        "value": "Tiktok"
+                                                    }
+                                                ],
+                                                "validate": false
+                                            },
+                                            "type": "array",
+                                            "label": "Tipo de video"
+                                        },
+                                        {
+                                            "name": "fldNYMM295cFAI4bu",
+                                            "type": "text",
+                                            "label": "Prompt Miniatura",
+                                            "multiline": true
+                                        },
+                                        {
+                                            "name": "fldyc25cUZLO9WwCv",
+                                            "time": true,
+                                            "type": "date",
+                                            "label": "Fecha de posteo"
+                                        },
+                                        {
+                                            "name": "fldr52HJ0HpwvbpHy",
+                                            "type": "boolean",
+                                            "label": "Crear videos"
+                                        },
+                                        {
+                                            "name": "fldNMGtDcRudxYsAq",
+                                            "type": "text",
+                                            "label": "Titulo de YT",
+                                            "multiline": true
+                                        },
+                                        {
+                                            "name": "fldsCg9MV1BwK9ISJ",
+                                            "type": "text",
+                                            "label": "Titulo de IG",
+                                            "multiline": true
+                                        },
+                                        {
+                                            "name": "fldw695MuIqqoR31v",
+                                            "type": "text",
+                                            "label": "Titulo X",
+                                            "multiline": true
+                                        },
+                                        {
+                                            "name": "fldh4201SodViaEOZ",
+                                            "type": "text",
+                                            "label": "Titulo Tiktok",
+                                            "multiline": true
+                                        },
+                                        {
+                                            "name": "fldYVEOYujqDUQXgo",
+                                            "type": "text",
+                                            "label": "Descripcion YT",
+                                            "multiline": true
+                                        },
+                                        {
+                                            "name": "fldSiyb3XmlhLypCA",
+                                            "type": "text",
+                                            "label": "Descripcion IG",
+                                            "multiline": true
+                                        },
+                                        {
+                                            "name": "fldapl4jIkvSu086m",
+                                            "type": "text",
+                                            "label": "Descripción Tiktok",
+                                            "multiline": true
+                                        },
+                                        {
+                                            "name": "fldN2V3PdewEo4hwL",
+                                            "type": "text",
+                                            "label": "Descripción X",
+                                            "multiline": true
+                                        },
+                                        {
+                                            "name": "fldrdw9J3xvaWkNZA",
+                                            "type": "text",
+                                            "label": "Tags YT",
+                                            "multiline": true
+                                        },
+                                        {
+                                            "name": "fld1OIMvvWdwprUrP",
+                                            "type": "text",
+                                            "label": "Tags IG",
+                                            "multiline": true
+                                        },
+                                        {
+                                            "name": "fldElJo5FCvUvv9xS",
+                                            "type": "text",
+                                            "label": "Tags Tiktok",
+                                            "multiline": true
+                                        },
+                                        {
+                                            "name": "fldzD0fvcr1lfCjFE",
+                                            "type": "text",
+                                            "label": "Tags X",
+                                            "multiline": true
+                                        }
+                                    ],
+                                    "type": "collection",
+                                    "label": "Record"
+                                }
+                            ]
+                        },
+                        "record": {
+                            "nested": {
+                                "fldr52HJ0HpwvbpHy": {
+                                    "mode": "chose"
+                                },
+                                "flduG5gawgIK1QG1G": {
+                                    "mode": "chose"
+                                }
+                            }
+                        },
+                        "typecast": {
+                            "mode": "chose"
+                        },
+                        "useColumnId": {
+                            "mode": "chose"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "airtable2"
+                            },
+                            "label": "My Airtable Token or Key connection"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:airtable3,airtable2",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "base",
+                        "type": "select",
+                        "label": "Base",
+                        "required": true
+                    },
+                    {
+                        "name": "typecast",
+                        "type": "boolean",
+                        "label": "Smart links",
+                        "required": true
+                    },
+                    {
+                        "name": "useColumnId",
+                        "type": "boolean",
+                        "label": "Use Column ID",
+                        "required": true
+                    },
+                    {
+                        "name": "table",
+                        "type": "select",
+                        "label": "Table",
+                        "required": true
+                    },
+                    {
+                        "name": "record",
+                        "spec": [
+                            {
+                                "name": "fldrDESlHtKOhBCJj",
+                                "type": "text",
+                                "label": "Nombre del archivo"
+                            },
+                            {
+                                "name": "fldtSPHOfKwnoHJ06",
+                                "type": "text",
+                                "label": "ID video"
+                            },
+                            {
+                                "name": "fldh68vwNs47AA4wS",
+                                "type": "text",
+                                "label": "ID carpeta"
+                            },
+                            {
+                                "name": "flduG5gawgIK1QG1G",
+                                "spec": {
+                                    "mode": "edit",
+                                    "name": "value",
+                                    "type": "select",
+                                    "label": "Value",
+                                    "dynamic": true,
+                                    "options": [
+                                        {
+                                            "label": "Youtube",
+                                            "value": "Youtube"
+                                        },
+                                        {
+                                            "label": "IG",
+                                            "value": "IG"
+                                        },
+                                        {
+                                            "label": "X",
+                                            "value": "X"
+                                        },
+                                        {
+                                            "label": "Linkedin",
+                                            "value": "Linkedin"
+                                        },
+                                        {
+                                            "label": "Tiktok",
+                                            "value": "Tiktok"
+                                        }
+                                    ],
+                                    "validate": false
+                                },
+                                "type": "array",
+                                "label": "Tipo de video"
+                            },
+                            {
+                                "name": "fldNYMM295cFAI4bu",
+                                "type": "text",
+                                "label": "Prompt Miniatura"
+                            },
+                            {
+                                "name": "fldyc25cUZLO9WwCv",
+                                "time": true,
+                                "type": "date",
+                                "label": "Fecha de posteo"
+                            },
+                            {
+                                "name": "fldr52HJ0HpwvbpHy",
+                                "type": "boolean",
+                                "label": "Crear videos"
+                            },
+                            {
+                                "name": "fldNMGtDcRudxYsAq",
+                                "type": "text",
+                                "label": "Titulo de YT"
+                            },
+                            {
+                                "name": "fldsCg9MV1BwK9ISJ",
+                                "type": "text",
+                                "label": "Titulo de IG"
+                            },
+                            {
+                                "name": "fldw695MuIqqoR31v",
+                                "type": "text",
+                                "label": "Titulo X"
+                            },
+                            {
+                                "name": "fldh4201SodViaEOZ",
+                                "type": "text",
+                                "label": "Titulo Tiktok"
+                            },
+                            {
+                                "name": "fldYVEOYujqDUQXgo",
+                                "type": "text",
+                                "label": "Descripcion YT"
+                            },
+                            {
+                                "name": "fldSiyb3XmlhLypCA",
+                                "type": "text",
+                                "label": "Descripcion IG"
+                            },
+                            {
+                                "name": "fldapl4jIkvSu086m",
+                                "type": "text",
+                                "label": "Descripción Tiktok"
+                            },
+                            {
+                                "name": "fldN2V3PdewEo4hwL",
+                                "type": "text",
+                                "label": "Descripción X"
+                            },
+                            {
+                                "name": "fldrdw9J3xvaWkNZA",
+                                "type": "text",
+                                "label": "Tags YT"
+                            },
+                            {
+                                "name": "fld1OIMvvWdwprUrP",
+                                "type": "text",
+                                "label": "Tags IG"
+                            },
+                            {
+                                "name": "fldElJo5FCvUvv9xS",
+                                "type": "text",
+                                "label": "Tags Tiktok"
+                            },
+                            {
+                                "name": "fldzD0fvcr1lfCjFE",
+                                "type": "text",
+                                "label": "Tags X"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Record"
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "id",
+                        "type": "text",
+                        "label": "ID"
+                    },
+                    {
+                        "name": "createdTime",
+                        "type": "date",
+                        "label": "Created Time"
+                    },
+                    {
+                        "name": "ID",
+                        "type": "number",
+                        "label": "ID"
+                    },
+                    {
+                        "name": "Nombre del archivo",
+                        "type": "text",
+                        "label": "Nombre del archivo"
+                    },
+                    {
+                        "name": "ID video",
+                        "type": "text",
+                        "label": "ID video"
+                    },
+                    {
+                        "name": "ID carpeta",
+                        "type": "text",
+                        "label": "ID carpeta"
+                    },
+                    {
+                        "name": "Tipo de video",
+                        "type": "array",
+                        "label": "Tipo de video",
+                        "dynamic": true,
+                        "editable": true
+                    },
+                    {
+                        "name": "Prompt Miniatura",
+                        "type": "text",
+                        "label": "Prompt Miniatura",
+                        "multiline": true
+                    },
+                    {
+                        "name": "Fecha de posteo",
+                        "time": true,
+                        "type": "date",
+                        "label": "Fecha de posteo"
+                    },
+                    {
+                        "name": "Cálculo",
+                        "type": "text",
+                        "label": "Cálculo"
+                    },
+                    {
+                        "name": "Crear videos",
+                        "type": "boolean",
+                        "label": "Crear videos"
+                    },
+                    {
+                        "name": "Inicio",
+                        "type": "date",
+                        "label": "Inicio"
+                    },
+                    {
+                        "name": "Fin",
+                        "type": "date",
+                        "label": "Fin"
+                    },
+                    {
+                        "name": "Titulo de YT",
+                        "type": "text",
+                        "label": "Titulo de YT",
+                        "multiline": true
+                    },
+                    {
+                        "name": "Titulo de IG",
+                        "type": "text",
+                        "label": "Titulo de IG",
+                        "multiline": true
+                    },
+                    {
+                        "name": "Titulo X",
+                        "type": "text",
+                        "label": "Titulo X",
+                        "multiline": true
+                    },
+                    {
+                        "name": "Titulo Tiktok",
+                        "type": "text",
+                        "label": "Titulo Tiktok",
+                        "multiline": true
+                    },
+                    {
+                        "name": "Descripcion YT",
+                        "type": "text",
+                        "label": "Descripcion YT",
+                        "multiline": true
+                    },
+                    {
+                        "name": "Descripcion IG",
+                        "type": "text",
+                        "label": "Descripcion IG",
+                        "multiline": true
+                    },
+                    {
+                        "name": "Descripción Tiktok",
+                        "type": "text",
+                        "label": "Descripción Tiktok",
+                        "multiline": true
+                    },
+                    {
+                        "name": "Descripción X",
+                        "type": "text",
+                        "label": "Descripción X",
+                        "multiline": true
+                    },
+                    {
+                        "name": "Tags YT",
+                        "type": "text",
+                        "label": "Tags YT",
+                        "multiline": true
+                    },
+                    {
+                        "name": "Tags IG",
+                        "type": "text",
+                        "label": "Tags IG",
+                        "multiline": true
+                    },
+                    {
+                        "name": "Tags Tiktok",
+                        "type": "text",
+                        "label": "Tags Tiktok",
+                        "multiline": true
+                    },
+                    {
+                        "name": "Tags X",
+                        "type": "text",
+                        "label": "Tags X",
+                        "multiline": true
+                    }
+                ]
+            }
+        }
+    ],
+    "metadata": {
+        "instant": false,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "us2.make.com"
+    }
+}

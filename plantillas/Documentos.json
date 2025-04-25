@@ -1,0 +1,602 @@
+{
+    "name": "Procesar documentos",
+    "flow": [
+        {
+            "id": 1,
+            "module": "airtable:TriggerWatchRecords",
+            "version": 3,
+            "parameters": {
+                "base": "appWkiElZgH8zeYoe",
+                "view": "",
+                "table": "tblSI8CQ0IcKzF44R",
+                "config": {
+                    "labelField": "ID",
+                    "triggerField": "fin"
+                },
+                "formula": "",
+                "maxRecords": 10,
+                "__IMTCONN__": 3059356,
+                "useColumnId": false
+            },
+            "mapper": {},
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 0
+                },
+                "restore": {
+                    "parameters": {
+                        "base": {
+                            "label": "Contrato"
+                        },
+                        "view": {
+                            "label": "Empty"
+                        },
+                        "table": {
+                            "label": "Table 1"
+                        },
+                        "config": {
+                            "nested": {
+                                "labelField": {
+                                    "label": "ID"
+                                },
+                                "triggerField": {
+                                    "label": "fin"
+                                }
+                            }
+                        },
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "airtable3"
+                            },
+                            "label": "ahora si (User ID: usrmHuf5xfnSU75z7)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:airtable3,airtable2",
+                        "label": "Connection",
+                        "required": true
+                    },
+                    {
+                        "name": "base",
+                        "type": "select",
+                        "label": "Base",
+                        "required": true
+                    },
+                    {
+                        "name": "useColumnId",
+                        "type": "boolean",
+                        "label": "Use Column ID",
+                        "required": true
+                    },
+                    {
+                        "name": "table",
+                        "type": "select",
+                        "label": "Table",
+                        "required": true
+                    },
+                    {
+                        "name": "config",
+                        "spec": [
+                            {
+                                "name": "triggerField",
+                                "type": "select",
+                                "label": "Trigger field",
+                                "required": true
+                            },
+                            {
+                                "name": "triggerField",
+                                "type": "hidden"
+                            },
+                            {
+                                "name": "labelField",
+                                "type": "select",
+                                "label": "Label field",
+                                "required": true
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Trigger configuration"
+                    },
+                    {
+                        "name": "maxRecords",
+                        "type": "integer",
+                        "label": "Limit",
+                        "required": true
+                    },
+                    {
+                        "name": "view",
+                        "type": "select",
+                        "label": "View"
+                    },
+                    {
+                        "name": "formula",
+                        "type": "text",
+                        "label": "Formula"
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "id",
+                        "type": "text",
+                        "label": "ID"
+                    },
+                    {
+                        "name": "createdTime",
+                        "type": "date",
+                        "label": "Created Time"
+                    },
+                    {
+                        "name": "ID",
+                        "type": "number",
+                        "label": "ID"
+                    },
+                    {
+                        "name": "Nombre",
+                        "type": "text",
+                        "label": "Nombre",
+                        "multiline": true
+                    },
+                    {
+                        "name": "Email",
+                        "type": "text",
+                        "label": "Email"
+                    },
+                    {
+                        "name": "Direccion",
+                        "type": "text",
+                        "label": "Direccion",
+                        "multiline": true
+                    },
+                    {
+                        "name": "Planes",
+                        "type": "array",
+                        "label": "Planes",
+                        "dynamic": true,
+                        "editable": true
+                    },
+                    {
+                        "name": "inicio",
+                        "type": "date",
+                        "label": "inicio"
+                    },
+                    {
+                        "name": "fin",
+                        "type": "date",
+                        "label": "fin"
+                    },
+                    {
+                        "name": "verificar",
+                        "type": "boolean",
+                        "label": "verificar"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 2,
+            "module": "google-docs:createADocumentFromTemplate",
+            "version": 1,
+            "parameters": {
+                "__IMTCONN__": 3054103
+            },
+            "filter": {
+                "name": "",
+                "conditions": [
+                    [
+                        {
+                            "a": "{{1.verificar}}",
+                            "b": "true",
+                            "o": "text:equal"
+                        }
+                    ]
+                ]
+            },
+            "mapper": {
+                "name": "Contrato para {{1.Nombre}}",
+                "select": "map",
+                "document": "1tfmfOVXvcF37euN06VWyinFZb9wCL74bRMqaP64RoLs",
+                "folderId": "/19CQUODVoxd1fNtf3gmx2GqHQ5I9zAMzY",
+                "requests": [
+                    {
+                        "text": "Email_cliente",
+                        "replaceText": "{{1.Email}}"
+                    },
+                    {
+                        "text": "Nombre",
+                        "replaceText": "{{1.Nombre}}"
+                    },
+                    {
+                        "text": "Dirección",
+                        "replaceText": "{{1.Direccion}}"
+                    },
+                    {
+                        "text": "Plan_trabajo",
+                        "replaceText": "{{1.Planes[]}}"
+                    }
+                ],
+                "destination": "drive"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 300,
+                    "y": 0
+                },
+                "restore": {
+                    "expect": {
+                        "select": {
+                            "label": "By Mapping"
+                        },
+                        "folderId": {
+                            "mode": "chose",
+                            "path": [
+                                "make"
+                            ]
+                        },
+                        "requests": {
+                            "mode": "chose",
+                            "items": [
+                                null,
+                                null,
+                                null,
+                                null
+                            ]
+                        },
+                        "destination": {
+                            "label": "My Drive"
+                        },
+                        "imageReplacement": {
+                            "mode": "chose"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "google"
+                            },
+                            "label": "nacholeo (nacholeo005@gmail.com)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:google",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "select",
+                        "type": "select",
+                        "label": "Create a Document from a Template",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "map",
+                                "dropdown"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "name",
+                        "type": "text",
+                        "label": "Title",
+                        "required": true
+                    },
+                    {
+                        "name": "destination",
+                        "type": "select",
+                        "label": "New Drive Location",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "drive",
+                                "share",
+                                "team"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "document",
+                        "type": "text",
+                        "label": "Document ID",
+                        "required": true
+                    },
+                    {
+                        "name": "requests",
+                        "spec": [
+                            {
+                                "name": "text",
+                                "type": "text",
+                                "label": "Tags",
+                                "required": true
+                            },
+                            {
+                                "name": "replaceText",
+                                "type": "text",
+                                "label": "Replaced Value"
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Values"
+                    },
+                    {
+                        "name": "imageReplacement",
+                        "spec": [
+                            {
+                                "name": "imageObjectId",
+                                "type": "text",
+                                "label": "Image Object ID",
+                                "required": true
+                            },
+                            {
+                                "name": "url",
+                                "type": "text",
+                                "label": "Image URL",
+                                "required": true
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Images Replacement"
+                    },
+                    {
+                        "name": "folderId",
+                        "type": "folder",
+                        "label": "New Document's Location",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 3,
+            "module": "airtable:ActionUpdateRecords",
+            "version": 3,
+            "parameters": {
+                "__IMTCONN__": 3059356
+            },
+            "mapper": {
+                "id": "{{1.id}}",
+                "base": "appWkiElZgH8zeYoe",
+                "table": "tblSI8CQ0IcKzF44R",
+                "record": {
+                    "flds6bX8x4YiEYrwK": "{{2.webViewLink}}"
+                },
+                "typecast": false,
+                "useColumnId": false
+            },
+            "metadata": {
+                "designer": {
+                    "x": 600,
+                    "y": 0
+                },
+                "restore": {
+                    "expect": {
+                        "base": {
+                            "label": "Contrato"
+                        },
+                        "table": {
+                            "label": "Table 1"
+                        },
+                        "record": {
+                            "nested": {
+                                "fldPoC5wTxvidvMl1": {
+                                    "mode": "chose"
+                                },
+                                "fldsDeXqSgbl9g6h4": {
+                                    "mode": "chose"
+                                }
+                            }
+                        },
+                        "typecast": {
+                            "mode": "chose"
+                        },
+                        "useColumnId": {
+                            "mode": "chose"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "airtable3"
+                            },
+                            "label": "ahora si (User ID: usrmHuf5xfnSU75z7)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:airtable3,airtable2",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "base",
+                        "type": "select",
+                        "label": "Base",
+                        "required": true
+                    },
+                    {
+                        "name": "typecast",
+                        "type": "boolean",
+                        "label": "Smart links",
+                        "required": true
+                    },
+                    {
+                        "name": "useColumnId",
+                        "type": "boolean",
+                        "label": "Use Column ID",
+                        "required": true
+                    },
+                    {
+                        "name": "table",
+                        "type": "select",
+                        "label": "Table",
+                        "required": true
+                    },
+                    {
+                        "name": "id",
+                        "type": "text",
+                        "label": "Record ID",
+                        "required": true
+                    },
+                    {
+                        "name": "record",
+                        "spec": [
+                            {
+                                "name": "fldrl5qF4lJvlim3q",
+                                "type": "text",
+                                "label": "Nombre"
+                            },
+                            {
+                                "name": "fld5RTzATShBtq9Dm",
+                                "type": "text",
+                                "label": "Email"
+                            },
+                            {
+                                "name": "fldLxvwMjFHugZuvp",
+                                "type": "text",
+                                "label": "Direccion"
+                            },
+                            {
+                                "name": "fldPoC5wTxvidvMl1",
+                                "spec": {
+                                    "mode": "edit",
+                                    "name": "value",
+                                    "type": "select",
+                                    "label": "Value",
+                                    "dynamic": true,
+                                    "options": [
+                                        {
+                                            "label": "Anuncios por Facebook",
+                                            "value": "Anuncios por Facebook"
+                                        },
+                                        {
+                                            "label": "Anuncios por google",
+                                            "value": "Anuncios por google"
+                                        },
+                                        {
+                                            "label": "Creacion de contenido",
+                                            "value": "Creacion de contenido"
+                                        },
+                                        {
+                                            "label": "Full-plan",
+                                            "value": "Full-plan"
+                                        }
+                                    ],
+                                    "validate": false
+                                },
+                                "type": "array",
+                                "label": "Planes"
+                            },
+                            {
+                                "name": "fldsDeXqSgbl9g6h4",
+                                "type": "boolean",
+                                "label": "verificar"
+                            },
+                            {
+                                "name": "flds6bX8x4YiEYrwK",
+                                "type": "text",
+                                "label": "link del contrato"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Record"
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "id",
+                        "type": "text",
+                        "label": "ID"
+                    },
+                    {
+                        "name": "createdTime",
+                        "type": "date",
+                        "label": "Created Time"
+                    },
+                    {
+                        "name": "ID",
+                        "type": "number",
+                        "label": "ID"
+                    },
+                    {
+                        "name": "Nombre",
+                        "type": "text",
+                        "label": "Nombre",
+                        "multiline": true
+                    },
+                    {
+                        "name": "Email",
+                        "type": "text",
+                        "label": "Email"
+                    },
+                    {
+                        "name": "Direccion",
+                        "type": "text",
+                        "label": "Direccion",
+                        "multiline": true
+                    },
+                    {
+                        "name": "Planes",
+                        "type": "array",
+                        "label": "Planes",
+                        "dynamic": true,
+                        "editable": true
+                    },
+                    {
+                        "name": "verificar",
+                        "type": "boolean",
+                        "label": "verificar"
+                    },
+                    {
+                        "name": "link del contrato",
+                        "type": "text",
+                        "label": "link del contrato"
+                    },
+                    {
+                        "name": "inicio",
+                        "type": "date",
+                        "label": "inicio"
+                    },
+                    {
+                        "name": "fin",
+                        "type": "date",
+                        "label": "fin"
+                    }
+                ]
+            }
+        }
+    ],
+    "metadata": {
+        "instant": false,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "us1.make.com"
+    }
+}

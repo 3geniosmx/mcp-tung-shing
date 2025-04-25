@@ -1,0 +1,880 @@
+{
+    "name": "Create Event",
+    "flow": [
+        {
+            "id": 4,
+            "module": "gateway:CustomWebHook",
+            "version": 1,
+            "parameters": {
+                "hook": 1777220,
+                "maxResults": 1
+            },
+            "mapper": {},
+            "metadata": {
+                "designer": {
+                    "x": -306,
+                    "y": -3
+                },
+                "restore": {
+                    "parameters": {
+                        "hook": {
+                            "data": {
+                                "editable": "true"
+                            },
+                            "label": "crear eventos agente"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "hook",
+                        "type": "hook:gateway-webhook",
+                        "label": "Webhook",
+                        "required": true
+                    },
+                    {
+                        "name": "maxResults",
+                        "type": "number",
+                        "label": "Maximum number of results"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 11,
+            "module": "builtin:BasicRouter",
+            "version": 1,
+            "mapper": null,
+            "metadata": {
+                "designer": {
+                    "x": -6,
+                    "y": -3
+                }
+            },
+            "routes": [
+                {
+                    "flow": [
+                        {
+                            "id": 6,
+                            "module": "builtin:BasicFeeder",
+                            "version": 1,
+                            "parameters": {},
+                            "filter": {
+                                "name": "Email",
+                                "conditions": [
+                                    [
+                                        {
+                                            "a": "{{4.invitees}}",
+                                            "b": "@",
+                                            "o": "text:contain"
+                                        }
+                                    ]
+                                ]
+                            },
+                            "mapper": {
+                                "array": "{{split(4.invitees; \",\")}}"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 335,
+                                    "y": -179
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "array": {
+                                            "mode": "edit"
+                                        }
+                                    }
+                                },
+                                "expect": [
+                                    {
+                                        "mode": "edit",
+                                        "name": "array",
+                                        "spec": [],
+                                        "type": "array",
+                                        "label": "Array"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": 7,
+                            "module": "builtin:BasicAggregator",
+                            "version": 1,
+                            "parameters": {
+                                "feeder": 6,
+                                "target": "5.attendees"
+                            },
+                            "mapper": {
+                                "email": "{{6.value}}",
+                                "displayName": ""
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 598,
+                                    "y": -181
+                                },
+                                "restore": {
+                                    "extra": {
+                                        "feeder": {
+                                            "label": "Iterator [6]"
+                                        },
+                                        "target": {
+                                            "label": "Attendees"
+                                        }
+                                    }
+                                },
+                                "expect": [
+                                    {
+                                        "name": "displayName",
+                                        "type": "text",
+                                        "label": "Name"
+                                    },
+                                    {
+                                        "name": "email",
+                                        "type": "email",
+                                        "label": "Email",
+                                        "required": true
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": 5,
+                            "module": "google-calendar:createAnEvent",
+                            "version": 5,
+                            "parameters": {
+                                "__IMTCONN__": 3054103
+                            },
+                            "mapper": {
+                                "start": "{{4.`Start Date`}}",
+                                "select": "detail",
+                                "summary": "{{4.`Event Name`}}",
+                                "calendar": "nacholeo005@gmail.com",
+                                "duration": "{{4.Duration}}",
+                                "attendees": "{{7.array}}",
+                                "visibility": "default",
+                                "allDayEvent": false,
+                                "sendUpdates": "all",
+                                "transparency": "opaque",
+                                "conferenceDate": true,
+                                "guestsCanModify": true
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 857,
+                                    "y": -202
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "select": {
+                                            "label": "In Detail"
+                                        },
+                                        "colorId": {
+                                            "mode": "chose"
+                                        },
+                                        "calendar": {
+                                            "mode": "chose",
+                                            "label": "nacholeo005@gmail.com (Primary Calendar)"
+                                        },
+                                        "attendees": {
+                                            "mode": "edit"
+                                        },
+                                        "overrides": {
+                                            "mode": "chose"
+                                        },
+                                        "recurrence": {
+                                            "mode": "chose"
+                                        },
+                                        "visibility": {
+                                            "mode": "chose",
+                                            "label": "Default"
+                                        },
+                                        "allDayEvent": {
+                                            "mode": "chose"
+                                        },
+                                        "attachments": {
+                                            "mode": "chose"
+                                        },
+                                        "sendUpdates": {
+                                            "mode": "chose",
+                                            "label": "To All Guests"
+                                        },
+                                        "transparency": {
+                                            "mode": "chose",
+                                            "label": "Busy"
+                                        },
+                                        "conferenceDate": {
+                                            "mode": "chose"
+                                        }
+                                    },
+                                    "parameters": {
+                                        "__IMTCONN__": {
+                                            "data": {
+                                                "scoped": "true",
+                                                "connection": "google"
+                                            },
+                                            "label": "nacholeo (nacholeo005@gmail.com)"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "__IMTCONN__",
+                                        "type": "account:google",
+                                        "label": "Connection",
+                                        "required": true
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "select",
+                                        "type": "select",
+                                        "label": "Create an Event",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "quick",
+                                                "detail"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "calendar",
+                                        "type": "select",
+                                        "label": "Calendar ID",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "colorId",
+                                        "type": "select",
+                                        "label": "Color"
+                                    },
+                                    {
+                                        "name": "summary",
+                                        "type": "text",
+                                        "label": "Event Name",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "allDayEvent",
+                                        "type": "boolean",
+                                        "label": "All Day Event",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "start",
+                                        "time": true,
+                                        "type": "date",
+                                        "label": "Start Date",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "end",
+                                        "time": true,
+                                        "type": "date",
+                                        "label": "End Date"
+                                    },
+                                    {
+                                        "name": "duration",
+                                        "type": "time",
+                                        "label": "Duration"
+                                    },
+                                    {
+                                        "name": "description",
+                                        "type": "text",
+                                        "label": "Description"
+                                    },
+                                    {
+                                        "name": "location",
+                                        "type": "text",
+                                        "label": "Location"
+                                    },
+                                    {
+                                        "name": "useDefault",
+                                        "type": "boolean",
+                                        "label": "Use the default reminder settings for this event"
+                                    },
+                                    {
+                                        "name": "overrides",
+                                        "spec": [
+                                            {
+                                                "name": "method",
+                                                "type": "select",
+                                                "label": "Method",
+                                                "options": [
+                                                    {
+                                                        "label": "Email",
+                                                        "value": "email"
+                                                    },
+                                                    {
+                                                        "label": "Pop-up",
+                                                        "value": "popup"
+                                                    }
+                                                ],
+                                                "required": true
+                                            },
+                                            {
+                                                "name": "minutes",
+                                                "type": "uinteger",
+                                                "label": "Minutes",
+                                                "required": true,
+                                                "validate": {
+                                                    "max": 40320
+                                                }
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Reminders",
+                                        "validate": {
+                                            "maxItems": 5
+                                        }
+                                    },
+                                    {
+                                        "name": "attendees",
+                                        "spec": [
+                                            {
+                                                "name": "displayName",
+                                                "type": "text",
+                                                "label": "Name"
+                                            },
+                                            {
+                                                "name": "email",
+                                                "type": "email",
+                                                "label": "Email",
+                                                "required": true
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Attendees"
+                                    },
+                                    {
+                                        "name": "transparency",
+                                        "type": "select",
+                                        "label": "Show me as",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "opaque",
+                                                "transparent"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "visibility",
+                                        "type": "select",
+                                        "label": "Visibility",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "default",
+                                                "public",
+                                                "private"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "sendUpdates",
+                                        "type": "select",
+                                        "label": "Send notifications about the event creation",
+                                        "validate": {
+                                            "enum": [
+                                                "all",
+                                                "externalOnly",
+                                                "none"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "guestsCanModify",
+                                        "type": "boolean",
+                                        "label": "Guests can modify the event",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "recurrence",
+                                        "spec": {
+                                            "name": "value",
+                                            "type": "text",
+                                            "label": "Value"
+                                        },
+                                        "type": "array",
+                                        "label": "Recurrence"
+                                    },
+                                    {
+                                        "name": "conferenceDate",
+                                        "type": "boolean",
+                                        "label": "Add Google Meet Video Conferencing",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "attachments",
+                                        "spec": [
+                                            {
+                                                "name": "fileUrl",
+                                                "type": "url",
+                                                "label": "File URL",
+                                                "required": true
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Attachments"
+                                    }
+                                ],
+                                "advanced": true
+                            }
+                        },
+                        {
+                            "id": 8,
+                            "module": "gateway:WebhookRespond",
+                            "version": 1,
+                            "parameters": {},
+                            "mapper": {
+                                "body": "La reunión fue:{{5.status}} para {{5.start}}, Aquí está el enlace: {{5.htmlLink}}, Y el enlace de la reunión:{{5.hangoutLink}}.",
+                                "status": "200",
+                                "headers": []
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 1149,
+                                    "y": -206
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "headers": {
+                                            "mode": "chose"
+                                        }
+                                    }
+                                },
+                                "expect": [
+                                    {
+                                        "name": "status",
+                                        "type": "uinteger",
+                                        "label": "Status",
+                                        "required": true,
+                                        "validate": {
+                                            "min": 100
+                                        }
+                                    },
+                                    {
+                                        "name": "body",
+                                        "type": "any",
+                                        "label": "Body"
+                                    },
+                                    {
+                                        "name": "headers",
+                                        "spec": [
+                                            {
+                                                "name": "key",
+                                                "type": "text",
+                                                "label": "Key",
+                                                "required": true,
+                                                "validate": {
+                                                    "max": 256
+                                                }
+                                            },
+                                            {
+                                                "name": "value",
+                                                "type": "text",
+                                                "label": "Value",
+                                                "required": true,
+                                                "validate": {
+                                                    "max": 4096
+                                                }
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Custom headers",
+                                        "validate": {
+                                            "maxItems": 16
+                                        }
+                                    }
+                                ],
+                                "advanced": true
+                            }
+                        }
+                    ]
+                },
+                {
+                    "flow": [
+                        {
+                            "id": 9,
+                            "module": "google-calendar:createAnEvent",
+                            "version": 5,
+                            "parameters": {
+                                "__IMTCONN__": 3054103
+                            },
+                            "mapper": {
+                                "start": "{{4.`Start Date`}}",
+                                "select": "detail",
+                                "colorId": 3,
+                                "summary": "{{4.`Event Name`}}",
+                                "calendar": "nacholeo005@gmail.com",
+                                "duration": "{{4.Duration}}",
+                                "visibility": "default",
+                                "allDayEvent": false,
+                                "sendUpdates": "all",
+                                "transparency": "opaque",
+                                "conferenceDate": false,
+                                "guestsCanModify": true
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 322,
+                                    "y": 129
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "select": {
+                                            "label": "In Detail"
+                                        },
+                                        "colorId": {
+                                            "mode": "chose",
+                                            "label": "#dbadff (#1d1d1d)"
+                                        },
+                                        "calendar": {
+                                            "mode": "chose",
+                                            "label": "nacholeo005@gmail.com (Primary Calendar)"
+                                        },
+                                        "attendees": {
+                                            "mode": "chose"
+                                        },
+                                        "overrides": {
+                                            "mode": "chose"
+                                        },
+                                        "recurrence": {
+                                            "mode": "chose"
+                                        },
+                                        "visibility": {
+                                            "mode": "chose",
+                                            "label": "Default"
+                                        },
+                                        "allDayEvent": {
+                                            "mode": "chose"
+                                        },
+                                        "attachments": {
+                                            "mode": "chose"
+                                        },
+                                        "sendUpdates": {
+                                            "mode": "chose",
+                                            "label": "To All Guests"
+                                        },
+                                        "transparency": {
+                                            "mode": "chose",
+                                            "label": "Busy"
+                                        },
+                                        "conferenceDate": {
+                                            "mode": "chose"
+                                        }
+                                    },
+                                    "parameters": {
+                                        "__IMTCONN__": {
+                                            "data": {
+                                                "scoped": "true",
+                                                "connection": "google"
+                                            },
+                                            "label": "nacholeo (nacholeo005@gmail.com)"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "__IMTCONN__",
+                                        "type": "account:google",
+                                        "label": "Connection",
+                                        "required": true
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "select",
+                                        "type": "select",
+                                        "label": "Create an Event",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "quick",
+                                                "detail"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "calendar",
+                                        "type": "select",
+                                        "label": "Calendar ID",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "colorId",
+                                        "type": "select",
+                                        "label": "Color"
+                                    },
+                                    {
+                                        "name": "summary",
+                                        "type": "text",
+                                        "label": "Event Name",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "allDayEvent",
+                                        "type": "boolean",
+                                        "label": "All Day Event",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "start",
+                                        "time": true,
+                                        "type": "date",
+                                        "label": "Start Date",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "end",
+                                        "time": true,
+                                        "type": "date",
+                                        "label": "End Date"
+                                    },
+                                    {
+                                        "name": "duration",
+                                        "type": "time",
+                                        "label": "Duration"
+                                    },
+                                    {
+                                        "name": "description",
+                                        "type": "text",
+                                        "label": "Description"
+                                    },
+                                    {
+                                        "name": "location",
+                                        "type": "text",
+                                        "label": "Location"
+                                    },
+                                    {
+                                        "name": "useDefault",
+                                        "type": "boolean",
+                                        "label": "Use the default reminder settings for this event"
+                                    },
+                                    {
+                                        "name": "overrides",
+                                        "spec": [
+                                            {
+                                                "name": "method",
+                                                "type": "select",
+                                                "label": "Method",
+                                                "options": [
+                                                    {
+                                                        "label": "Email",
+                                                        "value": "email"
+                                                    },
+                                                    {
+                                                        "label": "Pop-up",
+                                                        "value": "popup"
+                                                    }
+                                                ],
+                                                "required": true
+                                            },
+                                            {
+                                                "name": "minutes",
+                                                "type": "uinteger",
+                                                "label": "Minutes",
+                                                "required": true,
+                                                "validate": {
+                                                    "max": 40320
+                                                }
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Reminders",
+                                        "validate": {
+                                            "maxItems": 5
+                                        }
+                                    },
+                                    {
+                                        "name": "attendees",
+                                        "spec": [
+                                            {
+                                                "name": "displayName",
+                                                "type": "text",
+                                                "label": "Name"
+                                            },
+                                            {
+                                                "name": "email",
+                                                "type": "email",
+                                                "label": "Email",
+                                                "required": true
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Attendees"
+                                    },
+                                    {
+                                        "name": "transparency",
+                                        "type": "select",
+                                        "label": "Show me as",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "opaque",
+                                                "transparent"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "visibility",
+                                        "type": "select",
+                                        "label": "Visibility",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "default",
+                                                "public",
+                                                "private"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "sendUpdates",
+                                        "type": "select",
+                                        "label": "Send notifications about the event creation",
+                                        "validate": {
+                                            "enum": [
+                                                "all",
+                                                "externalOnly",
+                                                "none"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "guestsCanModify",
+                                        "type": "boolean",
+                                        "label": "Guests can modify the event",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "recurrence",
+                                        "spec": {
+                                            "name": "value",
+                                            "type": "text",
+                                            "label": "Value"
+                                        },
+                                        "type": "array",
+                                        "label": "Recurrence"
+                                    },
+                                    {
+                                        "name": "conferenceDate",
+                                        "type": "boolean",
+                                        "label": "Add Google Meet Video Conferencing",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "attachments",
+                                        "spec": [
+                                            {
+                                                "name": "fileUrl",
+                                                "type": "url",
+                                                "label": "File URL",
+                                                "required": true
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Attachments"
+                                    }
+                                ],
+                                "advanced": true
+                            }
+                        },
+                        {
+                            "id": 12,
+                            "module": "gateway:WebhookRespond",
+                            "version": 1,
+                            "parameters": {},
+                            "mapper": {
+                                "body": "La reunión fue {{9.status}} desde {{9.start}}hasta{{9.end}}",
+                                "status": "200",
+                                "headers": []
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 621,
+                                    "y": 139
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "headers": {
+                                            "mode": "chose"
+                                        }
+                                    }
+                                },
+                                "expect": [
+                                    {
+                                        "name": "status",
+                                        "type": "uinteger",
+                                        "label": "Status",
+                                        "required": true,
+                                        "validate": {
+                                            "min": 100
+                                        }
+                                    },
+                                    {
+                                        "name": "body",
+                                        "type": "any",
+                                        "label": "Body"
+                                    },
+                                    {
+                                        "name": "headers",
+                                        "spec": [
+                                            {
+                                                "name": "key",
+                                                "type": "text",
+                                                "label": "Key",
+                                                "required": true,
+                                                "validate": {
+                                                    "max": 256
+                                                }
+                                            },
+                                            {
+                                                "name": "value",
+                                                "type": "text",
+                                                "label": "Value",
+                                                "required": true,
+                                                "validate": {
+                                                    "max": 4096
+                                                }
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Custom headers",
+                                        "validate": {
+                                            "maxItems": 16
+                                        }
+                                    }
+                                ],
+                                "advanced": true
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "metadata": {
+        "instant": true,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "us1.make.com"
+    }
+}
