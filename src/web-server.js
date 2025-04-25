@@ -1,7 +1,9 @@
 import express from 'express';
 import { createServer as createHttpServer } from 'http';
-// Importar createServer de la forma correcta
-import { createServer } from '../dist/index.js';
+import { createServer } from './server.js';
+
+// Para SSE (Server-Sent Events) como alternativa a WebSocket
+import { SseServerTransport } from '@modelcontextprotocol/sdk/dist/esm/server/sse.js';
 
 // Crear una aplicación Express
 const app = express();
@@ -24,7 +26,22 @@ app.get('/', (req, res) => {
 // Crear un servidor HTTP
 const httpServer = createHttpServer(app);
 
-// Iniciar el servidor HTTP
+// Crear el servidor MCP
+const mcpServer = createServer();
+
+// Crear transporte SSE como alternativa a WebSocket
+const sseTransport = new SseServerTransport();
+sseTransport.onerror = (error) => {
+  console.error('SSE error:', error);
+};
+
+// Conectar el MCP al transporte SSE
+mcpServer.connect(sseTransport);
+
+// Configurar las rutas de SSE
+app.use('/sse', sseTransport.createExpressRouter());
+
+// Iniciar el servidor
 httpServer.listen(PORT, () => {
   console.log(`Tung Shing MCP server started on port ${PORT}`);
 });
