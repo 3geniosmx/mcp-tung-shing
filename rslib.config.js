@@ -11,5 +11,17 @@ export default {
       'zod',
       'zod-to-json-schema',
       'ws'
-    ]
+    ],
+    // Agregar la configuración de lib
+    lib: ['ES2021', 'DOM'],
+    // Agregar la configuración del compilador
+    compilerOptions: {
+      target: 'ES2020',
+      module: 'ESNext',
+      moduleResolution: 'node',
+      esModuleInterop: true,
+      strict: true,
+      skipLibCheck: true,
+      declaration: true
+    }
   };
