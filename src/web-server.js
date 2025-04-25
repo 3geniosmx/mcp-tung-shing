@@ -1,7 +1,7 @@
-const express = require('express');
-const { createServer: createHttpServer } = require('http');
-const { WebSocketServerTransport } = require('@modelcontextprotocol/sdk/server/websocket.js');
-const { createServer } = require('./server');
+import express from 'express';
+import { createServer as createHttpServer } from 'http';
+import { WebSocketServerTransport } from '@modelcontextprotocol/sdk/server/websocket.js';
+import { createServer } from './server.js';  // Nota: añade .js aquí
 
 // Crear una aplicación Express
 const app = express();
