@@ -1,35 +1,69 @@
 // src/web-server.js
-
 import express from 'express';
-import http from 'http';
-
-// 1) Importa la clase McpServer
+import { createServer as createHttpServer } from 'http';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { WebSocketServerTransport } from '@modelcontextprotocol/sdk';
+import { plugin } from './dist/index.js';
 
-// 2) Importa tu plugin (herramientas) generado por rslib
-import * as plugin from './index.js';
+// Crear una aplicación Express
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-// 3) Importa el transport HTTP/SSE
-import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
+// Endpoint de salud
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
+});
 
-(async () => {
-  const app = express();
-  app.use(express.json());
-  const PORT = process.env.PORT || 10000;
+// Endpoint de información
+app.get('/', (req, res) => {
+  res.status(200).json({
+    name: 'Tung Shing MCP Server',
+    version: process.env.PACKAGE_VERSION || 'unknown',
+    status: 'running'
+  });
+});
 
-  // 4) Crea el MCP y registra el plugin
-  const mcp = new McpServer({ name: 'tung-shing-mcp', version: '1.7.1' });
-  mcp.use(plugin);
+// Crear un servidor HTTP
+const httpServer = createHttpServer(app);
 
-  // 5) Monta el transport HTTP/SSE en /rpc
-  const transport = new StreamableHTTPServerTransport({ path: '/rpc', app });
-  await mcp.connect(transport);
+// Crear el servidor MCP
+const mcpServer = new McpServer({
+  name: "Tung Shing MCP Server",
+  version: process.env.PACKAGE_VERSION || "1.0.0",
+});
 
-  // 6) Healthcheck
-  app.get('/health', (_req, res) => res.send('OK'));
+// Usar el plugin
+mcpServer.use(plugin);
 
-  // 7) Arranca el HTTP server
-  http.createServer(app).listen(PORT, () =>
-    console.log(`🚀 MCP HTTP/SSE listening on http://0.0.0.0:${PORT}/rpc`)
-  );
-})();
+// Crear transporte WebSocket
+const wsTransport = new WebSocketServerTransport();
+
+// Agregar manejo de errores
+wsTransport.onerror = (error) => {
+  console.error("Error en el transporte:", error);
+};
+
+// Conectar el servidor al transporte
+mcpServer.connect(wsTransport).catch((error) => {
+  console.error("Error al conectar el servidor:", error);
+  process.exit(1);
+});
+
+// Configurar el transporte WebSocket para escuchar en el servidor HTTP
+wsTransport.listen(httpServer);
+
+// Manejar el cierre limpio
+process.on('SIGINT', async () => {
+  await mcpServer.close();
+  process.exit(0);
+});
+
+process.on('SIGTERM', async () => {
+  await mcpServer.close();
+  process.exit(0);
+});
+
+// Iniciar el servidor
+httpServer.listen(PORT, () => {
+  console.log(`Tung Shing MCP server started on port ${PORT}`);
+});
