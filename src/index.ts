@@ -2,7 +2,8 @@
 
 import dayjs from 'dayjs';
 import { PluginLunar } from 'dayjs-plugin-lunar';
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/dist/esm/server/stdio.js';
+// Cambia la importación para usar la ruta general del SDK
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { createServer as createHttpServer } from 'http';
 
 // 初始化日期插件

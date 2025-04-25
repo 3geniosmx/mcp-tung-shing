@@ -6,7 +6,7 @@ export default defineConfig({
     {
       format: 'esm',
       syntax: 'es2021',
-      dts: true,
+      dts: false,  // Cambia a false para evitar problemas de tipos
     },
     {
       format: 'cjs',
