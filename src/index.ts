@@ -20,3 +20,5 @@ dayjs.extend(PluginLunar);
     process.exit(1);
   }
 })();
+
+export { createServer };

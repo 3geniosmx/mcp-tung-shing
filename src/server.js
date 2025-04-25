@@ -1,7 +1,7 @@
 // Prueba con estas opciones
-export { default as createServer } from '../dist/index.js';
+//export { default as createServer } from '../dist/index.js';
 // O
-//export { createServer } from '../dist/server.js';
+export { createServer } from '../dist/index.js';
 
 
 

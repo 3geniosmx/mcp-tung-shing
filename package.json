@@ -44,7 +44,8 @@
     "pretest": "rslib build",
     "test": "vitest run",
     "prerelease": "npm run build",
-    "release": "changeset publish"
+    "release": "changeset publish",
+    "start": "node src/web-server.js"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.10.2",
