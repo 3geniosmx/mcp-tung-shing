@@ -1,6 +1,6 @@
 // src/plugin.ts
 // @ts-ignore
-import { definePlugin } from '@modelcontextprotocol/sdk/dist/esm/server/mcp.js';
+import { definePlugin } from '@modelcontextprotocol/sdk';  // Simplifica la importación
 import { getDailyAlmanac } from './almanac';
 import { ContentType, TabooType, getTungShingParamsSchema } from './types';
 import { getDayTabooNames } from './utils';
