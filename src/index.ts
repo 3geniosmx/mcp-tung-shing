@@ -4,7 +4,8 @@
 import dayjs from 'dayjs';
 import { PluginLunar } from 'dayjs-plugin-lunar';
 // Importación simplificada
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio';
+
+import { StdioServerTransport } from '@modelcontextprotocol/sdk';
 import { createServer as createHttpServer } from 'http';
 
 // 初始化日期插件
