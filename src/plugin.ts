@@ -1,4 +1,4 @@
-import { definePlugin } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { definePlugin } from '@modelcontextprotocol/sdk/dist/esm/server/mcp.js';
 import { getDailyAlmanac } from './almanac';
 import { ContentType, TabooType, getTungShingParamsSchema } from './types';
 import { getDayTabooNames } from './utils';
@@ -14,7 +14,7 @@ interface TungShingParams {
   }>;
 }
 
-export default definePlugin({
+export const plugin = definePlugin({
   name: 'tung-shing',
   version: '1.7.1',
   tools: [

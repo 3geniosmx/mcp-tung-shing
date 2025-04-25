@@ -22,3 +22,4 @@ dayjs.extend(PluginLunar);
 })();
 
 export { createHttpServer as createServer };
+export * as plugin from './plugin';

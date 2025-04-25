@@ -14,7 +14,8 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "prebuild": "rm -rf dist",
-    "build": "tsc && tsc --module commonjs --outDir dist/cjs",
+    "build": "tsc",
+    "postbuild": "tsc -p tsconfig.cjs.json",
     "start": "node dist/web-server.js"
   },
   "dependencies": {
@@ -28,14 +29,10 @@
     "ws": "^8.18.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.2",
-    "@changesets/cli": "^2.28.1",
-    "@modelcontextprotocol/inspector": "^0.8.0",
     "@types/express": "^4.17.21",
     "@types/node": "^22.8.1",
     "@types/ws": "^8.5.10",
-    "typescript": "^5.7.3",
-    "vitest": "^3.0.1"
+    "typescript": "^5.7.3"
   },
   "packageManager":"pnpm@9.13.0"
 }
